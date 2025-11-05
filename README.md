@@ -281,20 +281,21 @@ Each profile customizes:
 
 ## Quick Start
 
-### For Product Development
+### Step 1: Base Installation
 ```bash
-# Use default profile (product-dev)
+curl -sSL https://raw.githubusercontent.com/boshu2/agentops/main/scripts/base-install.sh | bash
+```
+
+### Step 2: Project Installation
+```bash
+cd /path/to/your/project
 ~/.agentops/scripts/project-install.sh default
 ```
 
-### For Infrastructure/DevOps
-```bash
-# Use devops profile
-~/.agentops/scripts/project-install.sh devops
-```
+Choose your profile:
+- `default` - Generic foundation (core framework, works across all domains)
 
-### Create Custom Profile
-See `docs/how-to/CREATE_CUSTOM_PROFILE.md`
+For detailed instructions, see [INSTALL.md](INSTALL.md)
 
 ---
 

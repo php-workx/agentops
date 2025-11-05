@@ -16,6 +16,17 @@ if [ ! -d "$AGENTOPS_HOME" ]; then
     exit 1
 fi
 
+# Check profile exists
+if [ ! -d "$AGENTOPS_HOME/profiles/$PROFILE" ]; then
+    echo "❌ Profile '$PROFILE' not found"
+    echo ""
+    echo "Available profiles:"
+    ls -1 "$AGENTOPS_HOME/profiles/" | grep -v examples | sed 's/^/  - /'
+    echo ""
+    echo "Usage: $0 [profile]"
+    exit 1
+fi
+
 echo "📦 agentops Project Installation"
 echo ""
 echo "Project: $PROJECT_ROOT"

@@ -36,11 +36,10 @@ cd /path/to/your/project
 ~/.agentops/scripts/project-install.sh
 ```
 
-Select a profile when prompted:
-- `default` - Generic foundation
-- `devops` - Infrastructure & operations
-- `product-dev` - Feature development
-- `sre` - Incident response & monitoring
+Select a profile:
+- `default` - Generic foundation (recommended to start)
+
+> **Note:** Additional profiles (`devops`, `product-dev`, `sre`) are in development. For now, `default` provides the core AgentOps framework that works across all domains.
 
 This creates:
 - `agentops/` folder in your project
