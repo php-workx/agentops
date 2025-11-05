@@ -21,11 +21,12 @@
 
 ---
 
-## Repository Kernel
+## Repository Kernel & Strategy
 
-**File:** `/agentops/claude.md`
+**Primary File:** `/agentops/claude.md`
 **Time:** 2-3 minutes
 **Contains:**
+
 - Constitutional foundation (Five Laws, Three Rules, 40% Rule)
 - Four universal patterns explained
 - Repository structure overview
@@ -33,6 +34,18 @@
 - Commit message patterns
 
 **Read this at the start of every session.**
+
+**Strategic File:** `/agentops/STRATEGY.md`
+**Time:** 5 minutes
+**Contains:**
+
+- Mission: Why AgentOps exists
+- The problem we solve
+- Path to v1.0 (Alpha → Beta → v1.0)
+- Non-negotiable principles
+- How contributors help
+
+**Read this to understand WHY your work matters and WHERE we're headed.**
 
 ---
 
