@@ -38,6 +38,31 @@
 
 ---
 
+## Execution Context: If You're Here for the Dec 1 Launch (Nov 11-28)
+
+**File:** `EXECUTION_GUIDE.md` (in repo root)
+**Time:** 5 minutes
+**Contains:**
+
+- Where PRIORITY 1 work lives (content rewrites → `life/agentops-promotion/`)
+- Where PRIORITY 2 work lives (website build → NEW `website/` repo)
+- Where PRIORITY 3 work lives (verification → `launch/README.md`)
+- Critical path if time gets tight
+- Day-by-day examples
+- File flow map
+
+**Read this if:**
+
+- You're doing content rewrites (PRIORITY 1)
+- You're building the website (PRIORITY 2)
+- You're doing pre-launch verification (PRIORITY 3)
+- You're unsure where to store or work on something
+- You're running out of time and need to prioritize
+
+**This answers:** "Where does my work live?" and "What matters most?"
+
+---
+
 ## Constitutional Foundation (ALWAYS Enforced)
 
 ### Five Laws
