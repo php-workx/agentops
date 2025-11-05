@@ -267,3 +267,18 @@ This aligns with 12-Factor AgentOps and supports the goal of making AI agent ope
 ## Contributing
 
 Want to create a profile for your domain? See `docs/how-to/CREATE_CUSTOM_PROFILE.md` and contribute your case study back to the community.
+
+---
+
+## Acknowledgments
+
+**Agent OS** ([agent-os](https://github.com/agent-os))
+
+AgentOps patterns for multi-agent orchestration and specialized agent routing were informed by and build upon the work of the Agent OS project. We independently developed similar patterns for agent operations, discovered convergent evolution, and contributed enhancements including:
+
+- Multi-phase workflow (research → plan → implement) integration
+- Context bundles (session-spanning artifact compression)
+- Intelligent routing (NLP-based agent classification)
+- Profile system for domain-specific customization
+
+Special thanks to the Agent OS team for open-sourcing infrastructure that enabled broader exploration of agent operational patterns.
