@@ -211,6 +211,34 @@ These are universal human and AI challenges, applicable everywhere.
 
 ---
 
+## Framework: 12-Factor AgentOps
+
+This implementation follows the **[12-Factor AgentOps](https://github.com/boshu2/12-factor-agentops-private)** framework:
+
+- **12-Factor AgentOps** = Theory & Specification (problem-first hypothesis)
+- **AgentOps** = Reference Implementation (working patterns & proven speedups)
+
+See the [12-Factor AgentOps documentation](https://github.com/boshu2/12-factor-agentops-private) for the operational principles and thinking behind these patterns.
+
+---
+
 ## License
 
-MIT
+**Apache License 2.0**
+
+- **Code** (agents, profiles, workflows): Apache 2.0
+- **Documentation** (patterns, guides): CC BY-SA 4.0 (same as 12-Factor AgentOps)
+
+The Apache 2.0 license:
+- Permits commercial use and modification
+- Requires attribution
+- Includes explicit patent grant
+- Encourages community contribution and customization
+
+This aligns with 12-Factor AgentOps and supports the goal of making AI agent operations reliable and extensible across any domain.
+
+---
+
+## Contributing
+
+Want to create a profile for your domain? See `docs/how-to/CREATE_CUSTOM_PROFILE.md` and contribute your case study back to the community.
