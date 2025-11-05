@@ -204,6 +204,19 @@ See `docs/how-to/CREATE_CUSTOM_PROFILE.md`
 
 ## Philosophy
 
+**Core Vision: An Operating System for the Mind**
+
+AgentOps isn't a framework—it's an **operating system for reliable AI agent operations**. Like a traditional OS that manages processes, memory, and resources, AgentOps manages:
+
+- **Attention** (context windows, 40% rule prevents cognitive overload)
+- **Work routing** (intelligent agents, like process scheduling)
+- **Memory** (git-based institutional knowledge, like a file system)
+- **Patterns** (constitutional laws, like system permissions)
+- **Collaboration** (multi-agent orchestration, like multi-processing)
+- **Continuous improvement** (extracts patterns, compounds over time)
+
+**Why this matters:** The same patterns that optimize human cognitive load (ADHD burst cycles → 40% rule → phase-based work) work universally for AI agents, teams, and infrastructure. Not arbitrary design—based on how minds actually work.
+
 **Convergent Evolution**:
 - AgentOps (product development)
 - GitOps/Knowledge OS (infrastructure)
