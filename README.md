@@ -299,6 +299,81 @@ For detailed instructions, see [INSTALL.md](INSTALL.md)
 
 ---
 
+## Working Space: Launch Preparation (Nov 11 - Dec 1, 2025)
+
+**Current Phase:** Alpha launch preparation
+**Status:** Experimental working space (will be sanitized before public)
+
+The `/launch/` directory contains work-in-progress content for the Dec 1 dual launch:
+
+- **`/launch/case-studies/`** - Multi-domain validation (product-dev, devops, SRE, data-eng)
+- **`/launch/profiles/`** - Domain-specific profile templates for community
+- **`/launch/guides/`** - Contributor and adopter guides
+- **`/launch/examples/`** - Working code examples and proof-of-concepts
+
+See [`launch/README.md`](launch/README.md) for detailed workflow, timeline, and cleanup checklist.
+
+**Before Dec 1:** All launch content is reviewed, sanitized, and moved to permanent locations (`/docs/case-studies/`, `/profiles/`, `/docs/how-to/`, etc.). The `/launch/` directory is removed.
+
+---
+
+## Repository Architecture (Core vs. Working Space)
+
+### Core Framework (Permanent, Public-Ready)
+
+```
+agentops/
+├── claude.md                          (kernel for contributors)
+├── STRATEGY.md                        (mission & direction)
+├── README.md                          (this file)
+├── CONSTITUTION.md                    (Five Laws, Three Rules, 40% Rule)
+├── INSTALL.md                         (installation guide)
+│
+├── architecture/                      (4 universal patterns)
+│   ├── phase-based-workflow.md
+│   ├── context-bundles.md
+│   ├── multi-agent-orchestration.md
+│   └── intelligent-routing.md
+│
+├── docs/
+│   ├── explanation/                   (why patterns work)
+│   │   ├── agentops-manifesto.md
+│   │   └── PATTERN_EXTRACTION_METHODOLOGY.md
+│   ├── how-to/                        (how to use patterns)
+│   │   ├── CREATE_CUSTOM_PROFILE.md
+│   │   └── [domain-specific guides]
+│   └── case-studies/                  (finalized validations)
+│       ├── MULTI_DOMAIN_VALIDATION.md
+│       └── CASE_STUDY_GITOPS_INTEGRATION.md
+│
+├── profiles/                          (domain templates)
+│   ├── default/
+│   ├── product-dev/
+│   ├── devops/
+│   └── [community profiles]
+│
+├── scripts/                           (installation)
+│   ├── base-install.sh
+│   └── project-install.sh
+│
+└── .claude/                           (Claude Code config)
+    ├── settings.json
+    └── README.md
+```
+
+### Working Space (Experimental, Sanitized Before Dec 1)
+
+```
+agentops/launch/                       (← REMOVE before public release)
+├── README.md                          (working space guide)
+├── case-studies/                      (in-progress validations)
+├── profiles/                          (draft profile templates)
+├── guides/                            (draft contributor/user guides)
+└── examples/                          (working proof-of-concepts)
+```
+
+---
+
 ## Documentation
 
 ### Getting Started
