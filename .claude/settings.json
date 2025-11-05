@@ -1,38 +1,26 @@
 {
-  "model": "Default",
-  "max_tokens": 200000,
-  "context_budget_percent": 40,
+  "model": "claude-sonnet-4-5-20250929",
   "permissions": {
-    "git": true,
-    "bash": true,
-    "read": true,
-    "write": true,
-    "edit": true,
-    "validate": true
+    "allow": [
+      "Bash(git:*)",
+      "Bash(python3:*)",
+      "Read(.claude/**)",
+      "Read(docs/**)",
+      "Read(**/*.md)",
+      "Read(**/*.yaml)",
+      "Read(**/*.yml)",
+      "Read(**/*.json)",
+      "Edit(.claude/**)",
+      "Edit(docs/**)",
+      "Glob(**/*.md)",
+      "Glob(**/*.yaml)",
+      "Glob(**/*.yml)",
+      "Glob(**/*.json)"
+    ]
   },
-  "rules": {
-    "enforce_semantic_commits": true,
-    "enforce_laws_of_agent": true,
-    "prevent_hook_loops": true,
-    "never_modify_read_only": true,
-    "enforce_40_percent_rule": true
-  },
-  "git_hooks": {
-    "pre_commit": "Enforce semantic commit message format",
-    "post_commit": "Check for hook-modified files - STOP if found"
-  },
-  "output_style": "technical",
-  "documentation_format": "diataxis",
-  "commit_format": "<type>(<scope>): <subject>\n\nBody with why + what changed\n\n🤖 Generated with [Claude Code](...)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
-  "phase_structure": {
-    "phase_1": "Research/Explore (understand + validate)",
-    "phase_2": "Plan/Specify (design exact changes)",
-    "phase_3": "Implement/Execute (deploy + verify)"
-  },
-  "notes": {
-    "framework": "AgentOps - Universal AI Agent Operations",
-    "status": "Alpha reference implementation (Dec 1, 2025 public launch)",
-    "kernel": "Read claude.md first (2 min)",
-    "jit_loading": "Load context only when needed per task"
+  "includeCoAuthoredBy": true,
+  "outputStyle": "Technical",
+  "sandbox": {
+    "enabled": false
   }
 }
