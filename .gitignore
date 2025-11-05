@@ -1,0 +1,27 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+
+# Local overrides
+.env.local
+settings.local.json
+
+# Generated
+dist/
+build/
+*.log
+
+# Agent workspaces
+.agents/
