@@ -1,0 +1,62 @@
+name: Enforce Private Repository
+
+# Check repository privacy status automatically
+# This workflow ensures the repository stays private during development
+# Remove this workflow before public release (Dec 1, 2025)
+
+on:
+  # Check every 6 hours
+  schedule:
+    - cron: '0 */6 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+  # Check on every push (just in case)
+  push:
+
+jobs:
+  enforce-privacy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check Repository Privacy Status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: repo } = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            console.log(`📊 Repository Status:`);
+            console.log(`   Name: ${repo.name}`);
+            console.log(`   Private: ${repo.private}`);
+            console.log(`   Owner: ${repo.owner.login}`);
+
+            if (!repo.private) {
+              console.log('');
+              console.log('❌ ALERT: Repository is PUBLIC!');
+              console.log('');
+              console.log('This is a PRIVATE WORKING SPACE for pre-launch development.');
+              console.log('The repository should NOT be public until Dec 1, 2025.');
+              console.log('');
+              console.log('👉 ACTION REQUIRED:');
+              console.log('   1. Go to: https://github.com/${{ github.repository }}/settings');
+              console.log('   2. Find "Visibility" or "Danger Zone" section');
+              console.log('   3. Click "Change to Private"');
+              console.log('   4. Confirm the change');
+              console.log('');
+              console.log('OR run from CLI:');
+              console.log('   gh repo edit ${{ github.repository }} --private');
+              console.log('');
+
+              // Exit with error to make the workflow visible in GitHub UI
+              core.setFailed('Repository is PUBLIC - must be PRIVATE during development');
+            } else {
+              console.log('');
+              console.log('✅ Repository is PRIVATE - good!');
+              console.log('   No action needed.');
+            }
