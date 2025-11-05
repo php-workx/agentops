@@ -81,6 +81,17 @@
 
 ---
 
+## Launch Execution (Nov 11-28, 2025)
+
+**If you're here for the Dec 1 launch**, read `EXECUTION_GUIDE.md` first:
+- **PRIORITY 1:** Content rewrites → `life/agentops-promotion/`
+- **PRIORITY 2:** Website build → NEW `website/` repo
+- **PRIORITY 3:** Launch verification → `launch/README.md`
+
+See `EXECUTION_GUIDE.md` for complete roadmap, critical path, and day-by-day examples.
+
+---
+
 ## Task-Based Workflows
 
 ### I want to improve documentation clarity
