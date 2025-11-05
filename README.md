@@ -18,6 +18,29 @@ AgentOps is a **universal framework for AI agent operations** that works for:
 
 ---
 
+## Public Framework vs. Internal Production
+
+**This Repository (AgentOps):**
+- ✅ Universal patterns and architecture (4 proven patterns)
+- ✅ Profile templates and examples (product-dev, devops structures)
+- ✅ Documentation and guides (how-to, case studies)
+- ✅ Framework specification (theory and reference implementation)
+- ✅ Public for community adoption and contribution
+
+**Internal Only (GitOps, separate private repo):**
+- 🔒 52+ production agents (team-specific implementation)
+- 🔒 Team workflows and commands (internal only)
+- 🔒 Infrastructure configuration (production credentials/secrets)
+- 🔒 Institutional memory and learnings (team internal knowledge)
+
+**Why the separation?**
+1. **Reusability:** Framework stays pure, usable across organizations
+2. **Security:** No internal configurations or agent implementations leak
+3. **Clarity:** Framework patterns remain domain-agnostic examples
+4. **Extensibility:** Others create profiles without copying internal agents
+
+---
+
 ## Universal Architecture Layer
 
 4 proven patterns that work across ALL domains:
@@ -163,9 +186,11 @@ See `docs/how-to/CREATE_CUSTOM_PROFILE.md`
 - `docs/explanation/PATTERN_EXTRACTION_METHODOLOGY.md` - How we identified universal patterns
 
 ### Profiles
-- `profiles/product-dev/` - Product development specialization
-- `profiles/devops/` - Infrastructure/DevOps specialization
-- `profiles/[your-domain]/` - Your custom profile
+- `profiles/product-dev/` - Product development specialization (template)
+- `profiles/devops/` - Infrastructure/DevOps specialization (template)
+- `profiles/[your-domain]/` - Your custom profile (template)
+
+**Note:** Profile README files show structure and workflows. The actual production agents live in internal repositories (e.g., 52+ agents in private GitOps repo). Profiles in agentops are templates for others to build on.
 
 ### Case Studies
 - `docs/case-studies/MULTI_DOMAIN_VALIDATION.md` - Validation across domains
