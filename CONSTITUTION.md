@@ -8,12 +8,13 @@ These rules are **always enforced** through git hooks and automation. This is no
 
 ## Table of Contents
 
-1. [The Five Laws (MANDATORY)](#the-five-laws-mandatory)
+1. [The Six Laws (MANDATORY)](#the-six-laws-mandatory)
    - [Law 1: ALWAYS Extract Learnings](#law-1-always-extract-learnings)
    - [Law 2: ALWAYS Improve Self or System](#law-2-always-improve-self-or-system)
    - [Law 3: ALWAYS Document Context for Future Agents](#law-3-always-document-context-for-future-agents)
    - [Law 4: ALWAYS Prevent Hook Loops](#law-4-always-prevent-hook-loops)
    - [Law 5: ALWAYS Guide with Workflow Suggestions](#law-5-always-guide-with-workflow-suggestions)
+   - [Law 6: ALWAYS Create Git-Auditable Artifacts](#law-6-always-create-git-auditable-artifacts)
 2. [The Three Rules (NEVER FORGET)](#the-three-rules-never-forget)
 3. [The 40% Rule (Context Engineering)](#the-40-rule-context-engineering)
 4. [The Four Pillars (FOUNDATIONAL)](#the-four-pillars-foundational)
@@ -24,7 +25,7 @@ These rules are **always enforced** through git hooks and automation. This is no
 
 ---
 
-## The Five Laws (MANDATORY)
+## The Six Laws (MANDATORY)
 
 ### Law 1: ALWAYS Extract Learnings
 
@@ -391,6 +392,107 @@ You should use /plan-product for this. It's the best workflow.
 #### Philosophical Foundation
 
 → **Theory & Evidence:** [12-factor-agentops/foundations/five-laws.md#law-5](https://github.com/boshu2/12-factor-agentops/blob/main/foundations/five-laws.md#law-5)
+
+---
+
+### Law 6: ALWAYS Create Git-Auditable Artifacts
+
+#### Operational Mandate
+
+Every workflow phase MUST create dated work folders with git-auditable artifacts. Sessions without committed artifacts are considered incomplete.
+
+**Required Actions:**
+- Create dated work folder: `.agentops/work/YYYY-MM-DD-task-name/`
+- Maintain SESSION-LOG.md with ALL decisions
+- Create phase-specific artifacts (research/, planning/, implementation/)
+- Commit artifacts to git after each phase
+- Extract learnings to learnings/ folder post-completion
+
+#### Enforcement Mechanisms
+
+1. **Workflow commands:** `/research`, `/plan`, `/implement` auto-create artifacts
+2. **Git hooks:** Validate artifact structure before commit
+3. **Session templates:** Include artifact creation automatically
+4. **Documentation:** Examples of complete artifact structures
+
+#### Compliance Checklist
+
+Before completing any workflow phase, confirm:
+- [ ] Work folder created with dated name
+- [ ] SESSION-LOG.md updated with all decisions
+- [ ] Phase artifacts created (findings.md, spec.md, changes.md, etc.)
+- [ ] Artifacts committed to git
+- [ ] Learnings extracted (if final phase)
+
+#### Practical Examples
+
+**Good Artifacts:**
+```
+.agentops/work/2025-11-06-redis-caching/
+├── README.md                          # Task overview
+├── SESSION-LOG.md                     # Complete decision trail
+├── research/
+│   ├── findings.md                    # Research results
+│   └── patterns-discovered.md         # Reusable patterns
+├── planning/
+│   ├── spec.md                        # Implementation plan
+│   └── validation-plan.md             # Test strategy
+├── implementation/
+│   ├── changes.md                     # Files changed
+│   └── test-results.md                # Validation results
+└── learnings/
+    └── patterns-extracted.md          # Post-completion learnings
+
+✅ All committed to git
+✅ SESSION-LOG.md tracks every decision
+✅ Future agents can learn from this work
+```
+
+**Insufficient Artifacts:**
+```
+.agentops/work/feature/
+└── notes.txt
+
+❌ No dated name
+❌ No SESSION-LOG.md
+❌ No phase structure
+❌ Not git-auditable
+```
+
+#### SESSION-LOG.md Format
+
+**Every entry must include:**
+```markdown
+## YYYY-MM-DD HH:MM - [Event Description]
+**Context:** [Why this decision was needed]
+**Decision:** [What was decided]
+**Rationale:** [Why this approach]
+**Alternatives Considered:** [What else was evaluated]
+**Risk:** [Potential downsides]
+**Impact:** [Expected benefit]
+```
+
+#### Failure Remediation
+
+**If artifacts incomplete:**
+1. Create work folder with proper dated name
+2. Initialize SESSION-LOG.md with all known decisions
+3. Create phase artifacts from available context
+4. Commit to git
+5. Note remediation in commit message
+
+#### Philosophical Foundation
+
+**Why git-auditable artifacts matter:**
+- Future agents learn from past decisions
+- Knowledge compounds over time (institutional memory)
+- No re-research required (efficiency gain)
+- Complete audit trail (compliance, debugging)
+- Enables multi-day work without context loss
+
+**Result:** 2-year competitive moat. Knowledge OS that improves itself.
+
+→ **Theory & Evidence:** [12-factor-agentops/foundations/five-laws.md#law-6](https://github.com/boshu2/12-factor-agentops/blob/main/foundations/five-laws.md#law-6)
 
 ---
 
