@@ -67,6 +67,45 @@
 
 **Key insight:** Kubernetes proved that the orchestration layer is MORE important than individual container runtime. Similarly, agentops proves that orchestrating multiple agent systems delivers more value than any single agent OS.
 
+### Universality Through Workflow Packages
+
+**agentops is domain-agnostic. It orchestrates any workflow package the same way.**
+
+What's a workflow package? A bundled set of specialized agents optimized for your domain:
+
+**Built-in packages:**
+- **Product Development** (spec-first, 7 phases) → 40x speedup
+- **Infrastructure Operations** (research-first, 3 phases) → 3x speedup
+- **DevOps/Kubernetes** (intelligent routing, 52 agents) → 90.9% accuracy
+- **Life/Career** (6-week construct cycles) → Personal growth framework
+
+**Custom packages (any domain):**
+- Data Engineering (pipeline design → implement → monitor)
+- SRE/Incident Response (detect → investigate → resolve)
+- Legal Tech, Medical Research, Financial Analysis, etc.
+
+**How it works:**
+
+1. **Define workflow:** What phases? (Research → Plan → Implement, or your phases)
+2. **Define agents:** Who executes each phase? (specialized for your domain)
+3. **agentops orchestrates:** Same for ALL packages
+   - Intelligent routing (task → right package)
+   - Context management (40% rule per phase)
+   - Constitutional enforcement (Five Laws everywhere)
+   - Institutional memory (git-tracked patterns)
+   - Parallel execution when beneficial
+
+**Why this matters:** Same orchestration for all packages means:
+- ✅ Org with product-dev team: Use product-dev package
+- ✅ Org with infrastructure team: Use infrastructure-ops package
+- ✅ Org with DevOps team: Use devops package
+- ✅ Org with custom workflow: Create custom package
+- ✅ All orchestrated identically
+
+This is why agentops is **universal** — not built for one domain, but works for ANY agentic workflow.
+
+**See also:** [Create Your Own Workflow Package](../../docs/how-to/create-workflow-package.md)
+
 ### Why This Layer Is Needed
 
 **Problem 1: Different problems need different agent systems**
