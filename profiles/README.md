@@ -1,94 +1,137 @@
-# AgentOps Flavors Catalog
+# Workflow Packages Catalog
 
-**Like Kubernetes supports different workload types, agentops orchestrates different agent operating system flavors.**
+**Like Kubernetes works identically for any containerized workload, agentops orchestrates any domain-specific agentic workflow.**
 
-Each flavor is an opinionated agent OS optimized for specific domains. Choose the flavor that matches your work.
+Each workflow package is a curated set of agents optimized for specific domains. Pick one for your domain, or create custom.
+
+**What is a workflow package?** A bundled set of specialized agents that delivers complete workflows for your domain.
+- **agentops** provides the universal orchestration layer
+- **Workflow packages** provide the domain-specific knowledge
+- **Together:** Universal agentic workflow orchestration
+
+See: [Workflow Packages Explained](../docs/explanation/workflow-packages-explained.md) | [Create Custom Package](../docs/how-to/create-workflow-package.md)
 
 ---
 
-## Available Flavors
+## Available Workflow Packages
 
-### 🏗️ infrastructure-ops
+### 🏗️ Infrastructure Operations Workflow Package
 
+**Domain:** Operations, SRE, infrastructure, system reliability
 **Pattern:** Research → Plan → Implement
-**Best for:** Infrastructure, operations, SRE, data engineering
+**Agents:** Researcher, Planner, Validator, Executor, Monitor
 **Phases:** 3-phase workflow
-**Complexity:** Streamlined
 
-**Use when:**
+**When to use:**
 - Deep understanding needed before action
 - Working with infrastructure-as-code
 - Multi-day projects with context bundles
 - Rigorous planning required (k8s upgrades, migrations, security hardening)
 
-**Key features:**
+**What agentops orchestrates:**
+- Intelligent routing (task → right agent)
 - 40% rule enforced per phase
 - Context bundles for multi-day work
-- Systematic validation gates
-- Research-driven approach
+- Constitutional enforcement (Five Laws)
+- Institutional memory (git-tracked patterns)
+
+**Key benefit:** agentops orchestrates this package **identically to product-dev or devops** - same routing, same context management, same constitutional enforcement. Universal orchestration means you scale across teams and domains seamlessly.
 
 **[Read more →](./infrastructure-ops/)**
 
 ---
 
-### 📦 product-dev
+### 📦 Product Development Workflow Package
 
-**Pattern:** Spec-first development
-**Best for:** Product development, feature building
+**Domain:** Product development, feature engineering, product strategy
+**Pattern:** Spec-first development (7 phases)
+**Agents:** Planner, Spec Writer, Architect, Implementer, QA Verifier, and more
 **Phases:** 7-phase granular workflow
-**Complexity:** Comprehensive
 
-**Use when:**
+**When to use:**
 - Building new products or features
 - Product vision is clear
 - Need detailed specifications
-- Coordinating product + implementation
+- Coordinating product + implementation teams
 
-**Key features:**
-- Product planning (mission, roadmap, tech stack)
-- Detailed specification workflow
-- Task breakdown and implementation
-- Standards and conventions enforcement
+**What agentops orchestrates:**
+- Intelligent agent routing (task → right specialist)
+- Fresh context per phase (40% rule prevents collapse)
+- Context bundles compress findings (5:1-10:1 compression)
+- Constitutional enforcement (Five Laws across all agents)
+- Parallel execution when beneficial (3x speedup)
+
+**Key benefit:** agentops orchestrates this package **identically to infrastructure-ops or devops** - same routing, same context management, same constitutional enforcement. 40x speedup proven. Scale to multiple teams.
 
 **[Read more →](./product-dev/)**
 
 ---
 
-### ⚙️ devops
+### ⚙️ DevOps Workflow Package
 
-**Pattern:** Multi-agent specialization
-**Best for:** DevOps, Kubernetes, GitOps operations
-**Agents:** 52 specialized agents
-**Complexity:** Domain-specific
+**Domain:** DevOps, Kubernetes, GitOps, container operations
+**Pattern:** Intelligent task routing to specialized agents
+**Agents:** 52 production-validated agents (app creators, debuggers, validators, deployers, etc.)
+**Complexity:** Domain-specific, high-capability
 
-**Use when:**
+**When to use:**
 - Working with Kubernetes/containerized infrastructure
 - Managing applications, sites, deployments
 - Debugging infrastructure issues
 - Operating databases, security policies, monitoring
 
-**Key features:**
-- 52 production-validated agents
-- Intelligent routing (90.9% accuracy)
-- Parallel validation (3x faster)
-- GitOps patterns integrated
+**What agentops orchestrates:**
+- Intelligent routing (task classification → 90.9% accuracy)
+- 52 specialized agents (never guess which agent needed)
+- Parallel validation (3x faster than sequential)
+- Constitutional enforcement (Five Laws across all agents)
+- Institutional memory (patterns from 200+ sessions)
+
+**Key benefit:** agentops orchestrates this package **identically to product-dev or infrastructure-ops** - same routing, same context management, same constitutional enforcement. 52 specialized agents pre-built. Just describe your task.
 
 **[Read more →](./devops/)**
 
 ---
 
-## Flavor Comparison
+### 🧘 Life & Career Workflow Package
 
-| Aspect | infrastructure-ops | product-dev | devops |
-|--------|-------------------|-------------|--------|
-| **Phases** | 3 (research/plan/implement) | 7 (granular workflow) | Agent-specific |
-| **Focus** | Deep understanding | Product specification | Infrastructure specialization |
-| **Best for** | Operations, SRE | Product development | Kubernetes, GitOps |
-| **Agents** | 3 core agents | 8 workflow agents | 52 specialized agents |
-| **Routing** | Workflow-based | Product-focused | Intelligent classification |
-| **Complexity** | Streamlined | Comprehensive | Domain-specific |
-| **Learning curve** | Low (3 commands) | Medium (7 phases) | High (52 agents) |
-| **Time to value** | <10 min (start research) | <30 min (plan product) | Immediate (use agents) |
+**Domain:** Personal development, career strategy, capability tracking
+**Pattern:** Philosophy → Practice → Reflection → Teaching
+**Agents:** 7 personal development agents (career strategist, capability auditor, oracle, morpheus, etc.)
+**Phases:** 6-week construct cycle (Forge/Guide/Catalyst/Resonance)
+
+**When to use:**
+- Career planning and strategy (NVIDIA path, positioning)
+- Personal capability tracking (Master Capability Inventory)
+- Construct cycle execution (Oracle/Morpheus 6-week rhythm)
+- Philosophy documentation (canonical codex updates)
+- Visibility campaigns (LinkedIn, professional presence)
+
+**What agentops orchestrates:**
+- 6-week construct cycles (Forge → Guide → Catalyst → Resonance)
+- Philosophy-grounded workflows (reason before action)
+- Capability-based career planning (know your strengths)
+- 40% rule for sustainable personal growth (avoid burnout)
+- Institutional memory (personal growth compounds)
+
+**Key benefit:** agentops orchestrates this package **identically to product-dev or devops** - same routing, same context management, same constitutional enforcement. Personal development becomes systematic and measurable.
+
+**[Read more →](./life/)**
+
+---
+
+## Workflow Package Comparison
+
+| Aspect | infrastructure-ops | product-dev | devops | life |
+|--------|-------------------|-------------|--------|------|
+| **Phases** | 3 (research/plan/implement) | 7 (granular workflow) | Agent-specific | 6-week construct cycle |
+| **Focus** | Deep understanding | Product specification | Infrastructure specialization | Personal development |
+| **Best for** | Operations, SRE | Product development | Kubernetes, GitOps | Career, capability, philosophy |
+| **Agents** | 3 core agents | 8 workflow agents | 52 specialized agents | 7 personal agents |
+| **Routing** | Workflow-based | Product-focused | Intelligent classification | Philosophy-grounded |
+| **Complexity** | Streamlined | Comprehensive | Domain-specific | Reflective, narrative |
+| **Learning curve** | Low (3 commands) | Medium (7 phases) | High (52 agents) | Low (personal context) |
+| **Time to value** | <10 min (start research) | <30 min (plan product) | Immediate (use agents) | <10 min (career/cycle work) |
 
 ---
 
@@ -109,8 +152,11 @@ What are you building?
 │     ├─ YES → product-dev
 │     └─ NO → infrastructure-ops (research first)
 │
-└─ Kubernetes / GitOps work
-   └─ devops (52 agents ready)
+├─ Kubernetes / GitOps work
+│  └─ devops (52 agents ready)
+│
+└─ Personal development / career
+   └─ life (7 personal agents)
 ```
 
 ---
@@ -173,6 +219,17 @@ my-project/
 # See devops/README.md for 52 agent catalog
 ```
 
+### Personal Development
+→ Start with **life**
+```bash
+/life-oracle "What aspect would you like to work on?"
+# Auto-recommends appropriate personal agent
+
+# Or use specific commands
+/career-strategist  # Career planning & NVIDIA path
+/construct-cycle    # Weekly cycle check-in
+```
+
 ---
 
 ## Flavor Principles
@@ -225,6 +282,7 @@ Want to create your own domain-specific flavor?
 | **infrastructure-ops** | ✅ Stable | 3 core | 200+ sessions |
 | **product-dev** | ✅ Stable | 8 workflow | 50+ projects |
 | **devops** | ✅ Production | 52 specialized | 20+ clusters |
+| **life** | ✅ Production | 7 personal | 2-year validated |
 
 ---
 
