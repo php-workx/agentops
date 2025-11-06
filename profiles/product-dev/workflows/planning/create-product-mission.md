@@ -1,4 +1,4 @@
-Create `agent-os/product/mission.md` with comprehensive product definition following this structure for its' content:
+Create `agentops/spec-first-dev/product/mission.md` with comprehensive product definition following this structure for its' content:
 
 #### Mission Structure:
 ```markdown
