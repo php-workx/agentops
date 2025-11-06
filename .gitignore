@@ -9,10 +9,23 @@
 .DS_Store
 Thumbs.db
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
 # Dependencies
 node_modules/
-venv/
-__pycache__/
 
 # Local overrides
 .env.local
