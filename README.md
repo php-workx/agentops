@@ -54,6 +54,19 @@ Everyone's building AI agents. Nobody's figured out how to operate them reliably
 
 ---
 
+## The Operational Foundation
+
+This framework is built by someone who mastered platform engineering and DevOps at **federal scale for a decade**.
+
+**Federal Operations (10 years):**
+- Mastered infrastructure operations under the hardest constraints
+- DoD security-hardened environments where failure is unacceptable
+- Disconnected networks requiring absolute reliability
+- GPU/HPC platforms and 20+ production Kubernetes clusters
+- Real consequences: if automation fails, critical missions fail
+
+**Why this matters:** Patterns forged in federal constraints work everywhere. If operations patterns work under disconnected + security-hardened + mission-critical conditions, they're universal.
+
 ## The Insight
 
 What works for infrastructure should work for AI agents:
@@ -66,7 +79,7 @@ What works for infrastructure should work for AI agents:
 
 **These aren't new ideas. They're proven in production infrastructure.**
 
-This framework applies them to AI agent operations.
+This framework applies them to AI agent operations, tested against federal-scale reliability requirements.
 
 ```mermaid
 graph LR
@@ -87,6 +100,178 @@ graph LR
     style A fill:#c5e3f6,stroke:#000,stroke-width:2px,color:#000
     style B fill:#d4f1dd,stroke:#000,stroke-width:2px,color:#000
 ```
+
+---
+
+## Building in Public
+
+This isn't a finished product. **You're invited to watch and participate in the evolution.**
+
+**Live Development:**
+- Active feature development (weekly/daily updates)
+- Work visible in GitHub (every commit, every decision)
+- Operational thinking documented as it happens
+- Problems discovered and solved in the open
+
+**How to Participate:**
+- Try it in your own environment
+- Fork and adapt for your domain
+- Report what works (and what doesn't)
+- Contribute improvements back
+- Become a case study
+
+**Why this matters:** You get to shape the framework at its inception. You see the thinking, not just the polished result.
+
+---
+
+## Scale at Every Level
+
+Use AgentOps patterns at whatever scale you're at:
+
+**Personal** (single developer)
+- Student with a laptop → Run locally
+- Solo consultant → Operationalize your workflows
+- Individual learning → Learn patterns that scale
+
+**Team** (5-50 people)
+- Startup → Share institutional memory across team
+- Small engineering org → Prevent duplicate work
+- Cross-functional teams → Unified workflow language
+
+**Organization** (50-500+ people)
+- Enterprise teams → Scale patterns across departments
+- Platform teams → Template-driven consistency
+- Multiple domains → Same orchestration layer
+
+**Institutional** (500+ people, mission-critical)
+- Federal/government systems → Proven under hardest constraints
+- Enterprise infrastructure → High-reliability patterns
+- Complex operations → Distributed knowledge capture
+
+**Human Scale** (beyond organizations)
+- Communities → Shared operational wisdom
+- Open source → Collective learning
+- Public knowledge → Patterns compound globally
+
+**The insight:** Same patterns work at every level. Start wherever you are. Grow into harder constraints when you're ready.
+
+---
+
+## Educational Ecosystem (Coming)
+
+We're building materials to help adoption at every scale:
+
+**Workshops & Training** (teach operational thinking)
+- Federal operations patterns for any team
+- How to operationalize AI agents
+- Scaling patterns as org grows
+
+**Templates & Examples**
+- Personal project templates (show how to use patterns)
+- Student/DIY dev projects (fork-able examples)
+- Team starter kits (immediate deployment)
+- Organization playbooks (scaling guides)
+
+**Integrations & Distribution**
+- Claude Code integration (built-in patterns)
+- VSCode extension (workflow in your editor)
+- GitHub templates (repo creation)
+- Claude's web feature (mobile-friendly development)
+
+**Case Studies** (show it working)
+- Your projects using these patterns
+- Community implementations
+- Real-world results at different scales
+
+**Why this matters:** Operational thinking shouldn't be gatekept. Make it accessible everywhere AI is being built.
+
+---
+
+## Anthropic Partnership
+
+**This framework helps Claude Code users:**
+- Build reliable AI agent systems
+- Apply DevOps discipline to AI workflows
+- Learn operational thinking
+- Share patterns with team
+
+**Natural integration points:**
+- Claude Code documentation + AgentOps patterns
+- Reference implementations in Claude Code examples
+- VSCode extension for workflow orchestration
+- Community case studies of agents using agents
+
+**Why Anthropic cares:**
+- Developers want reliable, orchestrated agents
+- Operational discipline increases adoption
+- Shared mission: Make AI tools accessible and effective
+- AgentOps proves Claude can orchestrate complex systems
+
+**Status:** Framework proven in production. Actively seeking feedback from Claude Code users on how patterns generalize to their workflows.
+
+---
+
+## Why This Approach
+
+This isn't marketing. This is substance:
+
+**Patterns Forged in Federal Operations**
+- Tested under the hardest constraints (disconnected, security-hardened, mission-critical)
+- If patterns work there, they generalize everywhere
+- Not theoretical—operational principles proven for a decade
+
+**Building in Public**
+- You see the thinking, not just polished results
+- Participate at inception, shape the framework
+- Help test if patterns work in YOUR domain
+- Become case studies, not customers
+
+**Educational Ecosystem (Not Just Tools)**
+- Make operational thinking accessible at every scale
+- Templates for personal projects → students can learn
+- Workshops for teams → scaling practices
+- Integrations everywhere → meet people where they build
+- Case studies → proof it works in real systems
+
+**Honest About Status**
+- Alpha stage: Patterns proven, framework generalizing
+- Testing hypothesis: Do federal patterns work in other domains?
+- Seeking validation: Help us understand scope and limitations
+- Community-driven: Your feedback shapes evolution
+
+---
+
+## How Success Looks at Each Scale
+
+**Personal (Single Developer)**
+- ✅ Can use patterns in their own projects
+- ✅ Learns operational thinking early
+- ✅ Creates artifacts shareable with team
+- ✅ Becomes case study showing patterns work locally
+
+**Team (5-50 people)**
+- ✅ Share institutional memory (no duplicate work)
+- ✅ Consistent workflow language across domains
+- ✅ Onboard new people faster (patterns documented)
+- ✅ Measure impact (reduced errors, faster delivery)
+
+**Organization (50-500+ people)**
+- ✅ Patterns scale across departments
+- ✅ Platform teams provide templates
+- ✅ Different domains use same orchestration
+- ✅ Organizational knowledge compounds over time
+
+**Institutional (500+ people, mission-critical)**
+- ✅ Patterns proven under strictest constraints
+- ✅ High-reliability operations (99.9%+ uptime for agent workflows)
+- ✅ Government/enterprise confidence in open source approach
+- ✅ Framework becomes standard for critical systems
+
+**Human Scale (Beyond any single organization)**
+- ✅ Patterns become universal wisdom
+- ✅ Every developer knows operational thinking
+- ✅ AI is operationalized reliably across humanity
+- ✅ Open source contributions compound globally
 
 ---
 
@@ -327,6 +512,35 @@ AgentOps provides the orchestration layer for multiple agent operating systems:
 
 ---
 
+## Cool Features
+
+### 🔧 Git Worktree Automation with Metadata
+
+**NEW:** Parallel development with automatic provenance tracking (v1.0.0)
+
+Create isolated worktrees for parallel Claude Code agents with full config replication + metadata:
+
+```bash
+WT feature-name
+```
+
+**What it does:**
+- Creates adjacent worktree (`<repo>-worktrees/feature-name`)
+- Copies all configs (`.claude/`, `.vscode/`, `.cursor/`, etc.)
+- **Generates `.agentops/PROVENANCE.yml` with metadata** (who, when, why, branch, parent)
+- Opens new IDE window automatically
+- Enables N× parallel agents without conflicts
+
+**Benefits:**
+- Complete audit trail for all worktrees
+- Institutional memory preserved in git-native metadata
+- Automated discovery via `find . -name "PROVENANCE.yml"`
+- Aligns with AgentOps metadata standardization (Phase 3)
+
+**Learn more:** See your workspace's `WORKTREE_WORKFLOW.md` after installation
+
+---
+
 ## Quick Start
 
 ### Step 1: Base Installation
@@ -549,6 +763,18 @@ This implementation follows the **[12-Factor AgentOps](https://github.com/boshu2
 See the [12-Factor AgentOps documentation](https://github.com/boshu2/12-factor-agentops) for the foundational principles, patterns, and thinking behind this work.
 
 ---
+
+## Workspace & VS Code Blueprint
+
+We provide a reusable VS Code setup (workspace template + optional keybindings) in `agentops/tooling/vscode/`:
+
+- `agentops/tooling/vscode/workspace.template.code-workspace` — multi-root workspace + settings
+- `agentops/tooling/vscode/keybindings.template.json` — optional workspace keybindings
+- `agentops/tooling/vscode/README.md` — instructions
+
+Copy the template workspace to your repo root as `workspace.code-workspace` and open it via `File > Open Workspace from File...`.
+
+Prefer not to use a workspace file? A minimal default is already included at `agentops/.vscode/settings.json` that keeps the terminal on the right and prefers right‑hand splits.
 
 ## License
 
