@@ -7,6 +7,25 @@
 
 ---
 
+## Orchestrator Context
+
+**infrastructure-ops** is one flavor in the agentops multi-flavor orchestration system. Think of agentops like Kubernetes:
+- **Kubernetes** orchestrates containers (Docker, containerd, etc.)
+- **agentops** orchestrates agent operating systems (product-dev, infrastructure-ops, devops, etc.)
+
+### Why Multiple Flavors?
+
+Different problems need different approaches:
+- **Product development** (product-dev) - Spec-driven, user-focused, fast iteration
+- **Infrastructure operations** (infrastructure-ops) - Research-driven, rigor, safety
+- **DevOps** (devops) - 52 specialized agents for GitOps/Kubernetes workflows
+
+**The power:** Use the right flavor for each job. Product team works in `agentops/product-dev/` while ops team works in `agentops/infrastructure-ops/` - same project, different approaches, orchestrated together.
+
+See [MULTI_FLAVOR_EXAMPLE.md](../MULTI_FLAVOR_EXAMPLE.md) for detailed multi-flavor orchestration scenario.
+
+---
+
 ## What This Flavor Is
 
 The **infrastructure-ops** profile is a 3-phase workflow optimized for operational work where deep understanding precedes action.
@@ -253,9 +272,10 @@ See [CONTRIBUTING.md](../../CONTRIBUTING.md) for:
 
 ## Related
 
-- **product-dev** - Product development flavor (better for features)
-- **agentops orchestrator** - How these flavors work together
-- **12-factor-agentops** - Philosophy behind this approach
+- **[product-dev](../product-dev/README.md)** - Product development flavor (better for features)
+- **[MULTI_FLAVOR_EXAMPLE.md](../MULTI_FLAVOR_EXAMPLE.md)** - See both flavors working together
+- **[agentops orchestrator](../../architecture/orchestration/README.md)** - How these flavors work together
+- **[12-factor-agentops](../../12-factor-agentops/README.md)** - Philosophy behind this approach
 - **GitOps patterns** - Original foundation for this flavor
 
 ---

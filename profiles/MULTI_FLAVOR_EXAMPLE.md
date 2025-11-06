@@ -20,7 +20,7 @@ Each workstream needs a different agent operating system (flavor).
 ```
 my-startup/
 ├── agentops/                                    # Orchestration layer
-│   ├── spec-first-dev/                          # Product flavor
+│   ├── product-dev/                             # Product flavor
 │   │   ├── product/
 │   │   │   ├── mission.md
 │   │   │   ├── roadmap.md
@@ -30,7 +30,7 @@ my-startup/
 │   │       ├── 2025-11-07-payment-integration/
 │   │       └── 2025-11-08-notification-system/
 │   │
-│   └── research-plan-implement/                 # Ops flavor
+│   └── infrastructure-ops/                      # Ops flavor
 │       ├── research/
 │       │   ├── k8s-upgrade-research.md
 │       │   ├── monitoring-strategy-research.md
@@ -41,33 +41,33 @@ my-startup/
 │           └── dr-plan.md
 │
 ├── src/                                         # Product code
-│   ├── auth/                                    # From spec-first-dev/specs/2025-11-06-*
-│   ├── payments/                                # From spec-first-dev/specs/2025-11-07-*
-│   └── notifications/                           # From spec-first-dev/specs/2025-11-08-*
+│   ├── auth/                                    # From product-dev/specs/2025-11-06-*
+│   ├── payments/                                # From product-dev/specs/2025-11-07-*
+│   └── notifications/                           # From product-dev/specs/2025-11-08-*
 │
 └── infrastructure/                              # Infrastructure code
-    ├── kubernetes/                              # From research-plan-implement/plans/k8s-*
-    ├── monitoring/                              # From research-plan-implement/plans/monitoring-*
-    └── disaster-recovery/                       # From research-plan-implement/plans/dr-*
+    ├── kubernetes/                              # From infrastructure-ops/plans/k8s-*
+    ├── monitoring/                              # From infrastructure-ops/plans/monitoring-*
+    └── disaster-recovery/                       # From infrastructure-ops/plans/dr-*
 ```
 
 ---
 
 ## Timeline: Two Parallel Workstreams
 
-### Week 1: Product Work (spec-first-dev flavor)
+### Week 1: Product Work (product-dev flavor)
 
 **Goal:** Define authentication system
 
 ```
 Monday:
   Product manager → Writes feature description
-  Researcher agent (spec-first-dev) → Researches auth patterns
-  Output: agentops/spec-first-dev/specs/2025-11-06-auth/planning/requirements.md
+  Researcher agent (product-dev) → Researches auth patterns
+  Output: agentops/product-dev/specs/2025-11-06-auth/planning/requirements.md
 
 Tuesday:
-  Spec writer agent (spec-first-dev) → Creates detailed spec
-  Output: agentops/spec-first-dev/specs/2025-11-06-auth/spec.md
+  Spec writer agent (product-dev) → Creates detailed spec
+  Output: agentops/product-dev/specs/2025-11-06-auth/spec.md
 
 Wednesday-Thursday:
   Developer agents → Implement auth system
@@ -78,18 +78,18 @@ Friday:
   Product → Validation against roadmap
 ```
 
-### Week 1: Ops Work (research-plan-implement flavor)
+### Week 1: Ops Work (infrastructure-ops flavor)
 
 **Goal:** Plan Kubernetes upgrade
 
 ```
 Monday-Tuesday:
-  Researcher agent (research-plan-implement) → Deep research on K8s 1.29 upgrade
-  Output: agentops/research-plan-implement/research/k8s-upgrade-research.md
+  Researcher agent (infrastructure-ops) → Deep research on K8s 1.29 upgrade
+  Output: agentops/infrastructure-ops/research/k8s-upgrade-research.md
 
 Wednesday-Thursday:
-  Planner agent (research-plan-implement) → Create detailed upgrade plan
-  Output: agentops/research-plan-implement/plans/k8s-upgrade-plan.md
+  Planner agent (infrastructure-ops) → Create detailed upgrade plan
+  Output: agentops/infrastructure-ops/plans/k8s-upgrade-plan.md
 
 Friday:
   Team review → Approve plan
@@ -101,11 +101,11 @@ Friday:
 Both workstreams continue in parallel:
 
 ```
-spec-first-dev working on:
+product-dev working on:
   - Payment integration (spec → implementation)
   - Notification system (spec → implementation)
 
-research-plan-implement working on:
+infrastructure-ops working on:
   - Monitoring strategy (research → planning)
   - Disaster recovery (research → planning)
 ```
@@ -129,7 +129,7 @@ Thursday-Friday:
 
 ## Context Bundles in Action
 
-### Product Team (spec-first-dev) - Multi-Day Features
+### Product Team (product-dev) - Multi-Day Features
 
 ```bash
 # Day 1: Research phase
@@ -153,7 +153,7 @@ Thursday-Friday:
 # → Executes with validation gates
 ```
 
-### Ops Team (research-plan-implement) - Multi-Week Projects
+### Ops Team (infrastructure-ops) - Multi-Week Projects
 
 ```bash
 # Week 1: Deep research
@@ -182,8 +182,8 @@ Thursday-Friday:
 **What makes this powerful:**
 
 1. **Right tool for right job**
-   - Product team uses spec-first-dev (fast, focused on features)
-   - Ops team uses research-plan-implement (thorough, focused on reliability)
+   - Product team uses product-dev (fast, focused on features)
+   - Ops team uses infrastructure-ops (thorough, focused on reliability)
 
 2. **Parallel execution**
    - Both teams work simultaneously on different problems
@@ -193,7 +193,7 @@ Thursday-Friday:
    ```
    When product changes authentication:
    → Ops needs to update monitoring rules
-   → agentops routes: "spec-first-dev specs" → "research-plan-implement planning"
+   → agentops routes: "product-dev specs" → "infrastructure-ops planning"
    → Ops team can research monitoring implications
    ```
 
@@ -229,12 +229,12 @@ Result: Friction, context collapse, suboptimal decisions
 
 ### Multi-Flavor Orchestrated (New Way)
 ```
-spec-first-dev (3 phases, streamlined):
+product-dev (7 phases, spec-driven):
 ✅ Fast iteration for features
 ✅ Clear product vision
 ✅ User feedback loop
 
-research-plan-implement (3 phases, thorough):
+infrastructure-ops (3 phases, research-driven):
 ✅ Deep understanding for complex infrastructure
 ✅ Careful planning for high-stakes changes
 ✅ Built-in safety and validation
@@ -252,8 +252,8 @@ agentops orchestrates both:
 
 ### 1. **Different problems need different approaches**
 - Fast feature development ≠ Infrastructure changes
-- Spec-first works great for product
-- Research-plan-implement works great for ops
+- Spec-driven workflow works great for product
+- Research-driven workflow works great for ops
 
 ### 2. **Orchestration enables both**
 - agentops doesn't force you to choose
@@ -307,8 +307,8 @@ agentops does for agent systems:
 Copy this structure for your project:
 
 ```bash
-mkdir -p agentops/spec-first-dev/{product,specs}
-mkdir -p agentops/research-plan-implement/{research,plans}
+mkdir -p agentops/product-dev/{product,specs}
+mkdir -p agentops/infrastructure-ops/{research,plans}
 
 # Sync both flavors
 git add agentops/
@@ -316,8 +316,8 @@ git commit -m "feat(agentops): add multi-flavor orchestration structure"
 ```
 
 Then:
-- Use `spec-first-dev` for feature work
-- Use `research-plan-implement` for infrastructure/operations work
+- Use `product-dev` for feature work
+- Use `infrastructure-ops` for infrastructure/operations work
 - Let agentops orchestrate both
 - Watch your team's productivity and decision quality improve
 
