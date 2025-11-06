@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "{{PROJECT_NAME}}",
+    "description": "AgentOps-enabled project"
+  },
+  "agentops": {
+    "installed_date": "{{INSTALLATION_DATE}}",
+    "version": "1.0.0",
+    "profile": "{{PROFILE_NAME}}",
+    "install_mode": "{{INSTALL_MODE}}"
+  },
+  "model": {
+    "default": "{{DEFAULT_MODEL}}",
+    "options": ["opus", "sonnet", "haiku"]
+  },
+  "permissions": {
+    "git": true,
+    "python": false,
+    "docker": false,
+    "kubernetes": false,
+    "bash": true
+  },
+  "features": {
+    "multi_agent": true,
+    "context_bundles": true,
+    "intelligent_routing": true
+  },
+  "paths": {
+    "agents": ".claude/agents",
+    "commands": ".claude/commands",
+    "skills": ".claude/skills"
+  }
+}

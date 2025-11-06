@@ -1,0 +1,35 @@
+# AgentOps Installation Artifacts
+.claude.backup-*/
+*.backup/
+install.config.json
+*/.claude/settings.local.json
+
+# Installation Logs
+install.log
+*.log
+
+# Temporary Files
+*.tmp
+/tmp/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Test Artifacts
+test-results/
+coverage/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
