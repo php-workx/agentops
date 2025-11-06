@@ -54,6 +54,14 @@ Everyone's building AI agents. Nobody's figured out how to operate them reliably
 
 ---
 
+## The Mission
+
+### **Invite people to operationalize AI reliably, at whatever scale they're at, with patterns forged where failure is unacceptable.**
+
+This is Constitutional Principle #0. Everything we build serves this mission.
+
+---
+
 ## The Operational Foundation
 
 This framework is built by someone who mastered platform engineering and DevOps at **federal scale for a decade**.

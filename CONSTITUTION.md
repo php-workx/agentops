@@ -6,6 +6,40 @@ These rules are **always enforced** through git hooks and automation. This is no
 
 ---
 
+## The Mission (Constitutional Principle #0)
+
+### Invite people to operationalize AI reliably, at whatever scale they're at, with patterns forged where failure is unacceptable.
+
+**What this means:**
+
+- **Operationalize**: Apply DevOps discipline to AI agent workflows (not just build, but operate at scale)
+- **Reliably**: Patterns tested under federal constraints where failure is mission-critical
+- **At whatever scale**: Personal dev → team → org → institutional → human
+- **Where failure is unacceptable**: Patterns proven in disconnected, security-hardened, mission-critical environments
+
+**Why this matters:**
+
+Everyone building AI agents faces the same problem: Week 1 amazement, Week 8 back to manual work. DevOps solved this for infrastructure. These patterns solve it for AI agents.
+
+**How we execute:**
+
+1. **Build in public** - Patterns discovered with community, not behind closed doors
+2. **Teach operational thinking** - Make it accessible at every scale (workshops, templates, integrations)
+3. **Stay honest** - About constraints, limitations, what we don't yet know
+4. **Prove it works** - Patterns validated under federal constraints, generalized openly
+
+**Success looks like:**
+
+- Students can use these patterns locally with a laptop
+- Teams share institutional memory, prevent duplicate work
+- Orgs scale patterns across departments
+- Federal/enterprise systems trust the framework (proven under hardest constraints)
+- Humanity builds AI that's operationalized reliably everywhere
+
+**This mission drives everything below.** Every law, every rule, every pattern serves this mission.
+
+---
+
 ## Table of Contents
 
 1. [The Six Laws (MANDATORY)](#the-six-laws-mandatory)
