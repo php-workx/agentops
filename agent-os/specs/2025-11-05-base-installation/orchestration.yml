@@ -1,0 +1,11 @@
+task_groups:
+  - name: Phase 1 - Foundation & Project Setup
+    description: Establish project structure, Makefile interface, and base templates
+  - name: Phase 2 - Core Script Backend
+    description: Implement platform detection, prerequisite checking, and shared utilities
+  - name: Phase 3 - Installation Logic
+    description: Implement profile management, merge strategy, and component installation
+  - name: Phase 4 - Validation & Testing
+    description: Implement post-install validation, diagnostics, and automated tests
+  - name: Phase 5 - Documentation & Polish
+    description: Create user guides, error messages, troubleshooting documentation
