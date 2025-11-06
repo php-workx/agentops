@@ -20,9 +20,9 @@ AGENTOPS_HOME="$(cd "$(dirname "$SCRIPT_DIR")" && pwd)"
 source "$SCRIPT_DIR/lib/common.sh"           # Core utilities (logging, file ops)
 source "$SCRIPT_DIR/lib/platform.sh"        # Platform detection and package manager
 source "$SCRIPT_DIR/lib/prerequisites.sh"   # Prerequisite checking and auto-install
+source "$SCRIPT_DIR/lib/profiles.sh"        # Profile management and installation
 
-# Phase 3+ libraries (to be sourced when implemented)
-# source "$SCRIPT_DIR/lib/profiles.sh"
+# Phase 4+ libraries (to be sourced when implemented)
 # source "$SCRIPT_DIR/lib/validation.sh"
 
 # ============================================================================
@@ -90,7 +90,111 @@ parse_arguments() {
 }
 
 # ============================================================================
-# Main Installation Flow (Stub)
+# Installation Orchestration Functions
+# ============================================================================
+
+# Create backup of existing .claude/ directory before installation
+# Returns: 0 if successful, 1 if failed
+backup_existing_installation() {
+    if [[ ! -d ".claude" ]]; then
+        return 0  # No backup needed
+    fi
+
+    local backup_dir=".claude.backup-$(timestamp)"
+
+    log_warn "Existing .claude/ detected, creating backup..."
+    if ! cp -a ".claude" "$backup_dir"; then
+        log_error "Failed to backup existing .claude/ directory"
+        return 1
+    fi
+
+    log_step "Backup created: $backup_dir"
+    return 0
+}
+
+# Perform full installation workflow
+# Orchestrates all installation steps in correct order
+# Returns: 0 if successful, 1 if failed
+perform_installation() {
+    log_info ""
+    log_info "═══════════════════════════════════════════════════════"
+    log_info "  Installation Workflow"
+    log_info "═══════════════════════════════════════════════════════"
+    log_info ""
+
+    # Set AGENTOPS_HOME if not set
+    if [[ -z "${AGENTOPS_HOME:-}" ]]; then
+        AGENTOPS_HOME="$AGENTOPS_HOME_OVERRIDE"
+    fi
+
+    # Find agentops repository
+    if ! find_agentops_repo; then
+        log_error "Cannot proceed without agentops repository"
+        return 1
+    fi
+
+    # Detect existing installation
+    if detect_existing_installation; then
+        if ! backup_existing_installation; then
+            log_error "Failed to backup existing installation"
+            return 1
+        fi
+    fi
+
+    # Install base structure
+    if ! install_base_structure; then
+        log_error "Failed to install base structure"
+        return 1
+    fi
+
+    # Install selected profile
+    case "$INSTALL_MODE" in
+        copy)
+            if ! copy_profile "$PROFILE"; then
+                log_error "Failed to install profile (copy mode)"
+                return 1
+            fi
+            ;;
+        symlink)
+            if ! symlink_profile "$PROFILE"; then
+                log_error "Failed to install profile (symlink mode)"
+                return 1
+            fi
+            ;;
+        download)
+            if ! download_profile "$PROFILE"; then
+                log_error "Failed to install profile (download mode)"
+                return 1
+            fi
+            ;;
+        *)
+            log_error "Unknown installation mode: $INSTALL_MODE"
+            return 1
+            ;;
+    esac
+
+    # Install root files
+    if ! install_root_files "$(realpath "$SCRIPT_DIR/templates")"; then
+        log_error "Failed to install root files"
+        return 1
+    fi
+
+    # Install git hooks (if applicable)
+    if ! install_git_hooks "$(realpath "$SCRIPT_DIR/templates")"; then
+        log_warn "Git hooks installation encountered issues"
+    fi
+
+    # Update manifest
+    if ! update_manifest ".claude/installed_components.json" "$PROFILE" "$INSTALL_MODE"; then
+        log_warn "Failed to update manifest"
+    fi
+
+    log_info ""
+    return 0
+}
+
+# ============================================================================
+# Main Installation Flow
 # ============================================================================
 
 main() {
@@ -106,7 +210,7 @@ main() {
 
     log_info ""
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║   AgentOps Framework Installation (Phase 1-2 Ready)   ║"
+    log_info "║   AgentOps Framework Installation (Phase 1-3 Ready)   ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     log_info ""
 
@@ -122,14 +226,17 @@ main() {
         return 1
     fi
 
-    log_info ""
-    log_step "Loading configuration (Phase 3)"
-    log_step "Detecting existing installation (Phase 3)"
-    log_step "Installing base structure (Phase 3)"
-    log_step "Installing profile (Phase 3)"
-    log_step "Installing root files (Phase 3)"
-    log_step "Installing git hooks (Phase 3)"
-    log_step "Validating installation (Phase 4)"
+    # Perform installation (Phase 3 - implemented)
+    if ! perform_installation; then
+        log_error "Installation failed"
+        return 1
+    fi
+
+    # Phase 4 (Validation) will be called here when implemented
+    # if ! validate_installation; then
+    #     log_error "Validation failed"
+    #     return 1
+    # fi
 
     log_info ""
     log_success "Installation Complete!"
