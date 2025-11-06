@@ -456,9 +456,46 @@ agentops/launch/                       (← REMOVE before public release)
 
 ## Philosophy
 
-**Core Vision: An Operating System for the Mind**
+### Core Vision: An Operating System for Knowledge Work
 
-AgentOps isn't a framework—it's an **operating system for reliable AI agent operations**. Like a traditional OS that manages processes, memory, and resources, AgentOps manages:
+AgentOps isn't a framework—it's an **operating system for orchestrating knowledge work**. Like Kubernetes orchestrates containers, AgentOps orchestrates **workflow packages** (bundled agent workflows) for knowledge workers.
+
+### The Orchestration Insight
+
+Just as Kubernetes abstracts away container complexity (scheduling, networking, lifecycle), AgentOps abstracts away AI agent complexity:
+
+```text
+Kubernetes              →  AgentOps
+─────────────────────────────────────
+Container (unit)       →  Workflow Package (bundled workflow)
+Pod                    →  Agent (specialized capability)
+Service mesh           →  Agent orchestration
+Scheduling            →  Intelligent routing
+Resource mgmt         →  Context management (40% rule)
+Auto-healing          →  Constitutional enforcement
+Observability         →  Institutional memory (git)
+```
+
+**Why Workflow Packages?** Because knowledge workers don't think in "agents"—they think in **complete workflows**. A workflow package is:
+
+- A curated set of agent capabilities bundled as a complete workflow
+- Orchestrated like microservices (schedulable, composable, observable)
+- Versioned and shareable (git-tracked, reusable)
+- Self-improving (patterns extract and compound)
+
+**AgentOps manages the "wow" moments:**
+
+- Parallel research agents exploring simultaneously (3x speedup)
+- Context bundles enabling multi-day projects
+- Constitutional foundations preventing errors
+- Intelligent routing finding the right workflow package instantly
+- Service mesh orchestration enabling synergistic agent work
+
+---
+
+### AgentOps as an Operating System for the Mind
+
+At a deeper level, AgentOps is an OS that manages:
 
 - **Attention** (context windows, 40% rule prevents cognitive overload)
 - **Work routing** (intelligent agents, like process scheduling)
@@ -482,6 +519,7 @@ All complex work benefits from:
 2. Reusable intermediate artifacts (bundles)
 3. Multiple perspectives (parallel agents)
 4. Intelligent specialization (routing)
+5. Workflow package orchestration (knowledge worker experience)
 
 These are universal human and AI challenges, applicable everywhere.
 
