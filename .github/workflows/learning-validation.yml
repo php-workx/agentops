@@ -1,0 +1,14 @@
+name: Learning Validation
+
+on: [push, pull_request]
+
+jobs:
+  validate-learnings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate Learning Documentation
+        run: |
+          echo "⏳ Learning validation is a stub - will be implemented post-launch"
+          # Future: Run scripts/validate-learnings.sh
+          exit 0

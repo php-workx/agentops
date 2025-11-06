@@ -1,0 +1,45 @@
+name: Validate
+
+on: [push, pull_request]
+
+jobs:
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Lint Markdown Files
+        uses: avto-dev/markdown-lint@v1
+        with:
+          config: '.markdownlint.json'
+          args: '**/*.md'
+
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Markdown Links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          config-file: '.markdown-link-check.json'
+          use-quiet-mode: 'yes'
+
+  structure-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate Repository Structure
+        run: |
+          # Check required files exist
+          test -f README.md || (echo "README.md missing" && exit 1)
+          test -f CONSTITUTION.md || (echo "CONSTITUTION.md missing" && exit 1)
+          test -f LICENSE || (echo "LICENSE missing" && exit 1)
+
+          # Check required directories exist
+          test -d profiles/default/agents || (echo "profiles/default/agents missing" && exit 1)
+          test -d profiles/default/commands || (echo "profiles/default/commands missing" && exit 1)
+          test -d docs/tutorials || (echo "docs/tutorials missing" && exit 1)
+          test -d docs/how-to || (echo "docs/how-to missing" && exit 1)
+          test -d docs/reference || (echo "docs/reference missing" && exit 1)
+          test -d docs/explanation || (echo "docs/explanation missing" && exit 1)
+
+          echo "✅ Repository structure validation passed"
