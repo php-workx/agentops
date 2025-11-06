@@ -16,29 +16,14 @@ AGENTOPS_HOME="$(cd "$(dirname "$SCRIPT_DIR")" && pwd)"
 # Source Library Files
 # ============================================================================
 
-# These will be implemented in Phase 2
-# source "$SCRIPT_DIR/lib/platform.sh"
-# source "$SCRIPT_DIR/lib/prerequisites.sh"
+# Source in proper order (dependencies first)
+source "$SCRIPT_DIR/lib/common.sh"           # Core utilities (logging, file ops)
+source "$SCRIPT_DIR/lib/platform.sh"        # Platform detection and package manager
+source "$SCRIPT_DIR/lib/prerequisites.sh"   # Prerequisite checking and auto-install
+
+# Phase 3+ libraries (to be sourced when implemented)
 # source "$SCRIPT_DIR/lib/profiles.sh"
 # source "$SCRIPT_DIR/lib/validation.sh"
-# source "$SCRIPT_DIR/lib/common.sh"
-
-# For Phase 1 stub, we'll provide placeholder implementations
-log_step() {
-    echo "✓ $*"
-}
-
-log_info() {
-    echo "ℹ  $*" >&2
-}
-
-log_error() {
-    echo "✗ $*" >&2
-}
-
-print_success() {
-    echo "✅ $*"
-}
 
 # ============================================================================
 # Argument Parsing
@@ -121,7 +106,7 @@ main() {
 
     log_info ""
     log_info "╔════════════════════════════════════════════════════════╗"
-    log_info "║   AgentOps Framework Installation - Phase 1 Skeleton   ║"
+    log_info "║   AgentOps Framework Installation (Phase 1-2 Ready)   ║"
     log_info "╚════════════════════════════════════════════════════════╝"
     log_info ""
 
@@ -131,8 +116,14 @@ main() {
     log_info "  Mode:          $INSTALL_MODE"
     log_info ""
 
-    log_step "Checking prerequisites (Phase 2)"
-    log_step "Loading configuration (Phase 2)"
+    # Check prerequisites (Phase 2 - implemented)
+    if ! check_prerequisites; then
+        log_error "Installation aborted: prerequisite checks failed"
+        return 1
+    fi
+
+    log_info ""
+    log_step "Loading configuration (Phase 3)"
     log_step "Detecting existing installation (Phase 3)"
     log_step "Installing base structure (Phase 3)"
     log_step "Installing profile (Phase 3)"
@@ -141,7 +132,7 @@ main() {
     log_step "Validating installation (Phase 4)"
 
     log_info ""
-    print_success "Installation Complete!"
+    log_success "Installation Complete!"
     log_info ""
     log_info "Next steps:"
     log_info "  1. Try an agent:  /prime-simple-task"

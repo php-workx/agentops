@@ -127,68 +127,77 @@ Tasks are organized into 5 sequential phases:
 
 ### Tasks
 
-- [ ] **TASK-010:** Implement platform detection (lib/platform.sh)
+- [x] **TASK-010:** Implement platform detection (lib/platform.sh)
   - **Description:** Detect OS (macOS, Linux, WSL), package manager, set platform variables
   - **Deliverables:** scripts/lib/platform.sh with detect_platform(), is_macos(), is_linux(), is_wsl()
   - **Acceptance:** Correctly detects macOS, Linux (Ubuntu, Fedora, Arch), WSL; returns correct package manager
   - **Estimate:** 3 hours
   - **Reference:** Spec section 3.3, requirements TR1, platform support section
+  - **Status:** ✅ Complete - All platform detection functions implemented with cross-platform package manager support
 
-- [ ] **TASK-011:** Implement package manager operations (lib/platform.sh)
+- [x] **TASK-011:** Implement package manager operations (lib/platform.sh)
   - **Description:** Add install_package(), check_package() functions with platform-specific logic
   - **Deliverables:** Functions that work with brew, apt, dnf, pacman, zypper
   - **Acceptance:** Can install and check packages on all supported platforms
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.3, platform support section
+  - **Status:** ✅ Complete - Implemented in lib/platform.sh with support for brew, apt, dnf, pacman, zypper, apk
 
-- [ ] **TASK-012:** Implement Git prerequisite checking (lib/prerequisites.sh)
+- [x] **TASK-012:** Implement Git prerequisite checking (lib/prerequisites.sh)
   - **Description:** check_git() function: verify git installed, version >= 2.30
   - **Deliverables:** check_git() with version validation, clear error messages
   - **Acceptance:** Returns 0 if Git >= 2.30 present, returns 1 with error message if missing/old
   - **Estimate:** 1.5 hours
   - **Reference:** Spec section 3.4, requirements FR4
+  - **Status:** ✅ Complete - Implemented with version comparison and platform-specific installation instructions
 
-- [ ] **TASK-013:** Implement Claude Code prerequisite checking (lib/prerequisites.sh)
+- [x] **TASK-013:** Implement Claude Code prerequisite checking (lib/prerequisites.sh)
   - **Description:** check_claude_code() function: verify Claude Code CLI installed
   - **Deliverables:** check_claude_code() with version detection
   - **Acceptance:** Returns 0 if Claude Code present, returns 1 with installation link if missing
   - **Estimate:** 1 hour
   - **Reference:** Spec section 3.4, requirements FR4
+  - **Status:** ✅ Complete - Implemented with multiple command name checks and helpful error messages
 
-- [ ] **TASK-014:** Implement Python/uv prerequisite checking (lib/prerequisites.sh)
+- [x] **TASK-014:** Implement Python/uv prerequisite checking (lib/prerequisites.sh)
   - **Description:** check_python_uv() function: verify Python 3.9+, uv tool
   - **Deliverables:** check_python_uv() with version validation
   - **Acceptance:** Returns 0 if uv + Python 3.9+ present, returns 1 if missing
   - **Estimate:** 1.5 hours
   - **Reference:** Spec section 3.4, requirements FR4, TR2
+  - **Status:** ✅ Complete - Checks both Python 3.9+ and uv with version comparison
 
-- [ ] **TASK-015:** Implement auto-install for uv (lib/prerequisites.sh)
+- [x] **TASK-015:** Implement auto-install for uv (lib/prerequisites.sh)
   - **Description:** install_uv() function: download and install uv, install Python 3.11 via uv
   - **Deliverables:** install_uv() with progress messages, error handling
   - **Acceptance:** Successfully installs uv and Python 3.11, updates PATH for current session
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.4, requirements TR2
+  - **Status:** ✅ Complete - Implemented with curl download, PATH updates, and Python 3.11 installation
 
-- [ ] **TASK-016:** Implement prerequisite prompt logic (lib/prerequisites.sh)
+- [x] **TASK-016:** Implement prerequisite prompt logic (lib/prerequisites.sh)
   - **Description:** prompt_install() function: ask user before auto-installing tools
   - **Deliverables:** prompt_install() with clear prompts, Y/n default
   - **Acceptance:** Prompts user clearly, respects user choice, handles yes/no correctly
   - **Estimate:** 1 hour
   - **Reference:** Spec section 3.4
+  - **Status:** ✅ Complete - Implemented in both prerequisites.sh and common.sh with confirm() function
 
-- [ ] **TASK-017:** Implement main check_prerequisites() coordinator (lib/prerequisites.sh)
+- [x] **TASK-017:** Implement main check_prerequisites() coordinator (lib/prerequisites.sh)
   - **Description:** check_prerequisites() orchestrates all checks, handles auto-install flow
   - **Deliverables:** check_prerequisites() calls individual checks, prompts for auto-install, exits on critical failure
   - **Acceptance:** All prerequisites checked, missing tools auto-installed (with consent), exits with code 2 if critical missing
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.4, requirements FR4
+  - **Status:** ✅ Complete - Implemented as main coordinator that orchestrates all checks with proper error handling
 
-- [ ] **TASK-018:** Implement utility functions (lib/common.sh)
+- [x] **TASK-018:** Implement utility functions (lib/common.sh)
   - **Description:** Create common utility functions: log(), error(), backup_file(), timestamp()
   - **Deliverables:** scripts/lib/common.sh with logging, error handling, backup utilities
   - **Acceptance:** Functions work correctly, consistent output formatting
   - **Estimate:** 1.5 hours
   - **Reference:** Spec section TR1 (idempotent design patterns)
+  - **Status:** ✅ Complete - Comprehensive utility library with logging, file ops, user interaction, versioning, and more
 
 ---
 
