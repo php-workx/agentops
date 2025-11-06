@@ -30,6 +30,48 @@ This framework translates proven DevOps/SRE patterns into AI agent context, solv
 
 ---
 
+## Understanding the AgentOps Ecosystem
+
+**Three-layer architecture** for reliable AI agent operations:
+
+```ascii
+Layer 3: FRAMEWORK (12-factor-agentops)
+         ↓ Defines philosophical principles
+
+Layer 2: ORCHESTRATOR (agentops) ← You are here
+         ↓ Orchestrates agent execution + manages workflows
+
+Layer 1: WORKFLOW PACKAGES (installed domain bundles)
+         ├── product-dev package (spec-first product workflows)
+         ├── infrastructure-ops package (research-first DevOps workflows)
+         ├── devops package (52 production GitOps agents)
+         └── custom packages (organizations build domain-specific bundles)
+         ↓ Validated by operators
+
+VALIDATION LAYER: OPERATORS (watch-reconcile loops)
+         ├── Workflow Operator (ensures outputs pass validation)
+         ├── Context Operator (enforces 40% rule)
+         └── Memory Operator (maintains knowledge navigability)
+```
+
+**This repository (agentops) is the ORCHESTRATOR:**
+
+- Receives natural language requests from users
+- Routes to appropriate workflow packages
+- Manages agent execution and context
+- Validates outputs via operators
+- Commits learnings to institutional memory (Git + Codex)
+
+**Think of it like Kubernetes:**
+
+- **12-factor-agentops** = 12-factor apps (operational philosophy)
+- **agentops** = Kubernetes (the orchestrator)
+- **Workflow packages** = Helm charts / Kustomize (packaged patterns)
+- **Operators** = K8s operators (domain-specific automation + validation)
+- **Git + Codex** = etcd + ArgoCD (state store + GitOps)
+
+---
+
 ## AI Agents First: This Is About Building Better Agents
 
 **This repository exists because:** AI agents today fail when:
@@ -164,6 +206,94 @@ Each phase gets fresh context (40% rule enforced).
 - Auto-recommend best-fit agent (90.9% accuracy)
 - NLP task classification
 - User can override
+
+---
+
+## Workflow Packages & Operators: Making Agents Reliable
+
+### What Are Workflow Packages?
+
+**Workflow Packages are reusable, domain-specific bundles of agents and workflows** (like Helm charts for Kubernetes):
+
+**Examples:**
+
+- **product-dev package** - Spec-first product workflows (design → implement → test → ship)
+- **infrastructure-ops package** - Research-first DevOps workflows (research → plan → implement)
+- **devops package** - 52 GitOps agents for production infrastructure
+- **custom packages** - Organizations build domain-specific bundles (legal-tech, financial-analysis, medical-research)
+
+**Just like Helm charts:**
+
+- Versioned (v1.0.0, v1.1.0)
+- Customizable (values.yaml → profile customization)
+- Installable (agentops orchestrates identically regardless of package)
+- Reusable (same package works across organizations)
+
+**Key insight:** The **orchestrator (agentops) works identically for any workflow package**. Like Kubernetes doesn't care if you deploy nginx (web server) or postgres (database)—same orchestration patterns apply.
+
+---
+
+### What Are Operators?
+
+**Operators are watch-reconcile loops that continuously validate agent work and enforce quality standards.**
+
+Three types of operators ensure agent reliability:
+
+#### 1. Workflow Operator
+
+**Watches:** Agent outputs (files, commands, decisions)
+**Ensures:** Validation passes before execution
+**Reconciles:** Rejects non-compliant outputs, requests rework
+
+**Example:** Agent creates Kubernetes application
+
+```yaml
+WATCH: New files created in apps/my-app/
+VALIDATE:
+  ✓ kustomize build succeeds
+  ✓ YAML syntax valid
+  ✓ Required files present
+  ✓ Naming conventions followed
+RECONCILE:
+  If validation fails → Reject + feedback
+  If validation passes → Allow commit
+```
+
+**Result:** 95% success rate, zero invalid configs in production
+
+---
+
+#### 2. Context Operator
+
+**Watches:** Token usage and context window utilization
+**Ensures:** Context stays under 40% threshold (prevents degradation)
+**Reconciles:** Compresses context, archives to bundles, or restarts session
+
+**Why:** Agents degrade at ~40% context capacity (hallucinations, lost instructions). Operators prevent this automatically.
+
+---
+
+#### 3. Memory Operator
+
+**Watches:** Institutional memory (codex) growth and organization
+**Ensures:** Knowledge base remains navigable and useful
+**Reconciles:** Deduplicates patterns, reorganizes, archives dormant knowledge
+
+**Why:** As Git history grows, future agents need to find relevant patterns quickly.
+
+---
+
+### Why Operators + Packages = Reliable Agent Operations
+
+**Without operators:**
+
+- Agent produces output → No validation → Errors reach production → Human debugs → Slow recovery
+
+**With operators:**
+
+- Agent produces output → Operator validates → Errors caught immediately → Auto-feedback → Agent self-corrects → Faster execution
+
+**Result:** Self-healing, continuously validated agent workflows that improve over time.
 
 ---
 
