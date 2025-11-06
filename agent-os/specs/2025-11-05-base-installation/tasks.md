@@ -335,82 +335,82 @@ Tasks are organized into 5 sequential phases:
 
 ### Tasks
 
-- [ ] **TASK-040:** Implement file existence checks (lib/validation.sh)
+- [x] **TASK-040:** Implement file existence checks (lib/validation.sh)
   - **Description:** check_files_exist() verifies all required files and directories present
   - **Deliverables:** Function checks .claude/, CONSTITUTION.md, CLAUDE.md, counts components
   - **Acceptance:** Returns 0 if all files present, returns error count and lists missing files
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-041:** Implement YAML/JSON syntax validation (lib/validation.sh)
+- [x] **TASK-041:** Implement YAML/JSON syntax validation (lib/validation.sh)
   - **Description:** validate_yaml_json() checks settings.json and agent files parse correctly
   - **Deliverables:** Function uses jq for JSON validation, handles YAML frontmatter in agents
   - **Acceptance:** Validates JSON syntax, reports line numbers for errors, handles agent Markdown files
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-042:** Implement Claude Code integration test (lib/validation.sh)
+- [x] **TASK-042:** Implement Claude Code integration test (lib/validation.sh)
   - **Description:** test_claude_code_load() verifies Claude Code can load settings.json
   - **Deliverables:** Function calls Claude Code CLI to validate settings (placeholder for actual command)
   - **Acceptance:** Returns 0 if settings load successfully, returns 1 with error message if fail
   - **Estimate:** 1.5 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-043:** Implement sample agent execution (lib/validation.sh)
+- [x] **TASK-043:** Implement sample agent execution (lib/validation.sh)
   - **Description:** run_sample_agent() executes hello-world or similar test agent
   - **Deliverables:** Function runs agent, checks output (placeholder for actual agent execution)
   - **Acceptance:** Agent executes without error, output matches expected
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-044:** Implement git hooks validation (lib/validation.sh)
+- [x] **TASK-044:** Implement git hooks validation (lib/validation.sh)
   - **Description:** check_git_hooks() verifies hooks installed and executable
   - **Deliverables:** Function checks .git/hooks/ for pre-commit, post-commit, commit-msg
   - **Acceptance:** Reports which hooks installed, checks executable bit, skips if not git repo
   - **Estimate:** 1.5 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-045:** Implement prerequisite version validation (lib/validation.sh)
+- [x] **TASK-045:** Implement prerequisite version validation (lib/validation.sh)
   - **Description:** check_prerequisite_versions() verifies all tools meet minimum versions
   - **Deliverables:** Function checks Git, Claude Code, Python versions
   - **Acceptance:** Reports versions, warns if below minimum, doesn't fail for optional tools
   - **Estimate:** 1.5 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-046:** Implement main validate_installation() coordinator (lib/validation.sh)
+- [x] **TASK-046:** Implement main validate_installation() coordinator (lib/validation.sh)
   - **Description:** Orchestrates all validation checks, formats output, returns exit code
   - **Deliverables:** Function runs all checks, prints progress, summarizes results
   - **Acceptance:** Runs all 6 checks, clear progress output, exit code 0 if pass / 1 if fail
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.6, requirements FR8
 
-- [ ] **TASK-047:** Implement make verify target (Makefile)
+- [x] **TASK-047:** Implement make verify target (Makefile)
   - **Description:** Connect Makefile verify target to validation script
   - **Deliverables:** Makefile target calls base-install.sh --verify
   - **Acceptance:** `make verify` runs validation, returns correct exit code, displays formatted output
   - **Estimate:** 1 hour
   - **Reference:** Spec section 3.1, requirements FR5
 
-- [ ] **TASK-048:** Implement make doctor target (Makefile + base-install.sh)
+- [x] **TASK-048:** Implement make doctor target (Makefile + base-install.sh)
   - **Description:** Diagnostics mode: check prerequisites, file structure, configuration, suggest fixes
   - **Deliverables:** --doctor flag in script, checks all aspects, provides actionable suggestions
   - **Acceptance:** `make doctor` diagnoses issues, suggests fixes, returns 0 if no issues / 1 if issues found
   - **Estimate:** 3 hours
   - **Reference:** Spec section 3.1, requirements FR5
 
-- [ ] **TASK-049:** Create unit tests for platform detection
+- [x] **TASK-049:** Create unit tests for platform detection
   - **Description:** Test scripts for platform.sh: test all OS detection, package manager detection
   - **Deliverables:** tests/test-platform.sh with assertions for macOS, Linux, WSL
   - **Acceptance:** Tests pass on all platforms, mock uname for cross-platform testing
   - **Estimate:** 2 hours
 
-- [ ] **TASK-050:** Create unit tests for prerequisites checking
+- [x] **TASK-050:** Create unit tests for prerequisites checking
   - **Description:** Test scripts for prerequisites.sh: test version parsing, auto-install logic
   - **Deliverables:** tests/test-prerequisites.sh with mock commands
   - **Acceptance:** Tests verify version checking logic, simulate missing tools
   - **Estimate:** 2 hours
 
-- [ ] **TASK-051:** Create integration tests for installation flow
+- [x] **TASK-051:** Create integration tests for installation flow
   - **Description:** End-to-end test: fresh install in empty directory, install over existing, update
   - **Deliverables:** tests/test-install-flow.sh with setup/teardown, multiple scenarios
   - **Acceptance:** Tests cover: fresh install, existing .claude/, profile addition, update
@@ -428,74 +428,74 @@ Tasks are organized into 5 sequential phases:
 
 ### Tasks
 
-- [ ] **TASK-060:** Implement configuration file loading (base-install.sh)
+- [x] **TASK-060:** Implement configuration file loading (base-install.sh)
   - **Description:** load_configuration() reads install.config.json, validates schema
   - **Deliverables:** Function parses JSON config, validates fields, sets variables
   - **Acceptance:** Loads complete and partial configs, prompts for missing values, validates schema
   - **Estimate:** 2.5 hours
   - **Reference:** Spec section 6, requirements FR6
 
-- [ ] **TASK-061:** Implement interactive configuration prompts (base-install.sh)
+- [x] **TASK-061:** Implement interactive configuration prompts (base-install.sh)
   - **Description:** prompt_configuration() asks user for model, profile, permissions, hooks
   - **Deliverables:** Interactive prompts with defaults, validation
   - **Acceptance:** Clear prompts, sensible defaults, input validation, sets all required variables
   - **Estimate:** 3 hours
   - **Reference:** Spec section 6, requirements FR6
 
-- [ ] **TASK-062:** Implement update flow (base-install.sh)
+- [x] **TASK-062:** Implement update flow (base-install.sh)
   - **Description:** --update flag: detect current install, fetch latest, merge, validate
   - **Deliverables:** Update logic with backup, fetch, merge, migration support
   - **Acceptance:** `make update` preserves customizations, adds new components, handles version-specific migrations
   - **Estimate:** 3 hours
   - **Reference:** Spec section 2.4, requirements FR5
 
-- [ ] **TASK-063:** Implement uninstall flow (base-install.sh)
+- [x] **TASK-063:** Implement uninstall flow (base-install.sh)
   - **Description:** --uninstall flag: warn, confirm, remove components, keep backups
   - **Deliverables:** Uninstall logic with confirmation, complete removal, backup to .claude.backup-uninstall-*/
   - **Acceptance:** `make uninstall` removes .claude/, root files, hooks; creates backup; prompts for confirmation
   - **Estimate:** 2 hours
   - **Reference:** Spec section 3.1, requirements FR5
 
-- [ ] **TASK-064:** Implement success message and next steps (base-install.sh)
+- [x] **TASK-064:** Implement success message and next steps (base-install.sh)
   - **Description:** print_success_message() displays summary, next steps, documentation links
   - **Deliverables:** Function prints formatted success message with actionable next steps
   - **Acceptance:** Message is clear, actionable, includes: what was installed, how to verify, next steps
   - **Estimate:** 1 hour
   - **Reference:** Spec section 2.4
 
-- [ ] **TASK-065:** Improve error messages throughout
+- [x] **TASK-065:** Improve error messages throughout
   - **Description:** Audit all error messages, ensure they're actionable and helpful
   - **Deliverables:** Clear error messages with: what went wrong, why, how to fix
   - **Acceptance:** All errors explain problem and provide solution, no cryptic messages
   - **Estimate:** 2 hours
   - **Reference:** Spec section 9 (error handling)
 
-- [ ] **TASK-066:** Write user installation guide (docs/)
+- [x] **TASK-066:** Write user installation guide (docs/)
   - **Description:** Create comprehensive installation guide: quick start, options, troubleshooting
   - **Deliverables:** agent-os/docs/INSTALL.md with examples for all scenarios
   - **Acceptance:** Guide covers: quick start, all parameters, config file, profiles, troubleshooting
   - **Estimate:** 3 hours
 
-- [ ] **TASK-067:** Write configuration reference (docs/)
+- [x] **TASK-067:** Write configuration reference (docs/)
   - **Description:** Document install.config.json schema, all options, examples
   - **Deliverables:** agent-os/docs/CONFIGURATION.md with complete schema reference
   - **Acceptance:** Documents all fields, types, defaults, examples for common scenarios
   - **Estimate:** 2 hours
   - **Reference:** Spec section 6, requirements configuration schema
 
-- [ ] **TASK-068:** Write troubleshooting guide (docs/)
+- [x] **TASK-068:** Write troubleshooting guide (docs/)
   - **Description:** Document common issues and solutions, platform-specific problems
   - **Deliverables:** agent-os/docs/TROUBLESHOOTING.md with FAQs, platform issues, debugging
   - **Acceptance:** Covers: prerequisite issues, installation failures, platform-specific problems, `make doctor` usage
   - **Estimate:** 2 hours
 
-- [ ] **TASK-069:** Create example config files
+- [x] **TASK-069:** Create example config files
   - **Description:** Create example install.config.json for common scenarios
   - **Deliverables:** examples/config-minimal.json, config-devops.json, config-product-dev.json
   - **Acceptance:** Examples are valid JSON, cover common use cases, well-commented
   - **Estimate:** 1 hour
 
-- [ ] **TASK-070:** Final polish: output formatting and user experience
+- [x] **TASK-070:** Final polish: output formatting and user experience
   - **Description:** Audit all output, ensure consistent formatting, progress indicators, colors (optional)
   - **Deliverables:** Consistent output style across all commands
   - **Acceptance:** All output is clear, consistent formatting, progress visible, success/error distinguishable

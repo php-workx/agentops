@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "model": "opus",
+  "profile": "devops",
+  "profile_mode": "copy",
+  "project_name": "my-infrastructure",
+  "project_description": "Infrastructure and operations workflows with AgentOps",
+  "permissions": {
+    "git": true,
+    "docker": true,
+    "kubernetes": true,
+    "python": true,
+    "bash": true
+  },
+  "hooks": {
+    "pre_commit": true,
+    "post_commit": true,
+    "commit_msg": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "model": "opus",
+  "profile": "product-dev",
+  "profile_mode": "copy",
+  "project_name": "my-app",
+  "project_description": "Product development workflows with AgentOps",
+  "permissions": {
+    "git": true,
+    "docker": false,
+    "kubernetes": false,
+    "python": true,
+    "npm": true,
+    "bash": true
+  },
+  "hooks": {
+    "pre_commit": true,
+    "post_commit": true,
+    "commit_msg": true
+  },
+  "settings": {
+    "output_style": "technical",
+    "auto_load_context": true,
+    "enforce_40_percent_rule": true
+  }
+}
