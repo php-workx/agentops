@@ -1,8 +1,10 @@
-# AgentOps: Universal Framework for AI Agent Operations
+# AgentOps: Orchestrator for AI Agent Operating Systems
+
+[![Validate](https://github.com/boshu2/agentops/actions/workflows/validate.yml/badge.svg)](https://github.com/boshu2/agentops/actions/workflows/validate.yml)
 
 <div align="center">
 
-**Proven patterns for managing AI agents across any domain.**
+**Like Kubernetes orchestrates containers, agentops orchestrates AI agent systems.**
 
 <a href="https://www.apache.org/licenses/LICENSE-2.0">
     <img src="https://img.shields.io/badge/Code-Apache%202.0-blue.svg" alt="Code License: Apache 2.0"></a>
@@ -10,7 +12,7 @@
     <img src="https://img.shields.io/badge/Documentation-CC%20BY--SA%204.0-lightgrey.svg" alt="Documentation License: CC BY-SA 4.0"></a>
 <img src="https://img.shields.io/badge/Status-Proven-green.svg" alt="Status: Proven in Production">
 
-*Specification-driven operations using multi-phase workflows, context bundles, parallel orchestration, and intelligent routing.*
+*DevOps lifecycle management • Parallel execution • Service mesh • Multi-flavor support*
 
 </div>
 
@@ -21,6 +23,20 @@
 
 > [!NOTE]
 > **Built with AI Agents** - This framework was developed using Claude Code and documents operational patterns from AI-powered workflows. We practice what we document.
+
+---
+
+## Philosophical Foundation
+
+Want to understand why AgentOps works? See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops) for the framework, patterns, and research.
+
+**Start there if you want to:**
+- Understand AgentOps deeply
+- Learn the Four Pillars and Five Laws
+- Study operational patterns and theory
+- Contribute new patterns or research
+
+**See Also:** [12-Factor AgentOps README](https://github.com/boshu2/12-factor-agentops#readme) for the framework overview.
 
 ---
 
@@ -76,13 +92,36 @@ graph LR
 
 ## What This Is
 
-AgentOps is a **universal framework for AI agent operations** that works for:
+AgentOps is an **orchestration layer** for AI agent operating systems—the Kubernetes for knowledge work.
 
-- ✅ **Product Development** - Spec-driven feature development (40x speedup proven)
-- ✅ **Infrastructure/DevOps** - Infrastructure-as-Code deployment (3x speedup proven)
-- ⏳ **Incident Response/SRE** - Incident investigation and postmortems (pending validation)
-- ⏳ **Data Engineering** - Pipeline design and implementation (pending validation)
-- ⏳ **Your Domain** - Create a custom profile for any domain
+```
+┌─────────────────────────────────────────┐
+│  agentops (Orchestrator Layer)         │
+│  • Schedules agent workloads            │
+│  • Manages parallel execution           │
+│  • Provides DevOps lifecycle            │
+│  • Monitors performance                 │
+└─────────────────────────────────────────┘
+                    ▼
+┌─────────────────────────────────────────┐
+│  Agent Operating Systems (Flavors)      │
+│  • product-dev (spec-first workflow)   │
+│  • infrastructure-ops (research-driven)     │
+│  • [community flavors]                  │
+└─────────────────────────────────────────┘
+```
+
+**We don't replace agent systems—we orchestrate them.**
+
+Use multiple agent OS flavors in ONE project:
+- ✅ **product-dev** for product development (7-phase spec-first workflow)
+- ✅ **infrastructure-ops** for infrastructure (3-phase research-driven)
+- ✅ **devops** for Kubernetes/GitOps (52 specialized agents)
+- ✅ **Your custom flavor** for your domain needs
+
+**📘 [View Full Flavor Catalog](profiles/)** - Compare flavors, see decision tree, learn when to use each
+
+**See** [`profiles/MULTI_FLAVOR_EXAMPLE.md`](profiles/MULTI_FLAVOR_EXAMPLE.md) **for a real-world scenario showing how multiple flavors work together in parallel.**
 
 ---
 
@@ -226,35 +265,44 @@ graph LR
 
 ---
 
-## Profile-Based Specialization
+## Orchestration Architecture
 
-AgentOps core patterns + domain-specific profiles:
+AgentOps provides the orchestration layer for multiple agent operating systems:
 
 ```
-Core Kernel (All Domains)
-  ├── Five Laws, Three Rules, 40% Rule
-  ├── Constitutional enforcement via git hooks
-  └── Universal architecture (patterns above)
-
-Architecture Layer (All Domains)
-  ├── Multi-phase workflows
-  ├── Context bundles
-  ├── Multi-agent orchestration
-  └── Intelligent routing
-
-Profiles (Domain-Specific)
-  ├── Product-Dev Profile (8+ agents)
-  ├── DevOps Profile (52+ agents)
-  ├── SRE Profile (pending)
-  ├── Data-Eng Profile (pending)
-  └── Your Custom Profile (create with guide)
+┌──────────────────────────────────────────────────────────┐
+│         agentops (Orchestration Layer)                   │
+│                                                           │
+│  Core Capabilities:                                      │
+│  • Workload scheduling (route to right agent system)    │
+│  • Parallel execution (microservices pattern)           │
+│  • Service mesh (agent-to-agent communication)          │
+│  • DevOps lifecycle (CI/CD for agent work)              │
+│  • Observability (metrics, monitoring, health)          │
+│  • Constitutional enforcement (Five Laws, Three Rules)   │
+└──────────────────────────────────────────────────────────┘
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│         Agent Operating Systems (Profiles)               │
+│                                                           │
+│  profiles/spec-first-dev/      (agent-os inspired)       │
+│   └── Product development workflows                      │
+│                                                           │
+│  profiles/research-plan-implement/  (gitops patterns)    │
+│   └── 3-phase infrastructure workflows                   │
+│                                                           │
+│  profiles/[your-domain]/  (community contributed)        │
+│   └── Your specialized workflows                         │
+└──────────────────────────────────────────────────────────┘
 ```
 
-Each profile customizes:
-- Specialized agents (8-50+ depending on domain)
-- Domain-specific workflows
-- Terminology and standards
-- Examples and case studies
+**Each profile is an agent operating system** with its own:
+- Workflow philosophy (spec-first, research-first, test-first, etc.)
+- Agent definitions and commands
+- Standards and conventions
+- Use cases and patterns
+
+**AgentOps orchestrates them all.**
 
 ---
 
@@ -492,16 +540,28 @@ Want to create a profile for your domain? See `docs/how-to/CREATE_CUSTOM_PROFILE
 
 ## Acknowledgments
 
-**Agent OS** ([agent-os](https://github.com/agent-os))
+### Agent OS - Complementary, Not Competitive
 
-AgentOps patterns for multi-agent orchestration and specialized agent routing were informed by and build upon the work of the Agent OS project. We independently developed similar patterns for agent operations, discovered convergent evolution, and contributed enhancements including:
+**[agent-os](https://github.com/agent-os)** independently discovered that AI agents need operating systems. They built one focused on spec-first product development. We're building orchestration.
 
-- Multi-phase workflow (research → plan → implement) integration
-- Context bundles (session-spanning artifact compression)
-- Intelligent routing (NLP-based agent classification)
-- Profile system for domain-specific customization
+**The natural evolution:**
+1. **Phase 1:** Build agent operating systems (agent-os, others) ← They are here
+2. **Phase 2:** Orchestrate them together (agentops) ← We are here
+3. **Phase 3:** Community ecosystem flourishes ← We build this together
 
-Special thanks to the Agent OS team for open-sourcing infrastructure that enabled broader exploration of agent operational patterns.
+**Our relationship:**
+- **agent-os** = How ONE agent system works internally (their OS)
+- **agentops** = How MULTIPLE agent systems work together (our orchestrator)
+
+We came to similar conclusions from different angles:
+- They approached from product development workflows
+- We approached from DevOps/infrastructure operations
+
+**The result:** `profiles/spec-first-dev/` in agentops is inspired by and credits agent-os. We orchestrate their patterns alongside others, making them more powerful through parallel execution, service mesh, and lifecycle management.
+
+**Both can win:** agent-os gets wider adoption through agentops orchestration. agentops gets proven workflows from agent-os. Users get choice.
+
+Special thanks to the agent-os team for pioneering agent operating systems and validating that this layer was needed.
 
 ---
 
