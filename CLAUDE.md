@@ -98,7 +98,7 @@ VALIDATION LAYER: OPERATORS (watch-reconcile loops)
 
 ## Strategic Context: Read STRATEGY.md First
 
-**File:** `STRATEGY.md` (in repo root)
+**File:** `docs/project/STRATEGY.md`
 **Time:** 5 minutes
 **Read this to understand:**
 
@@ -116,7 +116,7 @@ VALIDATION LAYER: OPERATORS (watch-reconcile loops)
 
 ## Execution Context: If You're Here for the Dec 1 Launch (Nov 11-28)
 
-**File:** `EXECUTION_GUIDE.md` (in repo root)
+**File:** `docs/guides/EXECUTION_GUIDE.md`
 **Time:** 5 minutes
 **Contains:**
 
@@ -452,7 +452,7 @@ refactor(profiles): Consolidate product-dev and devops templates
 |------|---------|-----------|
 | **README.md** | Main overview | Starting work in this repo |
 | **CONSTITUTION.md** | Five Laws, Three Rules | Before each session |
-| **architecture/** | Universal patterns deep dives | Understanding how AgentOps works |
+| **docs/architecture/** | Universal patterns deep dives | Understanding how AgentOps works |
 | **docs/explanation/** | Why patterns matter | Deciding what to document |
 | **docs/how-to/** | How to use patterns | Writing procedural guides |
 | **docs/case-studies/** | Proof it works | Validating across domains |
@@ -489,7 +489,7 @@ git status
 **Then Read Based on Task (5-10 min):**
 
 **Building architecture docs?**
-→ `docs/explanation/` + `architecture/`
+→ `docs/explanation/` + `docs/architecture/`
 
 **Creating a new profile?**
 → `docs/how-to/CREATE_CUSTOM_PROFILE.md` + `profiles/[existing]/`
@@ -543,7 +543,7 @@ git status
 
 1. Read this file (you're doing it!)
 2. Read `CONSTITUTION.md` - The Five Laws guide all agents
-3. Read `architecture/` - Understand the 4 universal patterns
+3. Read `docs/architecture/` - Understand the 4 universal patterns
 4. Read `docs/explanation/` - Understand why patterns work
 5. **Result:** Agent knows its operating principles
 
@@ -593,7 +593,7 @@ git status
 
 **Understanding a universal pattern?**
 
-→ Read `architecture/[pattern-name].md` for deep dive
+→ Read `docs/architecture/[pattern-name].md` for deep dive
 
 **Understanding why patterns work?**
 

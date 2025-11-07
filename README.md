@@ -7,7 +7,7 @@
 [![Version](https://img.shields.io/badge/Version-0.9.0-blue.svg)]()
 [![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-macOS%20|%20Linux-lightgrey.svg)]()
-[![Trinity](https://img.shields.io/badge/Trinity-Aligned-purple.svg)](./TRINITY.md)
+[![Trinity](https://img.shields.io/badge/Trinity-Aligned-purple.svg)](./docs/project/TRINITY.md)
 
 <!-- License -->
 [![Code License](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -33,7 +33,7 @@
 > - ⚙️ [agentops](https://github.com/boshu2/agentops) — HOW to implement (Implementation) ← **You are here**
 > - 🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase) — WHAT users experience (Examples)
 >
-> See [TRINITY.md](./TRINITY.md) for complete architecture.
+> See [TRINITY.md](./docs/project/TRINITY.md) for complete architecture.
 
 ---
 
@@ -252,7 +252,7 @@ with DAG('data_pipeline', schedule_interval='@daily') as dag:
 
 **Transparency:** This is alpha software forged in production use. Patterns are proven (40x speedup product-dev, 3x speedup infrastructure), but the framework is still generalizing. Your feedback shapes the evolution.
 
-**📘 [Full Roadmap & Vision](docs/ROADMAP.md)**
+**📘 [Full Roadmap & Vision](docs/ROADMAP.md)** (Note: ROADMAP.md remains in docs/ root)
 
 ---
 
@@ -436,7 +436,7 @@ graph TB
 - Auto-recommend workflow with user override
 - Right work to right executor (like pool/queue assignment)
 
-**📘 [Deep Dive: Architecture & Patterns](architecture/)**
+**📘 [Deep Dive: Architecture & Patterns](docs/architecture/)**
 
 ---
 
@@ -490,11 +490,11 @@ graph TB
 > [!NOTE]
 > The Twelve Factors are actively being drafted. Current candidates include Git Memory as Knowledge OS, Fresh Context Windows (40% Rule), Single-Responsibility Agents, and Validation Gates Before Execution. Follow progress in `12-factor-agentops/docs/research/12-factors-research.md` for the evolving list.
 
-- [Architecture Patterns](architecture/) - The 4 universal patterns
+- [Architecture Patterns](docs/architecture/) - The 4 universal patterns
 - [Case Studies](docs/case-studies/) - Real-world validation
 
 ### Community & Contribution
-- [Contributing Guide](CONTRIBUTING.md) - How to participate
+- [Contributing Guide](docs/community/CONTRIBUTING.md) - How to participate
 - [Roadmap & Vision](docs/ROADMAP.md) - What's next
 - [Adoption Guide](docs/ADOPTION_GUIDE.md) - Scale at every level
 
@@ -552,13 +552,13 @@ Same relationship as Kubernetes (orchestration) to Docker (runtime). Both can wi
 - 📘 [Troubleshooting](docs/TROUBLESHOOTING.md) - Solutions to common issues
 
 **Contributing**
-- 🤝 [Contributing Guide](CONTRIBUTING.md) - How to help
-- 📋 [Code of Conduct](CODE_OF_CONDUCT.md) - Community standards
-- 🔒 [Security Policy](SECURITY.md) - Report vulnerabilities
+- 🤝 [Contributing Guide](docs/community/CONTRIBUTING.md) - How to help
+- 📋 [Code of Conduct](docs/community/CODE_OF_CONDUCT.md) - Community standards
+- 🔒 [Security Policy](docs/community/SECURITY.md) - Report vulnerabilities
 
 **Stay Updated**
 - ⭐ [Star this repo](https://github.com/boshu2/agentops) - Get notifications
-- 📣 [Release Notes](RELEASE-NOTES.md) - Version updates
+- 📣 [Release Notes](docs/RELEASE-NOTES.md) - Version updates
 - 🗺️ [Roadmap](docs/ROADMAP.md) - What's coming
 
 ---
@@ -571,7 +571,7 @@ AgentOps is part of a three-repository ecosystem:
 **🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** (Philosophy)
 **🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase)** (Examples - Coming Dec 1)
 
-**See [TRINITY.md](./TRINITY.md) for complete architecture details.**
+**See [TRINITY.md](./docs/project/TRINITY.md) for complete architecture details.**
 
 ---
 

@@ -35,9 +35,9 @@ trinity-status:
 	fi
 	@echo ""
 	@echo "Universal files:"
-	@if [ -f TRINITY.md ]; then echo "  ✓ TRINITY.md"; else echo "  ✗ TRINITY.md"; fi
+	@if [ -f docs/project/TRINITY.md ]; then echo "  ✓ docs/project/TRINITY.md"; else echo "  ✗ docs/project/TRINITY.md"; fi
 	@if [ -f VERSION ]; then echo "  ✓ VERSION"; else echo "  ✗ VERSION"; fi
-	@if [ -f MISSION.md ]; then echo "  ✓ MISSION.md"; else echo "  ✗ MISSION.md"; fi
+	@if [ -f docs/project/MISSION.md ]; then echo "  ✓ docs/project/MISSION.md"; else echo "  ✗ docs/project/MISSION.md"; fi
 	@echo ""
 	@echo "Documentation:"
 	@if [ -d docs/trinity ]; then echo "  ✓ docs/trinity/"; else echo "  ✗ docs/trinity/"; fi
