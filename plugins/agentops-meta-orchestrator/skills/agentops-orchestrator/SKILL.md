@@ -1174,10 +1174,99 @@ pattern:
   created: 2025-09-12T10:00:00Z
 ```
 
+### Pattern Storage (CRITICAL - ALWAYS Execute)
+
+**After extracting a pattern, ALWAYS save it to the file system:**
+
+**Step 1: Create directory structure (if not exists)**
+```bash
+mkdir -p ~/.claude/skills/agentops-orchestrator/patterns/discovered
+mkdir -p ~/.claude/skills/agentops-orchestrator/patterns/validated
+mkdir -p ~/.claude/skills/agentops-orchestrator/patterns/learned
+mkdir -p ~/.claude/skills/agentops-orchestrator/metrics
+```
+
+**Step 2: Save pattern file**
+```bash
+# Generate filename from pattern ID
+PATTERN_FILE=~/.claude/skills/agentops-orchestrator/patterns/discovered/${PATTERN_ID}.yaml
+
+# Write pattern to file (use Write tool)
+# Write the YAML content from pattern extraction above
+```
+
+**Step 3: Update metrics**
+```bash
+# Log execution
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+echo "${TIMESTAMP},${PATTERN_ID},${SUCCESS},${DURATION}" >> ~/.claude/skills/agentops-orchestrator/metrics/executions.log
+
+# Update success rates
+echo "${TIMESTAMP},${PATTERN_ID},${SUCCESS_RATE}" >> ~/.claude/skills/agentops-orchestrator/metrics/success_rates.log
+```
+
+**Step 4: Update pattern index**
+```bash
+# Add entry to patterns/README.md if new pattern
+# Or update existing entry if pattern already exists
+```
+
+**Example complete storage workflow:**
+
+```
+After workflow completes successfully:
+
+1. Extract pattern (see above YAML structure)
+2. Write pattern file:
+   File: ~/.claude/skills/agentops-orchestrator/patterns/discovered/rest-api-jwt-redis-v1.yaml
+   Content: [Full YAML pattern structure]
+
+3. Log execution:
+   File: ~/.claude/skills/agentops-orchestrator/metrics/executions.log
+   Line: 2025-11-07T18:30:00Z,rest-api-jwt-redis-v1,success,11_minutes
+
+4. Update success rate:
+   File: ~/.claude/skills/agentops-orchestrator/metrics/success_rates.log
+   Line: 2025-11-07T18:30:00Z,rest-api-jwt-redis-v1,0.9167
+
+5. Update pattern README:
+   File: ~/.claude/skills/agentops-orchestrator/patterns/README.md
+   Add: Pattern summary with usage count and success rate
+
+Result: Pattern is now persisted and available for future orchestrations
+```
+
+**Pattern Lifecycle Directories:**
+
+- **discovered/** - New patterns (1-4 executions, unproven)
+- **validated/** - Proven patterns (5-19 executions, 80%+ success)
+- **learned/** - Production patterns (20+ executions, 90%+ success)
+
+**Move patterns between directories as they mature:**
+```bash
+# After 5th successful execution
+mv discovered/pattern.yaml validated/pattern.yaml
+
+# After 20th successful execution with 90%+ success rate
+mv validated/pattern.yaml learned/pattern.yaml
+```
+
 ### Pattern Matching Algorithm
 
 **How patterns are matched to future tasks:**
 
+**Step 1: Load all available patterns from file system**
+```bash
+# Read all pattern files from the three directories
+LEARNED_PATTERNS=$(find ~/.claude/skills/agentops-orchestrator/patterns/learned -name "*.yaml")
+VALIDATED_PATTERNS=$(find ~/.claude/skills/agentops-orchestrator/patterns/validated -name "*.yaml")
+DISCOVERED_PATTERNS=$(find ~/.claude/skills/agentops-orchestrator/patterns/discovered -name "*.yaml")
+
+# Parse YAML files into pattern_library list
+# Prioritize: learned > validated > discovered
+```
+
+**Step 2: Match patterns to user request**
 ```python
 def match_patterns(user_request, pattern_library):
     """Find best-matching patterns for user's task"""
