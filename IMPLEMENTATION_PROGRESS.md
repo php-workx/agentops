@@ -18,10 +18,18 @@
 ### Core Documentation ✅
 - [x] `core/CONSTITUTION.md` - Five Laws, 40% rule, core rules (126 lines)
 
-### Core Commands (3/12) ✅
+### Core Commands (5/12) ✅
 - [x] `core/commands/prime.md` - Interactive JIT router
 - [x] `core/commands/prime-simple.md` - Quick orientation
 - [x] `core/commands/prime-complex.md` - Multi-phase orientation
+- [x] `core/commands/bundle-save.md` - Knowledge compression + implementation checkpointing
+- [x] `core/commands/bundle-load.md` - Context restoration + resume capability
+
+**KEY ADDITION:** Bundle system now handles mid-implementation checkpointing!
+- Solves: "What happens when context fills during implementation?"
+- Answer: `/bundle-save {name}-progress --type implementation`
+- Resume: `/bundle-load {name}-progress` → `/implement --resume`
+- Verified: This exact scenario (we're at 51% context right now)
 
 ---
 
@@ -34,8 +42,6 @@
 - [ ] Create `core/commands/implement.md` - Multi-agent implementation
 - [ ] Create `core/commands/validate.md` - Single validation
 - [ ] Create `core/commands/validate-multi.md` - 3x parallel validation
-- [ ] Create `core/commands/bundle-save.md` - Knowledge compression
-- [ ] Create `core/commands/bundle-load.md` - Context restoration
 - [ ] Create `core/commands/learn.md` - Pattern extraction
 - [ ] Create 9 base agents in `core/agents/`
 - [ ] Create 6 workflows in `core/workflows/`
