@@ -4,7 +4,7 @@
 
 <div align="center">
 
-**Like Kubernetes orchestrates containers, agentops orchestrates AI agent systems.**
+**Workflow orchestration for AI agents — orchestrate multiple agent systems reliably**
 
 <a href="https://www.apache.org/licenses/LICENSE-2.0">
     <img src="https://img.shields.io/badge/Code-Apache%202.0-blue.svg" alt="Code License: Apache 2.0"></a>
@@ -21,8 +21,8 @@
 > [!IMPORTANT]
 > **Part of the Trinity** — Three repositories, one unified AgentOps ecosystem (v0.9.0)
 >
-> **⚙️ agentops** (Orchestration - The Engine) — You are here
-> - HOW to implement → Universal orchestrator, profiles system, CLI tools, automation
+> **⚙️ agentops** (Implementation - The Engine) — You are here
+> - HOW to implement → Workflow orchestration framework, profiles system, CLI tools, automation
 >
 > **🧠 12-factor-agentops** (Philosophy - The Mind) → [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
 > - WHY patterns work → Theoretical foundation, research, Four Pillars, Five Laws
@@ -40,9 +40,9 @@
 
 ## What Is This?
 
-**agentops is the universal orchestrator for AI agent systems.**
+**agentops is a workflow orchestration framework for AI agent systems.**
 
-Like Kubernetes orchestrates containers, agentops orchestrates agent workflows. It provides:
+Like Airflow orchestrates data pipelines, agentops orchestrates knowledge workflows (Research → Plan → Implement) across multiple agent systems. It provides:
 
 ✅ **Intelligent routing** (90.9% accuracy NLP classification)
 ✅ **Context management** (40% rule enforcement, prevents collapse)
@@ -52,7 +52,9 @@ Like Kubernetes orchestrates containers, agentops orchestrates agent workflows. 
 
 ### What We Are
 
-✅ **Universal orchestrator** (works with any agent system)
+✅ **Workflow orchestration framework** (orchestrates multiple agent systems, including agent-os)
+✅ **Pattern library** (reusable, composable workflow packages)
+✅ **Constitutional governance** (enforced best practices via git hooks)
 ✅ **Working implementation** (production-ready tools)
 ✅ **Proven patterns** (40x speedup product-dev, 3x infrastructure)
 ✅ **How-to guides** (practical tutorials and docs)
@@ -60,7 +62,8 @@ Like Kubernetes orchestrates containers, agentops orchestrates agent workflows. 
 ### What We Are NOT
 
 ❌ **Not a philosophy** → See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
-❌ **Not an operating system** → See [agent-os](https://github.com/agent-os)
+❌ **Not an agent operating system** → See [agent-os](https://github.com/agent-os) (we orchestrate their systems)
+❌ **Not infrastructure orchestrator** → We orchestrate knowledge workflows, not servers/containers
 ❌ **Not a package manager** → Future ecosystem layer
 ❌ **Not a visual UI** → Future ecosystem layer
 
@@ -97,8 +100,8 @@ agentops is **Layer 2** (Orchestration) of a complete 7-layer ecosystem:
                     ↓
 ┌──────────────────────────────────────────────┐
 │  Layer 2: Orchestration (THIS REPO)          │
-│  • Universal orchestrator (like Kubernetes)  │
-│  • Routing, context, parallel execution      │
+│  • Workflow orchestration framework           │
+│  • Routing, context, parallel execution       │
 └──────────────────────────────────────────────┘
                     ↓
 ┌──────────────────────────────────────────────┐
@@ -377,7 +380,7 @@ This isn't marketing. This is substance:
 
 ## What This Is
 
-AgentOps is a **universal operating system for AI agents**—like Kubernetes for agent workflows.
+AgentOps is a **workflow orchestration framework** for AI agent systems—orchestrates multiple agent systems reliably.
 
 ```
 ┌─────────────────────────────────────────┐
@@ -389,7 +392,7 @@ AgentOps is a **universal operating system for AI agents**—like Kubernetes for
 └─────────────────────────────────────────┘
                     ▼
 ┌─────────────────────────────────────────┐
-│  Profiles (Like Kubernetes CRDs)        │
+│  Profiles (Like Helm Charts)            │
 │  • devops (K8s, containers, CI/CD)     │
 │  • product-dev (APIs, UIs, databases)  │
 │  • data-eng (pipelines, quality)       │
@@ -411,9 +414,9 @@ AgentOps is a **universal operating system for AI agents**—like Kubernetes for
 - Domain workflows (orchestrate for your domain)
 - Skills (validation + automation for your tech)
 
-**Like Kubernetes:**
-- Core = Control plane (stable, universal)
-- Profiles = CRDs (domain-specific resources)
+**Like Helm (package management):**
+- Core = Orchestration engine (stable, universal)
+- Profiles = Workflow packages (domain-specific bundles)
 - Community = Ecosystem (shared profiles)
 
 **📘 [Create Custom Profile](docs/CREATE_PROFILE.md)** - Build extensions for your domain
@@ -803,25 +806,29 @@ agentops/launch/                       (← REMOVE before public release)
 
 ## Philosophy
 
-### Core Vision: An Operating System for Knowledge Work
+### Core Vision: Workflow Orchestration Framework
 
-AgentOps isn't a framework—it's an **operating system for orchestrating knowledge work**. Like Kubernetes orchestrates containers, AgentOps orchestrates **workflow packages** (bundled agent workflows) for knowledge workers.
+AgentOps is a **workflow orchestration framework** for AI agent systems. Like Airflow orchestrates data pipelines, AgentOps orchestrates **workflow packages** (bundled agent workflows) across multiple agent systems.
 
 ### The Orchestration Insight
 
-Just as Kubernetes abstracts away container complexity (scheduling, networking, lifecycle), AgentOps abstracts away AI agent complexity:
+Just as Airflow abstracts away pipeline complexity (dependencies, scheduling, retries), AgentOps abstracts away AI agent workflow complexity:
 
 ```text
-Kubernetes              →  AgentOps
+Airflow                 →  AgentOps
 ─────────────────────────────────────
-Container (unit)       →  Workflow Package (bundled workflow)
-Pod                    →  Agent (specialized capability)
-Service mesh           →  Agent orchestration
-Scheduling            →  Intelligent routing
-Resource mgmt         →  Context management (40% rule)
-Auto-healing          →  Constitutional enforcement
-Observability         →  Institutional memory (git)
+DAG (pipeline)        →  Workflow Package (bundled workflow)
+Task                   →  Agent (specialized capability)
+Task dependencies      →  Phase gates (Research → Plan → Implement)
+Scheduling             →  Intelligent routing
+Retry logic            →  Constitutional enforcement
+Observability          →  Institutional memory (git)
 ```
+
+**Distinction from agent-os:**
+- **agent-os** = Operating system for ONE agent system (how agents work internally)
+- **AgentOps** = Orchestration framework for MULTIPLE agent systems (how systems work together)
+- **They're complementary:** AgentOps orchestrates agent-os workflows alongside other systems
 
 **Why Workflow Packages?** Because knowledge workers don't think in "agents"—they think in **complete workflows**. A workflow package is:
 
