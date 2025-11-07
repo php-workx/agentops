@@ -1,0 +1,111 @@
+apiVersion: agentops.dev/v1
+kind: Profile
+metadata:
+  name: example
+  description: Example profile template for creating custom domain profiles
+  version: 1.0.0
+  author: AgentOps Core Team
+  homepage: https://github.com/agentops-dev/agentops
+  license: Apache-2.0
+
+spec:
+  # Always extend core foundation
+  extends: core
+
+  # Define domain-specific agents
+  # Agents are specialized personas that handle specific tasks
+  agents:
+    - name: domain-explorer
+      description: Explore domain-specific code patterns and structure
+      file: agents/domain-explorer.md
+      model: sonnet
+      tools: [Read, Grep, Glob, Bash]
+
+    - name: domain-architect
+      description: Design domain-specific solutions and architectures
+      file: agents/domain-architect.md
+      model: opus
+      tools: [Read, Write, Edit, Grep]
+
+  # Command overrides (optional)
+  # Override core commands to add domain-specific context
+  commands:
+    - name: research
+      description: Enhanced research with domain-specific patterns
+      file: commands/research.md
+      overrides: core/commands/research.md
+      reason: Add domain-specific research patterns and examples
+
+  # Domain-specific workflows
+  # Compose core patterns into complete domain cycles
+  workflows:
+    - name: domain-complete-cycle
+      description: Complete Research→Plan→Implement→Validate→Learn cycle for this domain
+      file: workflows/domain-complete-cycle.md
+      phases: [research, plan, implement, validate, learn]
+      estimated_time: 2-4 hours
+
+  # Skills (domain-specific automation)
+  # Script-based or AI-powered capabilities
+  skills:
+    # Script-based skill (fast, deterministic)
+    - name: domain-validator
+      description: Validate domain-specific files and configurations
+      type: script
+      file: skills/domain-validator.sh
+
+    # AI-powered skill (reasoning-based)
+    - name: domain-analyzer
+      description: Analyze domain-specific patterns and complexity
+      type: ai-powered
+      file: skills/domain-analyzer.md
+      model: sonnet
+      token_budget: 15k
+
+# Metadata for discovery and cataloging
+tags: [example, template, getting-started, tutorial]
+
+# Changelog (track profile evolution)
+changelog: |
+  v1.0.0 (2025-11-07): Initial example profile template
+  - Two example agents (explorer, architect)
+  - One command override (research)
+  - One complete workflow
+  - Two skills (validator script, analyzer AI)
+
+# Requirements (dependencies this profile needs)
+requirements:
+  # Core version compatibility (semantic versioning)
+  core: ">=1.0.0 <2.0.0"
+
+  # External tools (optional, but recommended)
+  tools:
+    - name: your-tool
+      version: ">=1.0"
+      required: false
+      install: "your-package-manager install your-tool"
+
+# Profile configuration (domain-specific settings)
+config:
+  # Default model for agents (can override per-agent)
+  default_model: sonnet
+
+  # Token budgets for phases
+  token_budgets:
+    research: 40000   # 20% of 200k context
+    plan: 40000       # 20% of 200k context
+    implement: 60000  # 30% of 200k context
+    validate: 20000   # 10% of 200k context
+    learn: 20000      # 10% of 200k context
+
+  # Artifact directories (where outputs are stored)
+  artifacts:
+    bundles: .agentops/bundles/
+    patterns: .agentops/patterns/
+    sessions: .agentops/sessions/
+
+# Community and support
+community:
+  forum: https://github.com/agentops-dev/agentops/discussions
+  issues: https://github.com/agentops-dev/agentops/issues
+  chat: https://discord.gg/agentops

@@ -27,7 +27,8 @@ source "${SCRIPT_DIR}/lib/validation.sh"
 INSTALL_SOURCE="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 # Available profiles
-readonly AVAILABLE_PROFILES=("product-dev" "infrastructure-ops" "devops" "life")
+# Note: "example" is a template, not meant for actual use
+readonly AVAILABLE_PROFILES=("example" "devops" "base")
 
 #######################################
 # Print usage information
@@ -40,12 +41,17 @@ Usage:
   $0 [OPTIONS]
 
 Options:
-  --profile NAME    Install specific profile (product-dev, infrastructure-ops, devops, life)
+  --profile NAME    Install specific profile (example, devops, base, or custom)
   --all             Install all available profiles
   --uninstall       Remove AgentOps installation
   --upgrade         Upgrade existing installation
   --validate-only   Validate installation without making changes
   --help            Show this help message
+
+Core + Extensibility:
+  Core is always installed (universal commands, agents, workflows, skills)
+  Profiles extend core with domain-specific capabilities
+  Create custom profiles using: docs/CREATE_PROFILE.md
 
 Interactive Mode:
   Run without options for interactive profile selection menu
@@ -71,24 +77,25 @@ select_profiles() {
     echo ""
     echo "Available profiles:"
     echo ""
-    echo "  1) product-dev          (10 agents)  - Application development workflows"
-    echo "  2) infrastructure-ops   (18 agents)  - Operations & monitoring workflows"
-    echo "  3) devops               (52 agents)  - Complete GitOps ecosystem"
-    echo "  4) life                 (7 agents)   - Personal development & career planning"
-    echo "  5) All profiles         (87 agents)  - Install everything"
-    echo "  6) Cancel installation"
+    echo "  1) example              (Template)   - Copy this to create custom profiles"
+    echo "  2) devops               (Agents TBD) - DevOps workflows (K8s, containers, CI/CD)"
+    echo "  3) base                 (Minimal)    - Base profile with core only"
+    echo "  4) All profiles         (All)        - Install everything"
+    echo "  5) Cancel installation"
+    echo ""
+    echo "Note: Core is always installed (commands, agents, workflows, skills)"
+    echo "      Profiles extend core with domain-specific capabilities"
     echo ""
 
     local choice
-    read -r -p "Select profile (1-6): " choice
+    read -r -p "Select profile (1-5): " choice
 
     case "$choice" in
-        1) echo "product-dev" ;;
-        2) echo "infrastructure-ops" ;;
-        3) echo "devops" ;;
-        4) echo "life" ;;
-        5) echo "${AVAILABLE_PROFILES[*]}" ;;
-        6) echo ""; return 1 ;;
+        1) echo "example" ;;
+        2) echo "devops" ;;
+        3) echo "base" ;;
+        4) echo "${AVAILABLE_PROFILES[*]}" ;;
+        5) echo ""; return 1 ;;
         *) warn "Invalid choice"; select_profiles ;;
     esac
 }

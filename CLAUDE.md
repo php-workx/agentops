@@ -32,21 +32,26 @@ This framework translates proven DevOps/SRE patterns into AI agent context, solv
 
 ## Understanding the AgentOps Ecosystem
 
-**Three-layer architecture** for reliable AI agent operations:
+**Like Kubernetes for agent workflows:**
 
 ```ascii
-Layer 3: FRAMEWORK (12-factor-agentops)
-         ↓ Defines philosophical principles
+CORE PLATFORM (Always Installed)
+├── 12 universal commands (research, plan, implement, validate, learn)
+├── 9 base agent personas (explorer, architect, executor roles)
+├── 6 workflow orchestrations (complete-cycle, debug-cycle, etc.)
+└── Skills framework (automation hooks)
+         ↓ Extends to...
 
-Layer 2: ORCHESTRATOR (agentops) ← You are here
-         ↓ Orchestrates agent execution + manages workflows
+PROFILES (Like Kubernetes CRDs)
+├── example profile (template for creating custom)
+├── devops profile (K8s, containers, CI/CD)
+├── product-dev profile (APIs, UIs, databases)
+├── data-eng profile (pipelines, transformations, quality)
+└── your custom profile (your domain, your stack)
+         ↓ Applied by...
 
-Layer 1: WORKFLOW PACKAGES (installed domain bundles)
-         ├── product-dev package (spec-first product workflows)
-         ├── infrastructure-ops package (research-first DevOps workflows)
-         ├── devops package (52 production GitOps agents)
-         └── custom packages (organizations build domain-specific bundles)
-         ↓ Validated by operators
+FRAMEWORK (12-factor-agentops)
+└── Philosophical foundation (Four Pillars, Five Laws, 40% rule)
 
 VALIDATION LAYER: OPERATORS (watch-reconcile loops)
          ├── Workflow Operator (ensures outputs pass validation)
@@ -54,21 +59,22 @@ VALIDATION LAYER: OPERATORS (watch-reconcile loops)
          └── Memory Operator (maintains knowledge navigability)
 ```
 
-**This repository (agentops) is the ORCHESTRATOR:**
+**This repository (agentops) is the CORE PLATFORM:**
 
-- Receives natural language requests from users
-- Routes to appropriate workflow packages
-- Manages agent execution and context
-- Validates outputs via operators
-- Commits learnings to institutional memory (Git + Codex)
+- Provides universal orchestration (commands, agents, workflows, skills)
+- Always installed (like Kubernetes control plane)
+- Enables extensibility via profiles (like K8s CRDs)
+- Developers create profiles for their domains
+- Community shares profiles (ecosystem)
 
-**Think of it like Kubernetes:**
+**Kubernetes metaphor:**
 
-- **12-factor-agentops** = 12-factor apps (operational philosophy)
-- **agentops** = Kubernetes (the orchestrator)
-- **Workflow packages** = Helm charts / Kustomize (packaged patterns)
-- **Operators** = K8s operators (domain-specific automation + validation)
-- **Git + Codex** = etcd + ArgoCD (state store + GitOps)
+- **Core platform** = Kubernetes control plane (universal orchestration)
+- **Profiles** = Custom Resource Definitions (domain-specific resources)
+- **Commands** = Controllers (execute workflows)
+- **Agents** = Operators (specialized automation)
+- **Skills** = Admission webhooks (validation, mutation)
+- **Community** = Ecosystem (shared profiles and patterns)
 
 ---
 
@@ -299,7 +305,7 @@ RECONCILE:
 
 ## Repository Structure
 
-### Core Framework (Public-Ready)
+### Core Platform (Always Installed)
 
 ```
 agentops/
@@ -307,42 +313,53 @@ agentops/
 ├── STRATEGY.md                        ← Mission & direction
 ├── README.md                          ← Main documentation
 ├── CONSTITUTION.md                    ← Five Laws + Three Rules
-├── INSTALL.md                         ← Installation guide
 │
-├── architecture/                      ← 4 universal patterns
-│   ├── phase-based-workflow.md
-│   ├── context-bundles.md
-│   ├── multi-agent-orchestration.md
-│   └── intelligent-routing.md
+├── core/                              ← Universal orchestration (like K8s control plane)
+│   ├── CONSTITUTION.md                Five Laws, 40% rule, core rules
+│   ├── commands/                      12 universal commands
+│   │   ├── prime.md, prime-simple.md, prime-complex.md
+│   │   ├── research.md, research-multi.md
+│   │   ├── plan.md, implement.md
+│   │   ├── validate.md, validate-multi.md
+│   │   ├── learn.md
+│   │   └── bundle-save.md, bundle-load.md
+│   ├── agents/                        9 reusable personas
+│   │   ├── code-explorer.md, doc-explorer.md, history-explorer.md
+│   │   ├── spec-architect.md, validation-planner.md, risk-assessor.md
+│   │   └── change-executor.md, test-generator.md, continuous-validator.md
+│   ├── workflows/                     6 universal workflows
+│   │   ├── complete-cycle.md, quick-fix.md, debug-cycle.md
+│   │   ├── knowledge-synthesis.md, continuous-improvement.md
+│   │   └── multi-domain.md
+│   └── skills/                        Automation framework
+│       └── README.md
 │
-├── docs/
-│   ├── explanation/                   ← Why patterns work (conceptual)
-│   │   ├── agentops-manifesto.md
-│   │   └── PATTERN_EXTRACTION_METHODOLOGY.md
-│   ├── how-to/                        ← How to use patterns (procedural)
-│   │   ├── CREATE_CUSTOM_PROFILE.md
-│   │   └── [domain-specific guides]
-│   └── case-studies/                  ← Validated multi-domain proof
-│       ├── MULTI_DOMAIN_VALIDATION.md
-│       └── CASE_STUDY_GITOPS_INTEGRATION.md
+├── profiles/                          ← Domain extensions (like K8s CRDs)
+│   ├── example/                       Template for creating custom
+│   │   ├── profile.yaml               Manifest (like CRD definition)
+│   │   ├── README.md
+│   │   ├── agents/                    Domain-specific agents
+│   │   ├── commands/                  Command overrides (optional)
+│   │   ├── workflows/                 Domain workflows
+│   │   └── skills/                    Domain automation
+│   ├── devops/                        K8s, containers, CI/CD
+│   ├── product-dev/                   APIs, UIs, databases
+│   ├── data-eng/                      Pipelines, transformations
+│   └── [your-custom]/                 Community profiles
 │
-├── profiles/                          ← Domain-specific templates
-│   ├── default/                       ← Generic foundation
-│   ├── product-dev/                   ← Product development profile
-│   ├── devops/                        ← Infrastructure/DevOps profile
-│   └── [your-domain]/                 ← Community custom profiles
+├── docs/                              ← Developer guides
+│   ├── CREATE_PROFILE.md              How to create profiles
+│   ├── EXTEND_CORE.md                 How to extend core
+│   └── GET_STARTED.md                 Installation & usage
 │
-├── scripts/                           ← Installation & setup
-│   ├── base-install.sh
-│   └── project-install.sh
+├── scripts/                           ← Installation & validation
+│   ├── install.sh                     Install core + profiles
+│   └── validate-profile.sh            Profile validation
 │
-├── .claude/                           ← Claude Code configuration
-│   ├── settings.json
-│   └── README.md
-│
-├── .git/                              ← Git history (institutional memory)
-└── LICENSE                            ← Apache 2.0 (code) + CC BY-SA 4.0 (docs)
+└── .git/                              ← Institutional memory
 ```
+
+**Key insight:** Core is stable platform. Profiles evolve independently. Community contributes profiles.
 
 ### Working Space (Experimental, Sanitized Before Dec 1)
 

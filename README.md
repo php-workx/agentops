@@ -285,36 +285,48 @@ This isn't marketing. This is substance:
 
 ## What This Is
 
-AgentOps is an **orchestration layer** for AI agent operating systems—the Kubernetes for knowledge work.
+AgentOps is a **universal operating system for AI agents**—like Kubernetes for agent workflows.
 
 ```
 ┌─────────────────────────────────────────┐
-│  agentops (Orchestrator Layer)         │
-│  • Schedules agent workloads            │
-│  • Manages parallel execution           │
-│  • Provides DevOps lifecycle            │
-│  • Monitors performance                 │
+│  Core Platform (Always Installed)       │
+│  • 12 universal commands                │
+│  • 9 base agent personas                │
+│  • 6 workflow orchestrations            │
+│  • Skills framework                     │
 └─────────────────────────────────────────┘
                     ▼
 ┌─────────────────────────────────────────┐
-│  Agent Operating Systems (Flavors)      │
-│  • product-dev (spec-first workflow)   │
-│  • infrastructure-ops (research-driven)     │
-│  • [community flavors]                  │
+│  Profiles (Like Kubernetes CRDs)        │
+│  • devops (K8s, containers, CI/CD)     │
+│  • product-dev (APIs, UIs, databases)  │
+│  • data-eng (pipelines, quality)       │
+│  • [your custom profile]                │
 └─────────────────────────────────────────┘
 ```
 
-**We don't replace agent systems—we orchestrate them.**
+**Core + Extensibility Model:**
 
-Use multiple agent OS flavors in ONE project:
-- ✅ **product-dev** for product development (7-phase spec-first workflow)
-- ✅ **infrastructure-ops** for infrastructure (3-phase research-driven)
-- ✅ **devops** for Kubernetes/GitOps (52 specialized agents)
-- ✅ **Your custom flavor** for your domain needs
+**Core provides universal orchestration:**
+- Research → Plan → Implement → Validate → Learn workflows
+- Multi-agent orchestration (3x speedup)
+- Bundle system (5:1 to 38:1 compression)
+- Reusable agent personas
 
-**📘 [View Full Flavor Catalog](profiles/)** - Compare flavors, see decision tree, learn when to use each
+**Profiles extend core for your domain:**
+- Domain-specific agents (your stack, your patterns)
+- Command overrides (add domain context)
+- Domain workflows (orchestrate for your domain)
+- Skills (validation + automation for your tech)
 
-**See** [`profiles/MULTI_FLAVOR_EXAMPLE.md`](profiles/MULTI_FLAVOR_EXAMPLE.md) **for a real-world scenario showing how multiple flavors work together in parallel.**
+**Like Kubernetes:**
+- Core = Control plane (stable, universal)
+- Profiles = CRDs (domain-specific resources)
+- Community = Ecosystem (shared profiles)
+
+**📘 [Create Custom Profile](docs/CREATE_PROFILE.md)** - Build extensions for your domain
+
+**📘 [Get Started](docs/GET_STARTED.md)** - Install core + choose/create profiles
 
 ---
 
@@ -551,21 +563,42 @@ WT feature-name
 
 ## Quick Start
 
-### Step 1: Base Installation
+### Option 1: Core Only (Platform)
 ```bash
-curl -sSL https://raw.githubusercontent.com/boshu2/agentops/main/scripts/base-install.sh | bash
+# Install just the orchestration platform
+./scripts/install.sh
+
+# Then create your own profile
+cat docs/CREATE_PROFILE.md
 ```
 
-### Step 2: Project Installation
+### Option 2: Core + Community Profile
 ```bash
-cd /path/to/your/project
-~/.agentops/scripts/project-install.sh default
+# Install platform + domain package
+./scripts/install.sh --profile devops
+# or --profile product-dev, --profile data-eng
+
+# Start using immediately
+/prime
 ```
 
-Choose your profile:
-- `default` - Generic foundation (core framework, works across all domains)
+### Option 3: Core + Custom Profile
+```bash
+# 1. Install core
+./scripts/install.sh
 
-For detailed instructions, see [INSTALL.md](INSTALL.md)
+# 2. Create your profile
+cp -r profiles/example profiles/my-domain
+vim profiles/my-domain/profile.yaml
+
+# 3. Install your profile
+./scripts/install.sh --profile my-domain
+```
+
+**Next steps:**
+- **Core only:** Read [CREATE_PROFILE.md](docs/CREATE_PROFILE.md) to build extensions
+- **With profile:** Read [GET_STARTED.md](docs/GET_STARTED.md) to start using
+- **Learn more:** See [EXTEND_CORE.md](docs/EXTEND_CORE.md) for customization
 
 ---
 
