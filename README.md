@@ -499,7 +499,7 @@ graph TB
 - [Adoption Guide](docs/ADOPTION_GUIDE.md) - Scale at every level
 
 ### Reference
-- [CONSTITUTION.md](CONSTITUTION.md) - Five Laws, Three Rules, 40% Rule
+- [CONSTITUTION.md](docs/explanation/CONSTITUTION.md) - Five Laws, Three Rules, 40% Rule
 - [Commands Reference](docs/reference/commands/) - All available commands
 - [Agents Reference](docs/reference/agents/) - Built-in agent personas
 

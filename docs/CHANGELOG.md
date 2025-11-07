@@ -221,7 +221,7 @@ AgentOps follows [Semantic Versioning](https://semver.org/):
 
 - [Installation Guide](INSTALL.md)
 - [Main README](README.md)
-- [Constitution](CONSTITUTION.md)
+- [Constitution](explanation/CONSTITUTION.md)
 - [GitHub Repository](https://github.com/boshu2/agentops)
 
 ---
