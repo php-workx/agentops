@@ -280,6 +280,76 @@ cp -r ~/.agentops/backups/<backup-name> ~/.agentops
 
 ---
 
+## For Developers & Contributors
+
+### Running Tests Locally
+
+Before submitting changes, run the test suite:
+
+```bash
+# Run all tests
+./tests/test-installer.sh
+
+# Expected output: ✅ All tests passed!
+```
+
+**What gets tested:**
+- Shell script syntax (7 scripts)
+- Profile manifests with yq (4 profiles)
+- Library functions (20+ functions)
+- Commands (base + overrides)
+- Documentation completeness
+- GitHub Actions workflow validation
+- Installer help commands
+
+**See:** [tests/README.md](tests/README.md) for complete testing documentation
+
+---
+
+### CI/CD Pipeline
+
+AgentOps v1.0.0 uses GitHub Actions for automated validation:
+
+**Workflow:** `.github/workflows/installer-validation.yml`
+
+**Triggers automatically on:**
+- Pull requests to `main`
+- Pushes to `main`
+- Manual workflow dispatch
+
+**7 Validation Jobs:**
+1. Shell script syntax validation
+2. Profile manifest validation (with yq)
+3. Installer dry-run (matrix: all 4 profiles)
+4. Library function validation
+5. Command file validation
+6. Documentation validation
+7. Integration test (mock installation)
+
+**Result:** Main branch frozen at v1.0.0 quality - all PRs must pass validation
+
+---
+
+### Quality Gates
+
+**All changes to main must pass:**
+- ✅ Bash syntax validation (`bash -n`)
+- ✅ YAML validation with yq
+- ✅ Profile manifest structure checks
+- ✅ Library function existence checks
+- ✅ Documentation completeness
+- ✅ Help commands functional
+- ✅ Integration tests
+
+**To contribute:**
+1. Run tests locally: `./tests/test-installer.sh`
+2. Fix any failures
+3. Create PR to main
+4. GitHub Actions validates automatically
+5. Merge when all checks pass ✅
+
+---
+
 ## Next Steps
 
 1. **Run tutorial:**
@@ -303,6 +373,25 @@ cp -r ~/.agentops/backups/<backup-name> ~/.agentops
    ```bash
    cat ~/.agentops/README.md
    ```
+
+5. **For developers:**
+   ```bash
+   # Run tests
+   ./tests/test-installer.sh
+
+   # Read test docs
+   cat tests/README.md
+   ```
+
+---
+
+## Support & Documentation
+
+- **FAQ:** [docs/FAQ.md](docs/FAQ.md) - 40+ questions answered
+- **Troubleshooting:** [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) - 30+ common issues
+- **Testing:** [tests/README.md](tests/README.md) - Test suite guide
+- **Changelog:** [CHANGELOG.md](CHANGELOG.md) - Full version history
+- **GitHub Issues:** https://github.com/boshu2/agentops/issues
 
 ---
 
