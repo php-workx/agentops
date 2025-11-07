@@ -2,7 +2,7 @@
 # Trinity Validation Script
 # Validates alignment across 12-factor-agentops, agentops, and agentops-showcase
 
-set -euo pipefail
+set -uo pipefail
 
 # Colors for output
 RED='\033[0;31m'
@@ -14,6 +14,7 @@ NC='\033[0m' # No Color
 ERRORS=0
 WARNINGS=0
 CHECKS=0
+SUCCESSES=0
 
 # Helper functions
 error() {
@@ -28,6 +29,7 @@ warn() {
 
 success() {
     echo -e "${GREEN}✓ $1${NC}"
+    ((SUCCESSES++))
 }
 
 info() {
@@ -161,12 +163,22 @@ info "Checking MISSION.md consistency..."
 check
 
 if [[ -f "$PHILOSOPHY_REPO/MISSION.md" ]] && [[ -f "$ENGINE_REPO/MISSION.md" ]]; then
-    PHILOSOPHY_MISSION_HASH="$(md5 -q "$PHILOSOPHY_REPO/MISSION.md" 2>/dev/null || md5sum "$PHILOSOPHY_REPO/MISSION.md" | awk '{print $1}')"
-    ENGINE_MISSION_HASH="$(md5 -q "$ENGINE_REPO/MISSION.md" 2>/dev/null || md5sum "$ENGINE_REPO/MISSION.md" | awk '{print $1}')"
-
-    if [[ "$PHILOSOPHY_MISSION_HASH" != "$ENGINE_MISSION_HASH" ]]; then
-        warn "MISSION.md content differs between Philosophy and Engine repos"
+    # Use md5 on macOS, md5sum on Linux
+    if command -v md5 &> /dev/null; then
+        PHILOSOPHY_MISSION_HASH="$(md5 -q "$PHILOSOPHY_REPO/MISSION.md")"
+        ENGINE_MISSION_HASH="$(md5 -q "$ENGINE_REPO/MISSION.md")"
+    elif command -v md5sum &> /dev/null; then
+        PHILOSOPHY_MISSION_HASH="$(md5sum "$PHILOSOPHY_REPO/MISSION.md" | awk '{print $1}')"
+        ENGINE_MISSION_HASH="$(md5sum "$ENGINE_REPO/MISSION.md" | awk '{print $1}')"
     else
+        warn "md5/md5sum not available, skipping MISSION.md hash check"
+        PHILOSOPHY_MISSION_HASH=""
+        ENGINE_MISSION_HASH=""
+    fi
+
+    if [[ -n "$PHILOSOPHY_MISSION_HASH" ]] && [[ "$PHILOSOPHY_MISSION_HASH" != "$ENGINE_MISSION_HASH" ]]; then
+        warn "MISSION.md content differs between Philosophy and Engine repos"
+    elif [[ -n "$PHILOSOPHY_MISSION_HASH" ]]; then
         success "MISSION.md content consistent across repos"
     fi
 fi
@@ -215,7 +227,7 @@ for repo in "$PHILOSOPHY_REPO" "$ENGINE_REPO"; do
     else
         # Check for uncommitted trinity files
         cd "$repo"
-        if git status --porcelain | grep -E "(TRINITY.md|VERSION|MISSION.md|docs/trinity)" > /dev/null; then
+        if git status --porcelain 2>/dev/null | grep -E "(TRINITY.md|VERSION|MISSION.md|docs/trinity)" > /dev/null 2>&1; then
             warn "$repo_name: Uncommitted Trinity files detected"
         else
             success "$repo_name: All Trinity files committed"
@@ -230,7 +242,7 @@ echo "================================================"
 echo "Validation Summary"
 echo "================================================"
 echo "Total checks: $CHECKS"
-echo -e "${GREEN}Successes: $(grep -c "✓" <<< "$(set +e; validate 2>&1)" || echo "N/A")${NC}"
+echo -e "${GREEN}Successes: $SUCCESSES${NC}"
 echo -e "${YELLOW}Warnings: $WARNINGS${NC}"
 echo -e "${RED}Errors: $ERRORS${NC}"
 echo ""
