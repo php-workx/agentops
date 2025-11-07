@@ -1,6 +1,7 @@
 # IDE
 .vscode/
 .idea/
+.cursor/
 *.swp
 *.swo
 *~
@@ -26,6 +27,7 @@ htmlcov/
 
 # Dependencies
 node_modules/
+package-lock.json
 
 # Local overrides
 .env.local

@@ -1,664 +1,261 @@
-# AgentOps: Universal Orchestrator for AI Agent Systems
+# AgentOps: Airflow for AI Agent Workflows
 
-[![Validate](https://github.com/boshu2/agentops/actions/workflows/validate.yml/badge.svg)](https://github.com/boshu2/agentops/actions/workflows/validate.yml)
+<!-- Status & Build -->
+[![CI Status](https://github.com/boshu2/agentops/actions/workflows/validate.yml/badge.svg)](https://github.com/boshu2/agentops/actions/workflows/validate.yml)
+[![Version](https://img.shields.io/badge/Version-0.9.0-blue.svg)]()
+[![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-macOS%20|%20Linux-lightgrey.svg)]()
+[![Trinity](https://img.shields.io/badge/Trinity-Aligned-purple.svg)](./TRINITY.md)
+
+<!-- License -->
+[![Code License](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Doc License](https://img.shields.io/badge/Documentation-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 <div align="center">
 
-**Workflow orchestration for AI agents — orchestrate multiple agent systems reliably**
+**Like Airflow orchestrates data pipelines, AgentOps orchestrates AI agent workflows**
 
-<a href="https://www.apache.org/licenses/LICENSE-2.0">
-    <img src="https://img.shields.io/badge/Code-Apache%202.0-blue.svg" alt="Code License: Apache 2.0"></a>
-<a href="https://creativecommons.org/licenses/by-sa/4.0/">
-    <img src="https://img.shields.io/badge/Documentation-CC%20BY--SA%204.0-lightgrey.svg" alt="Documentation License: CC BY-SA 4.0"></a>
-<img src="https://img.shields.io/badge/Status-Proven-green.svg" alt="Status: Proven in Production">
+**Orchestrate AI agent workflows with the reliability of Apache Airflow. Research → Plan → Implement workflows that deliver 3-40x speedup.**
 
-*Universal orchestration • Intelligent routing • Context management • Multi-agent coordination*
+*DAG-like workflows • Task scheduling • Dependency management • Observable execution*
 
 </div>
 
 ---
 
-> [!IMPORTANT]
-> **Part of the Trinity** — Three repositories, one unified AgentOps ecosystem (v0.9.0)
->
-> **⚙️ agentops** (Implementation - The Engine) — You are here
-> - HOW to implement → Workflow orchestration framework, profiles system, CLI tools, automation
->
-> **🧠 12-factor-agentops** (Philosophy - The Mind) → [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
-> - WHY patterns work → Theoretical foundation, research, Four Pillars, Five Laws
->
-> **🌐 agentops-showcase** (Presentation - The Voice) → [agentops-showcase](https://github.com/boshu2/agentops-showcase)
-> - WHAT users experience → Examples, demos, case studies, learning paths
->
-> **Status: Proven** - 40x speedup (product-dev), 3x speedup (infrastructure), 90.9% routing accuracy
-> **See:** [TRINITY.md](./TRINITY.md) for architecture and navigation
-
 > [!NOTE]
-> **Built with AI Agents** - This orchestrator was developed using Claude Code and implements patterns from the 12-factor-agentops philosophy. We practice what we document.
+> **Part of the Trinity** — This repo (implementation) is part of the AgentOps ecosystem:
+> - 🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops) — WHY patterns work (Philosophy)
+> - ⚙️ [agentops](https://github.com/boshu2/agentops) — HOW to implement (Implementation) ← **You are here**
+> - 🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase) — WHAT users experience (Examples)
+> 
+> See [TRINITY.md](./TRINITY.md) for complete architecture.
+
+---
+
+## Table of Contents
+
+- [Is This For You?](#is-this-for-you)
+- [What Is This?](#what-is-this)
+- [The Airflow Analogy](#the-airflow-analogy-visual)
+- [See It In Action](#see-it-in-action)
+- [The Comparison Table](#the-comparison-table)
+- [Implementation Status](#implementation-status)
+- [Quick Start](#quick-start)
+- [Architecture: Core + Profiles](#architecture-core--profiles)
+- [Core Patterns](#core-patterns-airflow-equivalents)
+- [Proven Results](#proven-results)
+- [Key Features](#key-features-airflow-equivalents)
+- [Documentation](#documentation)
+- [Philosophy](#philosophy-brief)
+- [License](#license)
+- [Contributing](#contributing)
+- [Acknowledgments](#acknowledgments)
+- [Support](#support)
+- [Appendix: The Trinity Architecture](#appendix-the-trinity-architecture)
+
+---
+
+## Is This For You?
+
+### ✅ You should try AgentOps if you:
+- Use AI agents/LLMs in production workflows
+- Know Airflow, Luigi, Prefect, or workflow orchestration
+- Want 3-40x speedup on agent workflows with proven patterns
+- Need multi-day projects with context management
+- Build workflows that other teams should reuse
+- Operate under reliability constraints (federal, enterprise, mission-critical)
+
+### ❌ This might not be for you if you:
+- Just started with AI/LLMs (learn basics first, come back later)
+- Need visual no-code tools right now (coming in roadmap)
+- Want a single agent system (see [agent-os](https://github.com/agent-os) instead)
+- Don't need orchestration (single-agent tools may be enough)
 
 ---
 
 ## What Is This?
 
-**agentops is a workflow orchestration framework for AI agent systems.**
+**AgentOps is Airflow for AI agent workflows.**
 
-Like Airflow orchestrates data pipelines, agentops orchestrates knowledge workflows (Research → Plan → Implement) across multiple agent systems. It provides:
+Just as Airflow orchestrates data pipelines (extract → transform → load), AgentOps orchestrates knowledge workflows (research → plan → implement). Same orchestration principles, different domain.
 
-✅ **Intelligent routing** (90.9% accuracy NLP classification)
-✅ **Context management** (40% rule enforcement, prevents collapse)
-✅ **Multi-agent coordination** (3x speedup via parallelization)
-✅ **Constitutional enforcement** (Five Laws always active)
-✅ **DevOps lifecycle** (CI/CD for agent work)
-
-### What We Are
-
-✅ **Workflow orchestration framework** (orchestrates multiple agent systems, including agent-os)
-✅ **Pattern library** (reusable, composable workflow packages)
-✅ **Constitutional governance** (enforced best practices via git hooks)
-✅ **Working implementation** (production-ready tools)
-✅ **Proven patterns** (40x speedup product-dev, 3x infrastructure)
-✅ **How-to guides** (practical tutorials and docs)
-
-### What We Are NOT
-
-❌ **Not a philosophy** → See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
-❌ **Not an agent operating system** → See [agent-os](https://github.com/agent-os) (we orchestrate their systems)
-❌ **Not infrastructure orchestrator** → We orchestrate knowledge workflows, not servers/containers
-❌ **Not a package manager** → Future ecosystem layer
-❌ **Not a visual UI** → Future ecosystem layer
+> **Proven Results:** 40x speedup (product dev), 3x speedup (infrastructure), 90.9% routing accuracy
+> 
+> *"Same patterns work identically across domains. Not domain-specific tricks—universal orchestration laws."*
 
 ---
 
-## The Complete Ecosystem
-
-agentops is **Layer 2** (Orchestration) of a complete 7-layer ecosystem:
-
-```
-┌──────────────────────────────────────────────┐
-│  Layer 6: Visual UI (FUTURE)                 │
-│  • No-code workflow builders                 │
-│  • Like AutoGen Studio, LangGraph Platform   │
-└──────────────────────────────────────────────┘
-                    ↓
-┌──────────────────────────────────────────────┐
-│  Layer 5: Package Managers (FUTURE)          │
-│  • One-click install/update                  │
-│  • Like CurseForge, VSCode Marketplace       │
-└──────────────────────────────────────────────┘
-                    ↓
-┌──────────────────────────────────────────────┐
-│  Layer 4: Integration (MCP - NOW)            │
-│  • Model Context Protocol                    │
-│  • 500+ tool servers (GitHub, Postgres)      │
-└──────────────────────────────────────────────┘
-                    ↓
-┌──────────────────────────────────────────────┐
-│  Layer 3: Workflow Packages (NOW)            │
-│  • Domain bundles (product-dev, devops)      │
-│  • Like Helm charts or WoW addons            │
-└──────────────────────────────────────────────┘
-                    ↓
-┌──────────────────────────────────────────────┐
-│  Layer 2: Orchestration (THIS REPO)          │
-│  • Workflow orchestration framework           │
-│  • Routing, context, parallel execution       │
-└──────────────────────────────────────────────┘
-                    ↓
-┌──────────────────────────────────────────────┐
-│  Layer 1: Philosophy (12-factor-agentops)    │
-│  • Four Pillars, Five Laws                   │
-│  • Research and validation                   │
-└──────────────────────────────────────────────┘
-                    ↓
-┌──────────────────────────────────────────────┐
-│  Layer 0: Operating Systems (Multiple)       │
-│  • agent-os (Builder Methods)                │
-│  • Custom implementations                    │
-└──────────────────────────────────────────────┘
-```
-
-**See:** [12-factor-agentops ECOSYSTEM_POSITIONING.md](https://github.com/boshu2/12-factor-agentops/blob/main/ECOSYSTEM_POSITIONING.md) for complete details
-
----
-
-## Philosophical Foundation
-
-Want to understand WHY AgentOps works?
-
-→ **[12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** — Philosophy, patterns, and research
-
-**Start there if you want to:**
-- Understand AgentOps deeply (Four Pillars, Five Laws)
-- Learn operational patterns and theory
-- Study research validating patterns
-- Contribute to philosophical foundation
-
----
-
-## The Problem
-
-Everyone's building AI agents. Nobody's figured out how to operate them reliably at scale.
-
-**The pattern:**
-
-- Week 1: "This is amazing!"
-- Week 4: Errors piling up
-- Week 8: Back to manual work
-
-**Sound familiar?** It mirrors the pre-DevOps era. We solved this for infrastructure. We know how to build reliable systems. **But operating AI agents reliably? We're still figuring that out.**
-
----
-
-## The Mission
-
-### **Invite people to operationalize AI reliably, at whatever scale they're at, with patterns forged where failure is unacceptable.**
-
-This is Constitutional Principle #0. Everything we build serves this mission.
-
----
-
-## The Operational Foundation
-
-This framework is built by someone who mastered platform engineering and DevOps at **federal scale for a decade**.
-
-**Federal Operations (10 years):**
-- Mastered infrastructure operations under the hardest constraints
-- DoD security-hardened environments where failure is unacceptable
-- Disconnected networks requiring absolute reliability
-- GPU/HPC platforms and 20+ production Kubernetes clusters
-- Real consequences: if automation fails, critical missions fail
-
-**Why this matters:** Patterns forged in federal constraints work everywhere. If operations patterns work under disconnected + security-hardened + mission-critical conditions, they're universal.
-
-## The Insight
-
-What works for infrastructure should work for AI agents:
-
-- **Version control** for institutional memory
-- **Validation gates** to catch errors early
-- **Observability** to understand what's happening
-- **Specialization** to manage complexity
-- **Composable workflows** to enable reuse
-
-**These aren't new ideas. They're proven in production infrastructure.**
-
-This framework applies them to AI agent operations, tested against federal-scale reliability requirements.
+## The Airflow Analogy (Visual)
 
 ```mermaid
-graph LR
-    A["Infrastructure Operations<br/>(Proven Patterns)"] -->|Transfer| B["AI Agent Operations<br/>(Universal Framework)"]
-
-    A1["Version Control"] --> A
-    A2["Validation Gates"] --> A
-    A3["Observability"] --> A
-    A4["Specialization"] --> A
-    A5["Composability"] --> A
-
-    B1["Institutional Memory"] --> B
-    B2["Error Prevention"] --> B
-    B3["Understanding"] --> B
-    B4["Complexity Mgmt"] --> B
-    B5["Reusability"] --> B
-
-    style A fill:#c5e3f6,stroke:#000,stroke-width:2px,color:#000
-    style B fill:#d4f1dd,stroke:#000,stroke-width:2px,color:#000
+graph TB
+    subgraph Airflow["<b>Apache Airflow</b><br/>(Data Pipelines)"]
+        A1["🗂️ DAG<br/><i>Pipeline Definition</i>"]
+        A2["⚙️ Tasks<br/><i>Single Responsibility</i>"]
+        A3["🔗 Dependencies<br/><i>Execution Order</i>"]
+        A4["📅 Scheduler<br/><i>Smart Routing</i>"]
+        A5["⚡ Executor<br/><i>Parallel Execution</i>"]
+        A6["📊 Logs<br/><i>Observability</i>"]
+        
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
+        A4 --> A5
+        A5 --> A6
+    end
+    
+    subgraph AgentOps["<b>AgentOps</b><br/>(Knowledge Workflows)"]
+        B1["📦 Workflow Package<br/><i>Bundled Workflow</i>"]
+        B2["🤖 Agents<br/><i>Specialized Capabilities</i>"]
+        B3["🚦 Phase Gates<br/><i>Research → Plan → Implement</i>"]
+        B4["🎯 Intelligent Routing<br/><i>90.9% Accuracy</i>"]
+        B5["🚀 Multi-Agent Orchestration<br/><i>3x Speedup</i>"]
+        B6["📝 Git Memory<br/><i>Native Versioning</i>"]
+        
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B4 --> B5
+        B5 --> B6
+    end
+    
+    A1 -.->|"<b>Same Pattern</b>"| B1
+    A2 -.->|"<b>Same Pattern</b>"| B2
+    A3 -.->|"<b>Same Pattern</b>"| B3
+    A4 -.->|"<b>Same Pattern</b>"| B4
+    A5 -.->|"<b>Same Pattern</b>"| B5
+    A6 -.->|"<b>Same Pattern</b>"| B6
+    
+    classDef airflowStyle fill:#1e40af,stroke:#1e3a8a,stroke-width:3px,color:#fff
+    classDef agentopsStyle fill:#ea580c,stroke:#c2410c,stroke-width:3px,color:#fff
+    classDef connectionStyle stroke:#6b7280,stroke-width:2px,stroke-dasharray: 5 5
+    
+    class A1,A2,A3,A4,A5,A6 airflowStyle
+    class B1,B2,B3,B4,B5,B6 agentopsStyle
 ```
 
----
-
-## Building in Public
-
-This isn't a finished product. **You're invited to watch and participate in the evolution.**
-
-**Live Development:**
-- Active feature development (weekly/daily updates)
-- Work visible in GitHub (every commit, every decision)
-- Operational thinking documented as it happens
-- Problems discovered and solved in the open
-
-**How to Participate:**
-- Try it in your own environment
-- Fork and adapt for your domain
-- Report what works (and what doesn't)
-- Contribute improvements back
-- Become a case study
-
-**Why this matters:** You get to shape the framework at its inception. You see the thinking, not just the polished result.
+**If you know Airflow, you already understand AgentOps.** Same mental model, different domain.
 
 ---
 
-## Scale at Every Level
+## See It In Action
 
-Use AgentOps patterns at whatever scale you're at:
+### Airflow DAG (Data Pipeline)
 
-**Personal** (single developer)
-- Student with a laptop → Run locally
-- Solo consultant → Operationalize your workflows
-- Individual learning → Learn patterns that scale
+```python
+from airflow import DAG
+from airflow.operators.python import PythonOperator
 
-**Team** (5-50 people)
-- Startup → Share institutional memory across team
-- Small engineering org → Prevent duplicate work
-- Cross-functional teams → Unified workflow language
-
-**Organization** (50-500+ people)
-- Enterprise teams → Scale patterns across departments
-- Platform teams → Template-driven consistency
-- Multiple domains → Same orchestration layer
-
-**Institutional** (500+ people, mission-critical)
-- Federal/government systems → Proven under hardest constraints
-- Enterprise infrastructure → High-reliability patterns
-- Complex operations → Distributed knowledge capture
-
-**Human Scale** (beyond organizations)
-- Communities → Shared operational wisdom
-- Open source → Collective learning
-- Public knowledge → Patterns compound globally
-
-**The insight:** Same patterns work at every level. Start wherever you are. Grow into harder constraints when you're ready.
-
----
-
-## Educational Ecosystem (Coming)
-
-We're building materials to help adoption at every scale:
-
-**Workshops & Training** (teach operational thinking)
-- Federal operations patterns for any team
-- How to operationalize AI agents
-- Scaling patterns as org grows
-
-**Templates & Examples**
-- Personal project templates (show how to use patterns)
-- Student/DIY dev projects (fork-able examples)
-- Team starter kits (immediate deployment)
-- Organization playbooks (scaling guides)
-
-**Integrations & Distribution**
-- Claude Code integration (built-in patterns)
-- VSCode extension (workflow in your editor)
-- GitHub templates (repo creation)
-- Claude's web feature (mobile-friendly development)
-
-**Case Studies** (show it working)
-- Your projects using these patterns
-- Community implementations
-- Real-world results at different scales
-
-**Why this matters:** Operational thinking shouldn't be gatekept. Make it accessible everywhere AI is being built.
-
----
-
-## Anthropic First Design
-
-**This framework helps Claude Code users:**
-- Build reliable AI agent systems
-- Apply DevOps discipline to AI workflows
-- Learn operational thinking
-- Share patterns with team
-
-**Natural integration points:**
-- Claude Code documentation + AgentOps patterns
-- Reference implementations in Claude Code examples
-- VSCode extension for workflow orchestration
-- Community case studies of agents using agents
-
-**Why Anthropic cares:**
-- Developers want reliable, orchestrated agents
-- Operational discipline increases adoption
-- Shared mission: Make AI tools accessible and effective
-- AgentOps proves Claude can orchestrate complex systems
-
-**Status:** Framework proven in production. Actively seeking feedback from Claude Code users on how patterns generalize to their workflows.
-
----
-
-## Why This Approach
-
-This isn't marketing. This is substance:
-
-**Patterns Forged in Federal Operations**
-- Tested under the hardest constraints (disconnected, security-hardened, mission-critical)
-- If patterns work there, they generalize everywhere
-- Not theoretical—operational principles proven for a decade
-
-**Building in Public**
-- You see the thinking, not just polished results
-- Participate at inception, shape the framework
-- Help test if patterns work in YOUR domain
-- Become case studies, not customers
-
-**Educational Ecosystem (Not Just Tools)**
-- Make operational thinking accessible at every scale
-- Templates for personal projects → students can learn
-- Workshops for teams → scaling practices
-- Integrations everywhere → meet people where they build
-- Case studies → proof it works in real systems
-
-**Honest About Status**
-- Alpha stage: Patterns proven, framework generalizing
-- Testing hypothesis: Do federal patterns work in other domains?
-- Seeking validation: Help us understand scope and limitations
-- Community-driven: Your feedback shapes evolution
-
----
-
-## How Success Looks at Each Scale
-
-**Personal (Single Developer)**
-- ✅ Can use patterns in their own projects
-- ✅ Learns operational thinking early
-- ✅ Creates artifacts shareable with team
-- ✅ Becomes case study showing patterns work locally
-
-**Team (5-50 people)**
-- ✅ Share institutional memory (no duplicate work)
-- ✅ Consistent workflow language across domains
-- ✅ Onboard new people faster (patterns documented)
-- ✅ Measure impact (reduced errors, faster delivery)
-
-**Organization (50-500+ people)**
-- ✅ Patterns scale across departments
-- ✅ Platform teams provide templates
-- ✅ Different domains use same orchestration
-- ✅ Organizational knowledge compounds over time
-
-**Institutional (500+ people, mission-critical)**
-- ✅ Patterns proven under strictest constraints
-- ✅ High-reliability operations (99.9%+ uptime for agent workflows)
-- ✅ Government/enterprise confidence in open source approach
-- ✅ Framework becomes standard for critical systems
-
-**Human Scale (Beyond any single organization)**
-- ✅ Patterns become universal wisdom
-- ✅ Every developer knows operational thinking
-- ✅ AI is operationalized reliably across humanity
-- ✅ Open source contributions compound globally
-
----
-
-## What This Is
-
-AgentOps is a **workflow orchestration framework** for AI agent systems—orchestrates multiple agent systems reliably.
-
-```
-┌─────────────────────────────────────────┐
-│  Core Platform (Always Installed)       │
-│  • 12 universal commands                │
-│  • 9 base agent personas                │
-│  • 6 workflow orchestrations            │
-│  • Skills framework                     │
-└─────────────────────────────────────────┘
-                    ▼
-┌─────────────────────────────────────────┐
-│  Profiles (Like Helm Charts)            │
-│  • devops (K8s, containers, CI/CD)     │
-│  • product-dev (APIs, UIs, databases)  │
-│  • data-eng (pipelines, quality)       │
-│  • [your custom profile]                │
-└─────────────────────────────────────────┘
+with DAG('data_pipeline', schedule_interval='@daily') as dag:
+    extract = PythonOperator(
+        task_id='extract',
+        python_callable=extract_data
+    )
+    transform = PythonOperator(
+        task_id='transform', 
+        python_callable=transform_data
+    )
+    load = PythonOperator(
+        task_id='load',
+        python_callable=load_data
+    )
+    
+    # Dependencies: extract → transform → load
+    extract >> transform >> load
 ```
 
-**Core + Extensibility Model:**
-
-**Core provides universal orchestration:**
-- Research → Plan → Implement → Validate → Learn workflows
-- Multi-agent orchestration (3x speedup)
-- Bundle system (5:1 to 38:1 compression)
-- Reusable agent personas
-
-**Profiles extend core for your domain:**
-- Domain-specific agents (your stack, your patterns)
-- Command overrides (add domain context)
-- Domain workflows (orchestrate for your domain)
-- Skills (validation + automation for your tech)
-
-**Like Helm (package management):**
-- Core = Orchestration engine (stable, universal)
-- Profiles = Workflow packages (domain-specific bundles)
-- Community = Ecosystem (shared profiles)
-
-**📘 [Create Custom Profile](docs/CREATE_PROFILE.md)** - Build extensions for your domain
-
-**📘 [Get Started](docs/GET_STARTED.md)** - Install core + choose/create profiles
-
----
-
-## Public Framework vs. Internal Production
-
-**This Repository (AgentOps):**
-- ✅ Universal patterns and architecture (4 proven patterns)
-- ✅ Profile templates and examples (product-dev, devops structures)
-- ✅ Documentation and guides (how-to, case studies)
-- ✅ Framework specification (theory and reference implementation)
-- ✅ Public for community adoption and contribution
-
-**Internal Only (GitOps, separate private repo):**
-- 🔒 52+ production agents (team-specific implementation)
-- 🔒 Team workflows and commands (internal only)
-- 🔒 Infrastructure configuration (production credentials/secrets)
-- 🔒 Institutional memory and learnings (team internal knowledge)
-
-**Why the separation?**
-1. **Reusability:** Framework stays pure, usable across organizations
-2. **Security:** No internal configurations or agent implementations leak
-3. **Clarity:** Framework patterns remain domain-agnostic examples
-4. **Extensibility:** Others create profiles without copying internal agents
-
----
-
-## Universal Architecture Layer
-
-4 proven patterns that work across ALL domains:
-
-```mermaid
-mindmap
-  root((Four Universal Patterns))
-    Pattern 1: Multi-Phase Workflow
-      Phase 1: Research/Explore
-      Phase 2: Plan/Specify
-      Phase 3: Implement/Execute
-      Fresh context per phase
-      40% rule enforced
-    Pattern 2: Context Bundles
-      5:1 to 10:1 compression
-      Reuse across sessions
-      Multi-day projects enabled
-      Team knowledge sharing
-    Pattern 3: Multi-Agent Orchestration
-      Parallel research agents
-      3x wall-clock speedup
-      Same token budget
-      Synergistic results
-    Pattern 4: Intelligent Routing
-      90.9% accuracy
-      NLP task classification
-      Auto-recommend agent
-      User override available
-```
-
-### Pattern 1: Multi-Phase Workflow
-
-Break complex work into 3 phases with human gates:
-
-- **Phase 1:** Research/Explore (understand, gather info)
-- **Phase 2:** Plan/Specify (detail exact changes)
-- **Phase 3:** Implement/Execute (deploy with validation)
-
-Each phase gets fresh context, 40% rule enforced.
-
-### Pattern 2: Context Bundles
-
-Compress intermediate artifacts (5:1 to 10:1 ratio):
-
-- Save research findings, specification drafts
-- Reuse across sessions (multi-day projects enabled)
-- Share with team (prevent duplicate work)
-
-### Pattern 3: Multi-Agent Orchestration
-
-3 agents research simultaneously (3x wall-clock speedup):
-
-- Code Explorer - searches codebase
-- Documentation Researcher - reads best practices
-- History Analyst - learns from past attempts
-
-Same token budget, faster results.
-
-### Pattern 4: Intelligent Routing
-
-Auto-recommend best-fit agent (90.9% accuracy):
-
-- NLP task classification
-- Agent scoring and ranking
-- Auto-load with user override
-
----
-
-## Constitutional Foundation
-
-**Always enforced, all domains:**
-
-```mermaid
-graph LR
-    A[Work/Task] --> L1["Law 1:<br/>Extract Learnings"]
-    L1 --> L2["Law 2:<br/>Improve System"]
-    L2 --> L3["Law 3:<br/>Document Context"]
-    L3 --> L4["Law 4:<br/>Prevent Hook Loops"]
-    L4 --> L5["Law 5:<br/>Guide with Workflows"]
-    L5 --> A
-
-    L1A["Patterns compound<br/>One-time solutions fade"] -.-> L1
-    L2A["Stagnation is regression<br/>Always improve"] -.-> L2
-    L3A["Future you will thank you<br/>Context enables continuity"] -.-> L3
-    L4A["Prevention &gt; recovery<br/>Check after push"] -.-> L4
-    L5A["Suggest 5-6 workflows<br/>Let user decide"] -.-> L5
-
-    style L1 fill:#ffd6e0,stroke:#000,stroke-width:2px,color:#000
-    style L2 fill:#fff4cc,stroke:#000,stroke-width:2px,color:#000
-    style L3 fill:#e5d4f1,stroke:#000,stroke-width:2px,color:#000
-    style L4 fill:#d4f1dd,stroke:#000,stroke-width:2px,color:#000
-    style L5 fill:#c5e3f6,stroke:#000,stroke-width:2px,color:#000
-    style A fill:#e6e6e6,stroke:#000,stroke-width:3px,color:#000
-```
-
-**Five Laws:**
-
-1. **ALWAYS Extract Learnings** — Document patterns discovered
-2. **ALWAYS Improve Self or System** — Identify 1+ improvement per session
-3. **ALWAYS Document Context** — Capture why/solution/learning/impact
-4. **ALWAYS Prevent Hook Loops** — Check after push, don't commit hook-modified files
-5. **ALWAYS Guide with Workflows** — Suggest 5-6 relevant workflows
-
-**Three Rules:**
-
-1. ❌ NEVER modify read-only upstream
-2. ✅ ALWAYS edit source of truth (never generated)
-3. ✅ ALWAYS use semantic commits
-
-**The 40% Rule:**
-
-- Never exceed 40% context utilization per phase
-- Prevents context collapse
-- Enables multi-day projects via bundles
-
----
-
-## Orchestration Architecture
-
-AgentOps provides the orchestration layer for multiple agent operating systems:
-
-```
-┌──────────────────────────────────────────────────────────┐
-│         agentops (Orchestration Layer)                   │
-│                                                           │
-│  Core Capabilities:                                      │
-│  • Workload scheduling (route to right agent system)    │
-│  • Parallel execution (microservices pattern)           │
-│  • Service mesh (agent-to-agent communication)          │
-│  • DevOps lifecycle (CI/CD for agent work)              │
-│  • Observability (metrics, monitoring, health)          │
-│  • Constitutional enforcement (Five Laws, Three Rules)   │
-└──────────────────────────────────────────────────────────┘
-                             ▼
-┌──────────────────────────────────────────────────────────┐
-│         Agent Operating Systems (Profiles)               │
-│                                                           │
-│  profiles/spec-first-dev/      (agent-os inspired)       │
-│   └── Product development workflows                      │
-│                                                           │
-│  profiles/research-plan-implement/  (gitops patterns)    │
-│   └── 3-phase infrastructure workflows                   │
-│                                                           │
-│  profiles/[your-domain]/  (community contributed)        │
-│   └── Your specialized workflows                         │
-└──────────────────────────────────────────────────────────┘
-```
-
-**Each profile is an agent operating system** with its own:
-- Workflow philosophy (spec-first, research-first, test-first, etc.)
-- Agent definitions and commands
-- Standards and conventions
-- Use cases and patterns
-
-**AgentOps orchestrates them all.**
-
----
-
-## Proven Results
-
-### Product Development (Original)
-- **Speedup:** 40x vs traditional development
-- **Metric:** Feature completion time
-- **Patterns:** All 4 universal patterns
-
-### Infrastructure/DevOps (GitOps Integration, Nov 2025)
-- **Research speedup:** 3x (30 min → 10 min via parallel agents)
-- **Validation speedup:** 3x (30 sec → 10 sec via parallel checks)
-- **New capability:** Multi-day projects via bundles
-- **Team benefit:** Duplicate research prevention
-- **Patterns:** All 4 universal patterns, 90.9% routing accuracy
-
-### Multi-Domain Validation
-✅ Same patterns work identically in product-dev and infrastructure
-✅ Convergent evolution proves universality (not domain-specific)
-⏳ Pending: SRE, Data Engineering, custom domains
-
----
-
-## Cool Features
-
-### 🔧 Git Worktree Automation with Metadata
-
-**NEW:** Parallel development with automatic provenance tracking (v1.0.0)
-
-Create isolated worktrees for parallel Claude Code agents with full config replication + metadata:
+### AgentOps Workflow (Knowledge Pipeline)
 
 ```bash
-WT feature-name
+# Phase 1: Research (parallel agents)
+/research "How does our auth system work?"
+# → Code Explorer searches codebase
+# → Doc Explorer reads architecture docs  
+# → History Explorer checks past decisions
+# → Results bundled (5:1 compression)
+# → Takes 10 min (was 30 min serial)
+
+# Phase 2: Plan (uses research bundle)
+/plan "Add OAuth2 support"
+# → Spec Architect generates detailed plan
+# → Uses research bundle context
+# → Risk Assessor validates approach
+# → Output: Implementation spec
+
+# Phase 3: Implement (with validation)
+/implement
+# → Change Executor applies changes
+# → Validation Planner creates tests
+# → Constitutional enforcement (Five Laws)
+# → 40% context rule enforced
+# → Git hooks validate quality
 ```
 
-**What it does:**
-- Creates adjacent worktree (`<repo>-worktrees/feature-name`)
-- Copies all configs (`.claude/`, `.vscode/`, `.cursor/`, etc.)
-- **Generates `.agentops/PROVENANCE.yml` with metadata** (who, when, why, branch, parent)
-- Opens new IDE window automatically
-- Enables N× parallel agents without conflicts
+**Same orchestration principles. Different domain. 3-40x faster.**
 
-**Benefits:**
-- Complete audit trail for all worktrees
-- Institutional memory preserved in git-native metadata
-- Automated discovery via `find . -name "PROVENANCE.yml"`
-- Aligns with AgentOps metadata standardization (Phase 3)
+---
 
-**Learn more:** See your workspace's `WORKTREE_WORKFLOW.md` after installation
+## The Comparison Table
+
+| **Airflow Concept** | **AgentOps Equivalent** | **Why It Works** |
+|---------------------|------------------------|------------------|
+| DAG (pipeline) | Workflow Package | Declare dependencies, execute in order |
+| Task | Agent (specialized capability) | Single responsibility, composable |
+| Task dependencies | Phase gates (Research → Plan → Implement) | Enforce ordering, pass context |
+| Scheduling | Intelligent routing | Right task to right executor |
+| Retry logic | Constitutional enforcement | Prevent errors, ensure quality |
+| XCom | Context bundles | Pass data between phases (5:1-38:1 compression) |
+| Observability | Institutional memory (git) | Track everything, learn from history |
+| Airflow UI | Git + IDE | Native tools, no new interfaces |
+| Task parallelization | Multi-agent orchestration | 3x speedup via parallel execution |
+
+---
+
+## Implementation Status
+
+### ✅ Production Ready (80% Complete)
+🟢🟢🟢🟢🟢🟢🟢🟢⚪⚪
+
+**What's working now:**
+- Core orchestration framework (proven across 2 domains)
+- Phase-based workflows (Research → Plan → Implement, 40% rule)
+- Multi-agent coordination (3x measured speedup, parallel execution)
+- Context bundles (5:1 to 38:1 compression, multi-day projects)
+- Intelligent routing (90.9% accuracy, 110 validation cases)
+- Profile system (extensible domain templates: devops, product-dev)
+- Constitutional enforcement (git hooks, Five Laws, Three Rules)
+- Git-based institutional memory (native versioning, no databases)
+
+### 🚧 Alpha Quality (60% Complete)
+🟡🟡🟡🟡🟡🟡⚪⚪⚪⚪
+
+**Use with caution:**
+- Documentation (comprehensive but evolving rapidly)
+- Installation (bash scripts work on macOS/Linux, Windows untested)
+- Profile ecosystem (only 2 reference profiles so far)
+- Multi-domain validation (proven in 2 domains, need SRE/data-eng/custom)
+
+### 🔮 Future Roadmap (0-10% Complete)
+🟣⚪⚪⚪⚪⚪⚪⚪⚪⚪
+
+**Coming later:**
+- Visual UI (no-code workflow builders like AutoGen Studio)
+- Package manager (one-click profile install/update like Helm)
+- MCP deep integration (leverage 500+ Model Context Protocol servers)
+- Community profile library (ecosystem of domain templates)
+- SaaS offering (hosted orchestration, not committed yet)
+
+**Transparency:** This is alpha software forged in production use. Patterns are proven (40x speedup product-dev, 3x speedup infrastructure), but the framework is still generalizing. Your feedback shapes the evolution.
+
+**📘 [Full Roadmap & Vision](docs/ROADMAP.md)**
 
 ---
 
 ## Quick Start
 
 ### Option 1: Core Only (Platform)
+
 ```bash
 # Install just the orchestration platform
 ./scripts/install.sh
@@ -668,16 +265,18 @@ cat docs/CREATE_PROFILE.md
 ```
 
 ### Option 2: Core + Community Profile
+
 ```bash
 # Install platform + domain package
 ./scripts/install.sh --profile devops
-# or --profile product-dev, --profile data-eng
+# or --profile product-dev
 
 # Start using immediately
 /prime
 ```
 
 ### Option 3: Core + Custom Profile
+
 ```bash
 # 1. Install core
 ./scripts/install.sh
@@ -691,251 +290,230 @@ vim profiles/my-domain/profile.yaml
 ```
 
 **Next steps:**
-- **Core only:** Read [CREATE_PROFILE.md](docs/CREATE_PROFILE.md) to build extensions
-- **With profile:** Read [GET_STARTED.md](docs/GET_STARTED.md) to start using
-- **Learn more:** See [EXTEND_CORE.md](docs/EXTEND_CORE.md) for customization
+- **Get Started:** [Installation & First Steps](docs/GET_STARTED.md)
+- **Create Profile:** [Custom Profile Guide](docs/CREATE_PROFILE.md)
+- **Learn Why:** [Philosophy & Foundation](https://github.com/boshu2/12-factor-agentops)
 
 ---
 
-## Working Space: Launch Preparation (Nov 11 - Dec 1, 2025)
+## Architecture: Core + Profiles
 
-**Current Phase:** Alpha launch preparation
-**Status:** Experimental working space (will be sanitized before public)
+**Think Airflow Core + Providers:**
 
-The `/launch/` directory contains work-in-progress content for the Dec 1 dual launch:
+```mermaid
+graph TB
+    subgraph Core["<b>AgentOps Core</b><br/>(Like Airflow Core)"]
+        C1["📅 Scheduler<br/>Intelligent Routing"]
+        C2["⚡ Executor<br/>Phase-Based Workflow"]
+        C3["📦 DAG Parser<br/>Profile Loader"]
+        C4["📊 Observability<br/>Git-Based Tracking"]
+        
+        C1 --> C2
+        C2 --> C3
+        C3 --> C4
+    end
+    
+    Core ==>|"Extends via"| Profiles
+    
+    subgraph Profiles["<b>AgentOps Profiles</b><br/>(Like Airflow Providers)"]
+        P1["🔧 devops<br/><i>K8s, CI/CD, Infra</i>"]
+        P2["💻 product-dev<br/><i>APIs, UIs, DBs</i>"]
+        P3["📊 data-eng<br/><i>Pipelines, Quality</i>"]
+        P4["🎨 your-domain<br/><i>Custom Workflows</i>"]
+    end
+    
+    classDef coreStyle fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    classDef profileStyle fill:#a855f7,stroke:#9333ea,stroke-width:3px,color:#fff
+    
+    class C1,C2,C3,C4 coreStyle
+    class P1,P2,P3,P4 profileStyle
+```
 
-- **`/launch/case-studies/`** - Multi-domain validation (product-dev, devops, SRE, data-eng)
-- **`/launch/profiles/`** - Domain-specific profile templates for community
-- **`/launch/guides/`** - Contributor and adopter guides
-- **`/launch/examples/`** - Working code examples and proof-of-concepts
+**Core provides orchestration primitives:**
+- Phase-based workflow execution (Research → Plan → Implement)
+- Multi-agent coordination (parallel execution, 3x speedup)
+- Context management (bundles, 5:1 to 38:1 compression)
+- Intelligent routing (90.9% accuracy)
+- Constitutional enforcement (Five Laws, Three Rules)
 
-See [`launch/README.md`](launch/README.md) for detailed workflow, timeline, and cleanup checklist.
-
-**Before Dec 1:** All launch content is reviewed, sanitized, and moved to permanent locations (`/docs/case-studies/`, `/profiles/`, `/docs/how-to/`, etc.). The `/launch/` directory is removed.
+**Profiles add domain-specific DAGs:**
+- Agents = Task definitions (specialized capabilities)
+- Commands = DAG templates (pre-built workflows)
+- Workflows = Complete orchestrations (end-to-end automation)
+- Skills = Custom operators (validation + automation)
 
 ---
 
-## Repository Architecture (Core vs. Working Space)
+## Core Patterns (Airflow Equivalents)
 
-### Core Framework (Permanent, Public-Ready)
+4 proven orchestration patterns that work across ALL domains:
 
-```
-agentops/
-├── claude.md                          (kernel for contributors)
-├── STRATEGY.md                        (mission & direction)
-├── README.md                          (this file)
-├── CONSTITUTION.md                    (Five Laws, Three Rules, 40% Rule)
-├── INSTALL.md                         (installation guide)
-│
-├── architecture/                      (4 universal patterns)
-│   ├── phase-based-workflow.md
-│   ├── context-bundles.md
-│   ├── multi-agent-orchestration.md
-│   └── intelligent-routing.md
-│
-├── docs/
-│   ├── explanation/                   (why patterns work)
-│   │   ├── agentops-manifesto.md
-│   │   └── PATTERN_EXTRACTION_METHODOLOGY.md
-│   ├── how-to/                        (how to use patterns)
-│   │   ├── CREATE_CUSTOM_PROFILE.md
-│   │   └── [domain-specific guides]
-│   └── case-studies/                  (finalized validations)
-│       ├── MULTI_DOMAIN_VALIDATION.md
-│       └── CASE_STUDY_GITOPS_INTEGRATION.md
-│
-├── profiles/                          (domain templates)
-│   ├── default/
-│   ├── product-dev/
-│   ├── devops/
-│   └── [community profiles]
-│
-├── scripts/                           (installation)
-│   ├── base-install.sh
-│   └── project-install.sh
-│
-└── .claude/                           (Claude Code config)
-    ├── settings.json
-    └── README.md
+### Pattern 1: Phase-Based Workflows (= DAG Stages)
+
+```mermaid
+graph LR
+    R["🔍 Research<br/><i>Gather Context</i>"]
+    P["📋 Plan<br/><i>Define Changes</i>"]
+    I["⚡ Implement<br/><i>Execute Work</i>"]
+    
+    R -->|"Human Gate"| P
+    P -->|"Human Gate"| I
+    
+    R -.->|"Fresh Context"| RC["40% Rule<br/>Enforced"]
+    P -.->|"Fresh Context"| PC["40% Rule<br/>Enforced"]
+    I -.->|"Fresh Context"| IC["40% Rule<br/>Enforced"]
+    
+    classDef phaseStyle fill:#2563eb,stroke:#1e40af,stroke-width:3px,color:#fff
+    classDef ruleStyle fill:#64748b,stroke:#475569,stroke-width:2px,color:#fff
+    
+    class R,P,I phaseStyle
+    class RC,PC,IC ruleStyle
 ```
 
-### Working Space (Experimental, Sanitized Before Dec 1)
+**Airflow concept:** DAGs define task dependencies and execution order
 
+**AgentOps equivalent:** Workflows define phase dependencies (Research → Plan → Implement)
+
+- Each phase = fresh context (like new task execution)
+- Human gates between phases (like sensor tasks)
+- 40% rule enforced (like memory limits)
+
+### Pattern 2: Context Bundles (= XCom + Caching)
+
+**Airflow concept:** XCom passes small data; external storage for large datasets
+
+**AgentOps equivalent:** Bundles pass compressed context between sessions
+
+- **5:1 to 38:1 compression ratio** measured
+- Reuse across sessions (like cached intermediate results)
+- Share with team (like shared data stores)
+- Enable multi-day projects (like checkpointing)
+
+### Pattern 3: Multi-Agent Orchestration (= Task Parallelization)
+
+```mermaid
+graph TB
+    Start["Task:<br/>Research Auth System"] --> A1["🔍 Code Explorer"]
+    Start --> A2["📚 Doc Explorer"]
+    Start --> A3["🕰️ History Explorer"]
+    
+    A1 --> Sync["⚡ Synthesize<br/><i>3x Faster</i>"]
+    A2 --> Sync
+    A3 --> Sync
+    
+    Sync --> Bundle["📦 Context Bundle<br/><i>5:1 Compression</i>"]
+    
+    classDef taskStyle fill:#ea580c,stroke:#c2410c,stroke-width:3px,color:#fff
+    classDef agentStyle fill:#0ea5e9,stroke:#0284c7,stroke-width:3px,color:#fff
+    classDef resultStyle fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    
+    class Start taskStyle
+    class A1,A2,A3 agentStyle
+    class Sync,Bundle resultStyle
 ```
-agentops/launch/                       (← REMOVE before public release)
-├── README.md                          (working space guide)
-├── case-studies/                      (in-progress validations)
-├── profiles/                          (draft profile templates)
-├── guides/                            (draft contributor/user guides)
-└── examples/                          (working proof-of-concepts)
-```
+
+**Airflow concept:** Run independent tasks in parallel
+
+**AgentOps equivalent:** Run independent agents in parallel
+
+- 3 research agents simultaneously (like parallel DAG branches)
+- **3x wall-clock speedup measured** (30 min → 10 min)
+- Same total token budget (like same compute budget)
+- Results synthesize (like downstream task combines outputs)
+
+### Pattern 4: Intelligent Routing (= Dynamic Task Selection)
+
+**Airflow concept:** BranchPythonOperator chooses execution path
+
+**AgentOps equivalent:** Router chooses best-fit agent workflow
+
+- **90.9% accuracy** (110 validation cases)
+- NLP-based task classification
+- Auto-recommend workflow with user override
+- Right work to right executor (like pool/queue assignment)
+
+**📘 [Deep Dive: Architecture & Patterns](architecture/)**
+
+---
+
+## Proven Results
+
+### Product Development
+- **40x speedup** vs traditional development
+- **Metric:** Feature completion time
+- **Patterns:** All 4 universal patterns
+
+### Infrastructure/DevOps
+- **3x research speedup** (30 min → 10 min via parallel agents)
+- **3x validation speedup** (30 sec → 10 sec via parallel checks)
+- **90.9% routing accuracy** (110 validation cases)
+- **New capability:** Multi-day projects via bundles
+
+### Multi-Domain Validation
+✅ Same patterns work identically in product-dev and infrastructure  
+✅ Convergent evolution proves universality (not domain-specific)  
+⏳ Pending: SRE, Data Engineering, custom domains
+
+**📘 [Case Studies & Validation](docs/case-studies/)**
+
+---
+
+## Key Features (Airflow Equivalents)
+
+- ✅ **Phase-based workflows** — Like DAG stages (research → plan → implement)
+- ✅ **Intelligent routing** — Like Airflow scheduling (90.9% accuracy)
+- ✅ **Multi-agent orchestration** — Like task parallelization (3x speedup)
+- ✅ **Context bundles** — Like XCom on steroids (5:1-38:1 compression)
+- ✅ **Constitutional enforcement** — Like Airflow retry/error handling
+- ✅ **Profile system** — Like Airflow Providers (domain-specific extensions)
+- ✅ **Git-based observability** — Like Airflow logs (native versioning)
+- ✅ **40% rule** — Like memory limits (prevents context collapse)
+- ✅ **Git hooks** — Like pre-flight checks (enforce quality gates)
 
 ---
 
 ## Documentation
 
 ### Getting Started
-- `CONSTITUTION.md` - Five Laws, Three Rules, 40% Rule
-- `docs/explanation/agentops-manifesto.md` - Why agentops matters
-- `docs/how-to/` - Operational guides
+- [Installation Guide](docs/GET_STARTED.md) - First steps and setup
+- [Create Custom Profile](docs/CREATE_PROFILE.md) - Extend for your domain
+- [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
 
-### Architecture & Patterns
-- `architecture/` - The 4 universal patterns
-  - `phase-based-workflow.md` - Multi-phase execution
-  - `context-bundles.md` - Compression and reuse
-  - `multi-agent-orchestration.md` - Parallel agents
-  - `intelligent-routing.md` - NLP routing (90.9% accuracy)
-- `docs/explanation/PATTERN_EXTRACTION_METHODOLOGY.md` - How we identified universal patterns
+### Understanding AgentOps
+- [Why AgentOps?](docs/WHY_AGENTOPS.md) - The problem, mission, and operational foundation
+- [12-Factor AgentOps](https://github.com/boshu2/12-factor-agentops) - Philosophy and theory
+- [Architecture Patterns](architecture/) - The 4 universal patterns
+- [Case Studies](docs/case-studies/) - Real-world validation
 
-### Profiles
-- `profiles/product-dev/` - Product development specialization (template)
-- `profiles/devops/` - Infrastructure/DevOps specialization (template)
-- `profiles/[your-domain]/` - Your custom profile (template)
+### Community & Contribution
+- [Contributing Guide](CONTRIBUTING.md) - How to participate
+- [Roadmap & Vision](docs/ROADMAP.md) - What's next
+- [Adoption Guide](docs/ADOPTION_GUIDE.md) - Scale at every level
 
-**Note:** Profile README files show structure and workflows. The actual production agents live in internal repositories (e.g., 52+ agents in private GitOps repo). Profiles in agentops are templates for others to build on.
-
-### Case Studies
-- `docs/case-studies/MULTI_DOMAIN_VALIDATION.md` - Validation across domains
-- `docs/case-studies/CASE_STUDY_GITOPS_INTEGRATION.md` - Infrastructure application
-- `docs/case-studies/[your-domain]/` - Your domain case study
-
-### Building Profiles
-- `docs/how-to/CREATE_CUSTOM_PROFILE.md` - Step-by-step guide
+### Reference
+- [CONSTITUTION.md](CONSTITUTION.md) - Five Laws, Three Rules, 40% Rule
+- [Commands Reference](docs/reference/commands/) - All available commands
+- [Agents Reference](docs/reference/agents/) - Built-in agent personas
 
 ---
 
-## Philosophy
+## Philosophy (Brief)
 
-### Core Vision: Workflow Orchestration Framework
+AgentOps applies Airflow's orchestration principles to AI agent workflows. Data pipelines and knowledge workflows are both computational workflows. The orchestration patterns that made data engineering reliable can make AI agent operations reliable too.
 
-AgentOps is a **workflow orchestration framework** for AI agent systems. Like Airflow orchestrates data pipelines, AgentOps orchestrates **workflow packages** (bundled agent workflows) across multiple agent systems.
-
-### The Orchestration Insight
-
-Just as Airflow abstracts away pipeline complexity (dependencies, scheduling, retries), AgentOps abstracts away AI agent workflow complexity:
-
-```text
-Airflow                 →  AgentOps
-─────────────────────────────────────
-DAG (pipeline)        →  Workflow Package (bundled workflow)
-Task                   →  Agent (specialized capability)
-Task dependencies      →  Phase gates (Research → Plan → Implement)
-Scheduling             →  Intelligent routing
-Retry logic            →  Constitutional enforcement
-Observability          →  Institutional memory (git)
-```
-
-**Distinction from agent-os:**
-- **agent-os** = Operating system for ONE agent system (how agents work internally)
-- **AgentOps** = Orchestration framework for MULTIPLE agent systems (how systems work together)
-- **They're complementary:** AgentOps orchestrates agent-os workflows alongside other systems
-
-**Why Workflow Packages?** Because knowledge workers don't think in "agents"—they think in **complete workflows**. A workflow package is:
-
-- A curated set of agent capabilities bundled as a complete workflow
-- Orchestrated like microservices (schedulable, composable, observable)
-- Versioned and shareable (git-tracked, reusable)
-- Self-improving (patterns extract and compound)
-
-**AgentOps manages the "wow" moments:**
-
-- Parallel research agents exploring simultaneously (3x speedup)
-- Context bundles enabling multi-day projects
-- Constitutional foundations preventing errors
-- Intelligent routing finding the right workflow package instantly
-- Service mesh orchestration enabling synergistic agent work
+**Learn more:** [12-factor-agentops](https://github.com/boshu2/12-factor-agentops) for deep philosophy and research
 
 ---
-
-### AgentOps as an Operating System for the Mind
-
-At a deeper level, AgentOps is an OS that manages:
-
-- **Attention** (context windows, 40% rule prevents cognitive overload)
-- **Work routing** (intelligent agents, like process scheduling)
-- **Memory** (git-based institutional knowledge, like a file system)
-- **Patterns** (constitutional laws, like system permissions)
-- **Collaboration** (multi-agent orchestration, like multi-processing)
-- **Continuous improvement** (extracts patterns, compounds over time)
-
-**Why this matters:** The same patterns that optimize human cognitive load (ADHD burst cycles → 40% rule → phase-based work) work universally for AI agents, teams, and infrastructure. Not arbitrary design—based on how minds actually work.
-
-**Convergent Evolution**:
-- AgentOps (product development)
-- GitOps/Knowledge OS (infrastructure)
-- Both independently discovered the same patterns
-
-This proves these are **universal laws of AI agent operation**, not domain-specific techniques.
-
-**The Insight**:
-All complex work benefits from:
-1. Separate cognitive phases (research → plan → execute)
-2. Reusable intermediate artifacts (bundles)
-3. Multiple perspectives (parallel agents)
-4. Intelligent specialization (routing)
-5. Workflow package orchestration (knowledge worker experience)
-
-These are universal human and AI challenges, applicable everywhere.
-
----
-
-## Key Features
-
-- ✅ Constitutional foundation (always enforced)
-- ✅ JIT loading (40% rule prevents context collapse)
-- ✅ Phase-based workflows (research → plan → implement)
-- ✅ Context bundles (reuse across sessions, 5:1-10:1 compression)
-- ✅ Multi-agent orchestration (3x speedup)
-- ✅ Intelligent routing (90.9% accuracy)
-- ✅ Profile system (customize for your domain)
-- ✅ Git hooks (enforce best practices)
-- ✅ Institutional memory (git-based knowledge base)
-
----
-
-## Framework: 12-Factor AgentOps
-
-This implementation follows the **[12-Factor AgentOps](https://github.com/boshu2/12-factor-agentops)** framework:
-
-- **12-Factor AgentOps** = Theory & Specification (operational principles & research)
-- **AgentOps** = Reference Implementation (working patterns & proven speedups)
-
-See the [12-Factor AgentOps documentation](https://github.com/boshu2/12-factor-agentops) for the foundational principles, patterns, and thinking behind this work.
-
----
-
-## Workspace & VS Code Blueprint
-
-We provide a reusable VS Code setup (workspace template + optional keybindings) in `agentops/tooling/vscode/`:
-
-- `agentops/tooling/vscode/workspace.template.code-workspace` — multi-root workspace + settings
-- `agentops/tooling/vscode/keybindings.template.json` — optional workspace keybindings
-- `agentops/tooling/vscode/README.md` — instructions
-
-Copy the template workspace to your repo root as `workspace.code-workspace` and open it via `File > Open Workspace from File...`.
-
-Prefer not to use a workspace file? A minimal default is already included at `agentops/.vscode/settings.json` that keeps the terminal on the right and prefers right‑hand splits.
 
 ## License
 
-**Apache License 2.0**
-
-- **Code** (agents, profiles, workflows): Apache 2.0
-- **Documentation** (patterns, guides): CC BY-SA 4.0 (same as 12-Factor AgentOps)
-
-The Apache 2.0 license:
-- Permits commercial use and modification
-- Requires attribution
-- Includes explicit patent grant
-- Encourages community contribution and customization
-
-This aligns with 12-Factor AgentOps and supports the goal of making AI agent operations reliable and extensible across any domain.
+**Apache License 2.0** - Permits commercial use, requires attribution, includes patent grant.
 
 ---
 
 ## Contributing
 
-Want to create a profile for your domain? See `docs/how-to/CREATE_CUSTOM_PROFILE.md` and contribute your case study back to the community.
+Want to create a profile for your domain? See [CREATE_PROFILE.md](docs/CREATE_PROFILE.md) and contribute your case study back to the community.
 
 > [!TIP]
 > Try these patterns in your domain and share what works. This framework improves through community feedback and validation.
@@ -944,34 +522,54 @@ Want to create a profile for your domain? See `docs/how-to/CREATE_CUSTOM_PROFILE
 
 ## Acknowledgments
 
-### Agent OS - Complementary, Not Competitive
-
 **[agent-os](https://github.com/agent-os)** independently discovered that AI agents need operating systems. They built one focused on spec-first product development. We're building orchestration.
 
-**The natural evolution:**
-1. **Phase 1:** Build agent operating systems (agent-os, others) ← They are here
-2. **Phase 2:** Orchestrate them together (agentops) ← We are here
-3. **Phase 3:** Community ecosystem flourishes ← We build this together
-
 **Our relationship:**
-- **agent-os** = How ONE agent system works internally (their OS)
-- **agentops** = How MULTIPLE agent systems work together (our orchestrator)
+- **agent-os** = How ONE agent system works internally (container runtime)
+- **agentops** = How MULTIPLE agent systems work together (Kubernetes)
 
-We came to similar conclusions from different angles:
-- They approached from product development workflows
-- We approached from DevOps/infrastructure operations
+Same relationship as Kubernetes (orchestration) to Docker (runtime). Both can win.
 
-**The result:** `profiles/spec-first-dev/` in agentops is inspired by and credits agent-os. We orchestrate their patterns alongside others, making them more powerful through parallel execution, service mesh, and lifecycle management.
+---
 
-**Both can win:** agent-os gets wider adoption through agentops orchestration. agentops gets proven workflows from agent-os. Users get choice.
+## Support
 
-Special thanks to the agent-os team for pioneering agent operating systems and validating that this layer was needed.
+### Get Help
+
+**Questions or Issues?**
+- 📖 [Documentation](docs/) - Comprehensive guides
+- 💬 [GitHub Discussions](https://github.com/boshu2/agentops/discussions) - Community Q&A
+- 🐛 [Issue Tracker](https://github.com/boshu2/agentops/issues) - Bug reports
+- 📚 [FAQ](docs/FAQ.md) - Common questions
+- 📘 [Troubleshooting](docs/TROUBLESHOOTING.md) - Solutions to common issues
+
+**Contributing**
+- 🤝 [Contributing Guide](CONTRIBUTING.md) - How to help
+- 📋 [Code of Conduct](CODE_OF_CONDUCT.md) - Community standards
+- 🔒 [Security Policy](SECURITY.md) - Report vulnerabilities
+
+**Stay Updated**
+- ⭐ [Star this repo](https://github.com/boshu2/agentops) - Get notifications
+- 📣 [Release Notes](RELEASE-NOTES.md) - Version updates
+- 🗺️ [Roadmap](docs/ROADMAP.md) - What's coming
+
+---
+
+## Appendix: The Trinity Architecture
+
+AgentOps is part of a three-repository ecosystem:
+
+**⚙️ agentops** (Implementation) — **You are here**  
+**🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** (Philosophy)  
+**🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase)** (Examples - Coming Dec 1)
+
+**See [TRINITY.md](./TRINITY.md) for complete architecture details.**
 
 ---
 
 <div align="center">
 
-**Universal patterns for reliable AI agent operations.**
+**Airflow for AI agent workflows. Universal patterns for reliable operations.**
 
 *Proven across product development, infrastructure automation, and complex workflows.*
 
