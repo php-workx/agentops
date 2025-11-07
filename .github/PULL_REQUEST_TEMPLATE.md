@@ -1,65 +1,172 @@
 # Pull Request
 
 ## Description
-<!-- Provide a brief description of what this PR does -->
 
-## Type of Change
-<!-- Check all that apply -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
-- [ ] Agent implementation
-- [ ] Command implementation
-- [ ] Pattern contribution
+**What does this PR do?**
+
+A clear and concise description of the changes.
+
+**Why is this change needed?**
+
+Context about the problem or feature request this addresses.
 
 ## Related Issues
-<!-- Link to related issues -->
-Closes #
+
+Closes #[issue number]
+Related to #[issue number]
+
+## Type of Change
+
+**Please check the relevant option(s):**
+
+- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
+- [ ] ✨ New feature (non-breaking change which adds functionality)
+- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] 📝 Documentation update
+- [ ] ♻️ Refactoring (no functional changes, no api changes)
+- [ ] 🎨 Style/formatting changes
+- [ ] 🧪 Test updates
+- [ ] 🔧 Configuration changes
+- [ ] ⚡ Performance improvement
+- [ ] 🏗️ Infrastructure/build changes
 
 ## Changes Made
-<!-- List the key changes in this PR -->
--
--
--
 
-## Five Laws Compliance
-<!-- Verify this PR follows the Five Laws -->
-- [ ] **Law 1: Extract Learnings** - Patterns documented, rationale captured
-- [ ] **Law 2: Improve Self or System** - Identifies improvement opportunity
-- [ ] **Law 3: Document Context** - Context/Solution/Learning/Impact included
-- [ ] **Law 4: Validate Before Execute** - Tested and validated
-- [ ] **Law 5: Share Patterns Publicly** - Documentation included
+**Detailed list of changes:**
+
+- Changed X to do Y
+- Added new component Z
+- Updated documentation for A
 
 ## Testing
-<!-- Describe how you tested your changes -->
-- [ ] Tested locally
-- [ ] Added/updated tests
-- [ ] All tests passing
-- [ ] Manual testing completed
 
-**Test environment:**
-- OS:
-- Python version:
-- Other relevant details:
+**How has this been tested?**
+
+- [ ] Manual testing
+- [ ] Automated tests added/updated
+- [ ] Integration tests
+- [ ] Profile validation tests
+- [ ] Trinity alignment validation
+
+**Test Configuration:**
+- OS: [e.g., macOS 14.0]
+- Profile: [e.g., devops, product-dev]
+- Version: [e.g., 0.9.0]
+
+**Test Cases:**
+
+Describe the test cases you ran:
+1. Tested scenario A
+2. Verified behavior B
+3. Confirmed output C
+
+## Screenshots
+
+**If applicable, add screenshots to help demonstrate the changes:**
 
 ## Documentation
-<!-- Check all that apply -->
-- [ ] README updated (if needed)
-- [ ] How-to guide added/updated (if needed)
-- [ ] Agent documentation added (if new agent)
-- [ ] Command documentation added (if new command)
-- [ ] Cross-references to 12-factor-agentops added (if applicable)
+
+**Documentation updates:**
+
+- [ ] README updated
+- [ ] In-code documentation/comments updated
+- [ ] Separate documentation files updated (specify: [file])
+- [ ] No documentation needed (explain why)
 
 ## Checklist
-<!-- Verify before requesting review -->
-- [ ] Code follows project style guidelines
-- [ ] Self-review completed
-- [ ] Comments added for complex logic
-- [ ] Documentation updated
-- [ ] No breaking changes (or documented if breaking)
-- [ ] Linked to related issues
-- [ ] Ready for review
 
-## Additional Notes
-<!-- Any other information reviewers should know -->
+**Before submitting this PR, please ensure:**
+
+### Code Quality
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] My changes generate no new warnings or errors
+- [ ] I have checked for and removed any debugging code
+
+### Testing
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] I have tested the changes across relevant profiles (if applicable)
+
+### Documentation
+- [ ] I have made corresponding changes to the documentation
+- [ ] I have updated CHANGELOG.md (if applicable)
+- [ ] I have updated affected command/agent documentation
+
+### Trinity Alignment
+- [ ] Changes align with Trinity architecture (if applicable)
+- [ ] Cross-references updated in related repos (if applicable)
+- [ ] Pattern definitions match implementation (if applicable)
+- [ ] Version alignment maintained across repos (if applicable)
+
+### Git
+- [ ] My commits are signed (if required)
+- [ ] My commit messages are clear and descriptive
+- [ ] I have rebased on the latest main branch
+- [ ] I have resolved all merge conflicts
+
+## Breaking Changes
+
+**Does this PR introduce breaking changes?**
+
+- [ ] Yes
+- [ ] No
+
+**If yes, describe what breaks and migration path:**
+
+## Performance Impact
+
+**Does this PR impact performance?**
+
+- [ ] Improves performance (describe)
+- [ ] No impact
+- [ ] Degrades performance (justify why)
+
+**If applicable, include benchmarks:**
+
+## Security Considerations
+
+**Does this PR have security implications?**
+
+- [ ] Yes (describe)
+- [ ] No
+
+**If yes, have you:**
+- [ ] Followed security best practices
+- [ ] Reviewed for sensitive data exposure
+- [ ] Considered privilege escalation risks
+- [ ] Updated SECURITY.md (if needed)
+
+## Deployment Notes
+
+**Special deployment considerations:**
+
+- Configuration changes needed
+- Migration steps required
+- Dependencies updated
+- Environment variables added/changed
+
+## Additional Context
+
+**Any additional information that reviewers should know:**
+
+- Design decisions made
+- Alternatives considered
+- Future improvements planned
+- Known limitations
+
+## Reviewer Notes
+
+**What should reviewers focus on?**
+
+- [ ] Architecture/design approach
+- [ ] Code quality/style
+- [ ] Test coverage
+- [ ] Documentation clarity
+- [ ] Performance implications
+- [ ] Security considerations
+
+---
+
+**Thank you for contributing to AgentOps!**
