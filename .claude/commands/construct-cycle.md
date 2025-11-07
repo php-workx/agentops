@@ -1,0 +1,1 @@
+../../profiles/life/commands/construct-cycle.md

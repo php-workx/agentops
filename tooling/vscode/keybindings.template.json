@@ -1,0 +1,16 @@
+[
+  {
+    "key": "ctrl+shift+g",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Git Status (All Repos)"
+  },
+  {
+    "key": "ctrl+alt+3",
+    "command": "workbench.action.editorLayoutThreeColumns"
+  },
+  {
+    "key": "ctrl+alt+9",
+    "command": "workbench.action.toggleSidebarVisibility"
+  }
+]
+

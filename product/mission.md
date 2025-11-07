@@ -8,9 +8,9 @@
 
 ## Product Vision
 
-**AgentOps is a universal operating system for reliable AI agent operations.**
+**AgentOps is an operational research framework being tested across domains.**
 
-We enable developers to operate AI agents at scale using proven infrastructure patterns—preventing context collapse, coordinating multiple agents, extracting institutional learning, and routing work intelligently. AgentOps makes AI agent operations as reliable as modern infrastructure operations.
+We're sharing patterns from 10 years of federal infrastructure work where failure meant congressional hearings. We've tested these patterns with AI agents in infrastructure automation and product development. This research is open-source. We invite you to validate if these patterns work in your domain too.
 
 ---
 
@@ -48,14 +48,14 @@ AgentOps translates proven DevOps/SRE patterns into the AI agent context:
 | Specialization | Intelligent agent routing (90.9% accuracy) |
 | Composability | Multi-agent orchestration (3x speedup) |
 
-### Four Universal Patterns (Work Across ALL Domains)
+### Four Patterns We're Testing for Generalization
 
-1. **Multi-Phase Workflow** - Separate research → plan → implement phases with fresh context
-2. **Context Bundles** - Compress and reuse artifacts (5:1 to 10:1 compression ratio)
-3. **Multi-Agent Orchestration** - Parallel agent execution for 3x wall-clock speedup
-4. **Intelligent Routing** - NLP-based agent classification (90.9% accuracy)
+1. **Multi-Phase Workflow** - Separate research → plan → implement phases with fresh context (validated in infrastructure)
+2. **Context Bundles** - Compress and reuse artifacts (5:1 to 10:1 compression ratio, testing applicability)
+3. **Multi-Agent Orchestration** - Parallel agent execution for 3x wall-clock speedup in infrastructure; 1.5x in product-dev
+4. **Intelligent Routing** - NLP-based agent classification (90.9% accuracy in infrastructure, TBD elsewhere)
 
-### Constitutional Foundation (Always Enforced)
+### Constitutional Foundation (Principles We're Validating)
 
 **Five Laws of an Agent:**
 1. **ALWAYS Extract Learnings** - Document patterns discovered
@@ -296,9 +296,11 @@ AgentOps patterns apply to anyone doing complex work:
 
 **"Make AI agent operations as reliable as modern infrastructure operations."**
 
-We take proven patterns from DevOps/SRE (version control, validation gates, observability, specialization, composability) and apply them to AI agents. The result: 40x speedups, 95% success rates, and institutional memory that compounds over time.
+We take proven patterns from DevOps/SRE (version control, validation gates, observability, specialization, composability) and apply them to AI agents. Results so far:
+- Infrastructure domain: 3-40x speedup, 95% success rate, institutional memory
+- Product-dev domain: 3x speedup, different patterns emerging
 
-**Not theoretical. Production-proven. Universal.**
+**Not theoretical. Domain-validated. Testing generalization.**
 
 ---
 

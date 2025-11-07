@@ -1,0 +1,52 @@
+---
+created_by: "claude-sonnet-4-5-20250929"
+author: "Boden Fuller"
+created_at: "2025-11-06T16:30:00-05:00"
+last_updated: "2025-11-06T16:30:00-05:00"
+type: "spec"
+name: "2025-11-06-life-profile-generalization"
+description: "Transform life profile into universal personal-development workflow package"
+purpose: "Generalize personal-life references to make framework universally applicable while preserving proven patterns"
+workflow: "research → plan → implement"
+status: "planning"
+schema_version: "1.0.0"
+
+# Session metadata
+command: "/team:research → /team:plan → /team:implement"
+session_id: "2025-11-06-life-generalization"
+commit_id: null  # Will be updated on first commit
+inferred: false
+inference_confidence: null
+inference_source: null
+
+# Context
+origin: "User request to make life profile life-agnostic and universal"
+parent_spec: null
+related_specs: []
+dependencies: []
+
+# Scope
+files_affected: 39
+  - 33 existing files (transform)
+  - 6 new files (create examples/, CUSTOMIZATION_GUIDE.md)
+estimated_effort: "2-3 days systematic execution"
+
+# Approach
+strategy: "Template-Based Abstraction (Approach B)"
+pattern: "Personal references → Customizable placeholders"
+preservation: "All proven patterns and workflows maintained"
+attribution: "Original implementation preserved in examples/ directory"
+
+# Validation
+validation_strategy:
+  - "grep-based placeholder verification"
+  - "Functional testing of templates"
+  - "Cross-reference validation"
+  - "Examples self-containment check"
+
+# Risk mitigation
+rollback_procedure: "git revert (5 minutes)"
+backup_strategy: "Git history preservation"
+high_risk_areas:
+  - "Cross-file reference breakage during transformation"
+  - "Incomplete placeholder replacement"

@@ -1,0 +1,167 @@
+{
+  "folders": [
+    { "name": "🌟 === PERSONAL / LIFE ===", "path": ".agents" },
+    { "name": "🎯 .claude (personal config)", "path": ".claude" },
+    { "name": "🌐 personal-website (AgentOps showcase)", "path": "personal-website" },
+    { "name": "🧘 life (personal codex - private)", "path": "life" },
+    { "name": "⚙️ 12-factor-agentops", "path": "12-factor-agentops" },
+    { "name": "🤖 agentops (implementation)", "path": "agentops" },
+    { "name": "⭐ === WORK / GITOPS ===", "path": "gitops" },
+    { "name": "📦 jren-cm", "path": "jren-cm" },
+    { "name": "📦 kubic-cm", "path": "kubic-cm" },
+    { "name": "🔧 release-engineering", "path": "release-engineering" },
+    { "name": "🐳 ci-container", "path": "ci-container" },
+    { "name": "🛠️ utils-container", "path": "utils-container" },
+    { "name": "🧪 test-site (test site)", "path": "test-site" }
+  ],
+
+  "settings": {
+    // Layout & restore behavior
+    "window.restoreWindows": "all",
+    "window.newWindowDimensions": "inherit",
+    "workbench.editor.restoreViewState": true,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.openSideBySideDirection": "right",
+    "workbench.panel.defaultLocation": "right",
+    "workbench.panel.opensMaximized": "never",
+    "terminal.integrated.defaultLocation": "panel",
+    "terminal.integrated.persistentSessionReviveProcess": "onExit",
+
+    // Terminal ergonomics
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.copyOnSelection": true,
+
+    // Editor hygiene
+    "editor.rulers": [80, 120],
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+
+    // Diffs & explorer
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.sortOrder": "type",
+    "explorer.compactFolders": false,
+
+    // Ignore lists (search/watch)
+    "files.exclude": {
+      "**/.git": false,
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/node_modules": true,
+      "_archive": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bin": true,
+      "**/_archive": true,
+      "**/vendor": true,
+      "**/__pycache__": true,
+      "**/*.pyc": true
+    },
+    "files.watcherExclude": {
+      "**/bin/**": true,
+      "**/_archive/**": true,
+      "**/node_modules/**": true,
+      "**/__pycache__/**": true
+    },
+
+    // Helpful associations
+    "files.associations": {
+      "*.env.example": "properties",
+      "*.env.*": "properties",
+      "config.env": "properties",
+      "Containerfile*": "dockerfile",
+      "*.bu": "yaml",
+      "*.butane": "yaml",
+      "Makefile*": "makefile",
+      ".gitlab-ci*.yml": "yaml",
+      "*.gitlab-ci.yml": "yaml",
+      "AGENTS.md": "markdown",
+      "START-HERE.md": "markdown",
+      "*.argocd.yaml": "yaml",
+      "kustomization.yaml": "yaml",
+      "values.yaml": "yaml",
+      "values.*.yaml": "yaml"
+    },
+
+    // YAML/Ansible authoring
+    "yaml.schemas": {
+      "kubernetes": [
+        "**/apps/**/*.yaml",
+        "**/apps/**/*.yml",
+        "**/manifests/**/*.yaml",
+        "**/manifests/**/*.yml"
+      ]
+    },
+    "yaml.format.enable": true,
+    "yaml.validate": true,
+    "yaml.format.singleQuote": false,
+    "yaml.format.bracketSpacing": true,
+    "yaml.hover": true,
+    "yaml.completion": true,
+    "yaml.maxItemsComputed": 5000,
+    "[yaml]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2,
+      "editor.autoIndent": "advanced"
+    },
+
+    // Git UX
+    "git.enableSmartCommit": false,
+    "git.confirmSync": true,
+    "git.autofetch": false,
+    "git.showPushSuccessNotification": true,
+    "git.fetchOnPull": true,
+    "git.pruneOnFetch": true,
+
+    // Misc
+    "workbench.startupEditor": "none",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.revealIfOpen": true
+  },
+
+  "extensions": {
+    "recommendations": [
+      "redhat.vscode-yaml",
+      "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "davidanson.vscode-markdownlint",
+      "gitlab.gitlab-workflow",
+      "signageos.signageos-vscode-sops",
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "timonwong.shellcheck",
+      "foxundermoon.shell-format",
+      "redhat.vscode-xml",
+      "editorconfig.editorconfig",
+      "eamodio.gitlens",
+      "mhutchie.git-graph",
+      "bierner.markdown-mermaid",
+      "yzhang.markdown-all-in-one",
+      "jinja.jinja-language-support",
+      "redhat.ansible"
+    ],
+    "unwantedRecommendations": [
+      "ms-vscode.makefile-tools"
+    ]
+  },
+
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Git Status (All Repos)",
+        "type": "shell",
+        "command": "for folder in gitops jren-cm kubic-cm release-engineering prompts team-docs ci-container utils-container test-site 12-factor-agents 12-factor-agentops agentops life; do echo \"=== $folder ===\" && git -C \"$folder\" status --short 2>/dev/null || echo \"⚠ Skipping $folder (not found)\"; done",
+        "options": { "cwd": "${workspaceFolder}" },
+        "problemMatcher": []
+      }
+    ]
+  }
+}
+
