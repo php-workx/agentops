@@ -488,7 +488,7 @@ graph TB
 - [12-Factor AgentOps](https://github.com/boshu2/12-factor-agentops) - Philosophy and theory
 
 > [!NOTE]
-> The Twelve Factors are actively being drafted. Follow progress in `12-factor-agentops/docs/research/12-factors-research.md` and expect iterative updates.
+> The Twelve Factors are actively being drafted. Current candidates include Git Memory as Knowledge OS, Fresh Context Windows (40% Rule), Single-Responsibility Agents, and Validation Gates Before Execution. Follow progress in `12-factor-agentops/docs/research/12-factors-research.md` for the evolving list.
 
 - [Architecture Patterns](architecture/) - The 4 universal patterns
 - [Case Studies](docs/case-studies/) - Real-world validation
