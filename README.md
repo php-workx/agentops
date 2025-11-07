@@ -486,6 +486,10 @@ graph TB
 ### Understanding AgentOps
 - [Why AgentOps?](docs/WHY_AGENTOPS.md) - The problem, mission, and operational foundation
 - [12-Factor AgentOps](https://github.com/boshu2/12-factor-agentops) - Philosophy and theory
+
+> [!NOTE]
+> The Twelve Factors are actively being drafted. Follow progress in `12-factor-agentops/docs/research/12-factors-research.md` and expect iterative updates.
+
 - [Architecture Patterns](architecture/) - The 4 universal patterns
 - [Case Studies](docs/case-studies/) - Real-world validation
 
