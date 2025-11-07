@@ -1,171 +1,309 @@
-# agentops Installation
+# AgentOps v1.0.0 Installation Guide
 
-Installation of agentops follows a two-stage pattern:
-
-1. **Base Installation** - Install to home directory
-2. **Project Installation** - Install into your project
+**Quick Start:** Install AgentOps with multi-profile support in 2 minutes.
 
 ---
 
-## Stage 1: Base Installation
+## Prerequisites
 
-Install the core system to your home directory:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/boshu2/agentops/main/scripts/base-install.sh | bash
-```
-
-This creates `~/.agentops/` containing:
-- Core kernel (CONSTITUTION, primers, hooks)
-- Default profile with standards, workflows, agents
-- Installation scripts
-
-Alternative: Clone and install locally
-```bash
-git clone https://github.com/boshu2/agentops.git ~/.agentops
-```
+- Bash 4.0+ (check: `bash --version`)
+- Git (check: `git --version`)
+- Basic Unix tools: `grep`, `sed`, `find`
 
 ---
 
-## Stage 2: Project Installation
+## Installation Methods
 
-Navigate to your project:
+### Method 1: Interactive Installation (Recommended)
+
+```bash
+cd agentops/
+./scripts/install.sh
+```
+
+**What happens:**
+1. Interactive profile selection menu appears
+2. Choose one or more profiles to install
+3. Installation completes with validation
+4. CLI tool ready to use
+
+**Duration:** ~2 minutes
+
+---
+
+### Method 2: Install Specific Profile
+
+```bash
+./scripts/install.sh --profile devops
+```
+
+**Available profiles:**
+- `product-dev` - Application development (10 agents)
+- `infrastructure-ops` - Operations & monitoring (18 agents)
+- `devops` - Complete GitOps ecosystem (52 agents)
+- `life` - Personal development (7 agents)
+
+---
+
+### Method 3: Install All Profiles
+
+```bash
+./scripts/install.sh --all
+```
+
+Installs all 4 profiles (87 total agents).
+
+---
+
+## Project Installation
+
+After installing AgentOps to `~/.agentops/`, install it in your project:
 
 ```bash
 cd /path/to/your/project
 ~/.agentops/scripts/project-install.sh
 ```
 
-Select a profile:
-- `default` - Generic foundation (recommended to start)
+**What happens:**
+- Creates `.agentops/` directory with project config
+- Installs Claude Code integration (if Claude Code project detected)
+- Installs layered commands (base + profile overrides)
+- Installs git hooks
+- Creates project README
 
-> **Note:** Additional profiles (`devops`, `product-dev`, `sre`) are in development. For now, `default` provides the core AgentOps framework that works across all domains.
-
-This creates:
-- `agentops/` folder in your project
-- `.claude/` directory with commands (if using Claude Code)
-- Git hooks for enforcement
+**Duration:** <30 seconds
 
 ---
 
 ## What Gets Installed
 
-### Core (Always)
-- `.agentops/CONSTITUTION.md` - The Laws
-- `.agentops/primers/` - Interactive routers
-- Git hooks (pre-commit, commit-msg, post-commit)
-
-### Profile-Specific
-- Commands for your chosen profile
-- Workflows and standards
-- Agents for your domain
-
----
-
-## Configuration
-
-Configure behavior in `~/.agentops/config.yml`:
-
-```yaml
-defaults:
-  profile: default                    # Which profile to use
-  claude_code_commands: true          # Enable Claude Code integration
-  use_claude_code_subagents: true     # Enable subagent delegation
-  standards_as_claude_code_skills: true  # Use Claude Code Skills
 ```
-
-Override at runtime:
-```bash
-~/.agentops/scripts/project-install.sh --profile devops --claude-code-commands true
+~/.agentops/
+├── bin/
+│   └── agentops                    # CLI tool
+├── scripts/
+│   ├── install.sh                  # Installer
+│   ├── project-install.sh          # Project installer
+│   ├── tutorial.sh                 # Interactive tutorial
+│   ├── validate-installation.sh    # Validation
+│   └── lib/                        # Libraries
+│       ├── common-functions.sh
+│       ├── validation.sh
+│       └── logging.sh
+├── profiles/
+│   ├── product-dev/                # Profile 1
+│   ├── infrastructure-ops/         # Profile 2
+│   ├── devops/                     # Profile 3
+│   └── life/                       # Profile 4
+├── commands/                       # Base commands
+├── agents/                         # Base agents
+└── backups/                        # Backup directory
 ```
 
 ---
 
-## Verify Installation
+## Post-Installation
 
-Check that agentops is working:
+### 1. Add CLI to PATH
 
 ```bash
-# Check core kernel
-cat agentops/CONSTITUTION.md
+# Add to ~/.bashrc, ~/.zshrc, or ~/.profile
+export PATH="${HOME}/.agentops/bin:$PATH"
+```
 
-# Try a primer
-/prime
+Then reload:
+```bash
+source ~/.bashrc  # or ~/.zshrc
+```
 
-# Check git hooks
-cat .git/hooks/pre-commit
+### 2. Verify Installation
+
+```bash
+agentops validate
+```
+
+**Expected output:** All 3 validation tiers pass
+
+---
+
+### 3. Run Tutorial (Optional but Recommended)
+
+```bash
+~/.agentops/scripts/tutorial.sh
+```
+
+**Duration:** 5 minutes
+**Teaches:** Multi-profile usage, resolution chain, project installation
+
+---
+
+## Using AgentOps
+
+### Check Current Profile
+
+```bash
+agentops current-profile
+```
+
+### Switch Default Profile
+
+```bash
+agentops use-profile devops
+```
+
+### List Installed Profiles
+
+```bash
+agentops list-profiles
+```
+
+### View Profile Information
+
+```bash
+agentops profile-info devops
 ```
 
 ---
 
-## Updating
+## Multi-Profile Resolution
 
-Update the base installation:
+AgentOps uses a 4-layer resolution chain (highest → lowest priority):
+
+1. **Explicit:** `--profile devops`
+2. **Environment:** `AGENTOPS_PROFILE=infrastructure-ops`
+3. **Project:** `.agentops/config.yml`
+4. **User:** `~/.agentops/.profile`
+
+**Example:**
 
 ```bash
-cd ~/.agentops
+# User default: product-dev
+agentops current-profile
+# Output: product-dev
+
+# Override with environment
+AGENTOPS_PROFILE=devops agentops current-profile
+# Output: devops
+
+# User default unchanged
+agentops current-profile
+# Output: product-dev
+```
+
+---
+
+## Validation
+
+### Run All Validation Tiers
+
+```bash
+agentops validate
+```
+
+### Run Specific Tier
+
+```bash
+agentops validate --tier1  # Core files
+agentops validate --tier2  # Profiles
+agentops validate --tier3  # 12-factor compliance
+```
+
+### Validate Specific Profile
+
+```bash
+agentops validate --profile devops
+```
+
+---
+
+## Upgrading
+
+```bash
+cd agentops/
 git pull origin main
+./scripts/install.sh --upgrade
 ```
 
-Or reinstall:
-```bash
-curl -sSL https://raw.githubusercontent.com/boshu2/agentops/main/scripts/base-install.sh | bash
-```
-
-Update a project installation:
-```bash
-cd /path/to/project
-~/.agentops/scripts/project-install.sh  # Re-run to update
-```
+**Note:** Existing installations are backed up before upgrade.
 
 ---
 
 ## Uninstalling
 
-Remove from project:
 ```bash
-rm -rf agentops .claude
-git config --unset core.hooksPath
+./scripts/install.sh --uninstall
 ```
 
-Remove base installation:
-```bash
-rm -rf ~/.agentops
-```
+**What happens:**
+1. Creates final backup
+2. Removes `~/.agentops/` directory
+3. Backup saved to `~/.agentops/backups/`
 
 ---
 
 ## Troubleshooting
 
-**Git hooks not running?**
-```bash
-# Check hooks are installed
-cat .git/hooks/pre-commit
+### "Command not found: agentops"
 
-# Verify git config
-git config core.hooksPath
+Add to PATH:
+```bash
+export PATH="${HOME}/.agentops/bin:$PATH"
 ```
 
-**Commands not showing?**
-```bash
-# Check Claude Code is configured
-ls -la .claude/commands/
+### "Profile not found"
 
-# Verify settings
-cat .claude/settings.json
+List available profiles:
+```bash
+agentops list-profiles
 ```
 
-**Profile not found?**
+Install missing profile:
 ```bash
-# Check available profiles
-ls ~/.agentops/profiles/
+./scripts/install.sh --profile <profile-name>
+```
 
-# Use absolute path
-~/.agentops/scripts/project-install.sh --profile /full/path/to/profile
+### Validation Fails
+
+View detailed errors:
+```bash
+agentops validate --tier1  # Check each tier
+agentops validate --tier2
+agentops validate --tier3
+```
+
+### Restore from Backup
+
+```bash
+ls ~/.agentops/backups/
+cp -r ~/.agentops/backups/<backup-name> ~/.agentops
 ```
 
 ---
 
-## Support
+## Next Steps
 
-See README.md for more information.
+1. **Run tutorial:**
+   ```bash
+   ~/.agentops/scripts/tutorial.sh
+   ```
+
+2. **Install in your project:**
+   ```bash
+   cd /path/to/project
+   ~/.agentops/scripts/project-install.sh
+   ```
+
+3. **Explore profiles:**
+   ```bash
+   ls ~/.agentops/profiles/
+   cat ~/.agentops/profiles/devops/README.md
+   ```
+
+4. **Read main docs:**
+   ```bash
+   cat ~/.agentops/README.md
+   ```
+
+---
+
+**Installation complete! AgentOps v1.0.0 is ready to use.**

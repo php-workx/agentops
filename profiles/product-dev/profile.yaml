@@ -1,0 +1,80 @@
+apiVersion: agentops.io/v1
+kind: Profile
+metadata:
+  name: product-dev
+  version: v1.0.0
+  description: Application development workflows with spec-first approach
+  created: 2025-11-06
+  maintainer: AgentOps Community
+spec:
+  agent_count: 10
+  workflow_packages:
+    - spec-first-product
+    - application-development
+    - user-experience
+
+  agents:
+    - name: product-requirements-writer
+      description: Create product specifications from user needs
+      specialization: Requirements gathering and documentation
+    - name: user-story-generator
+      description: Generate user stories from product requirements
+      specialization: User-centered design and acceptance criteria
+    - name: ui-mockup-designer
+      description: Create UI mockups and wireframes
+      specialization: User interface design and prototyping
+    - name: api-spec-designer
+      description: Design API specifications (OpenAPI, GraphQL)
+      specialization: API design and documentation
+    - name: database-schema-designer
+      description: Design database schemas and relationships
+      specialization: Data modeling and normalization
+    - name: integration-test-writer
+      description: Create integration and E2E tests
+      specialization: Test automation and quality assurance
+    - name: feature-implementer
+      description: Implement features following specifications
+      specialization: Code generation from specs
+    - name: code-reviewer
+      description: Review code for quality and standards compliance
+      specialization: Code quality and best practices
+    - name: documentation-writer
+      description: Create user and developer documentation
+      specialization: Technical writing and examples
+    - name: release-planner
+      description: Plan releases and manage versioning
+      specialization: Release management and changelog generation
+
+  validation:
+    - type: syntax
+      description: Code syntax validation
+      commands:
+        - make lint
+        - make test
+    - type: spec-compliance
+      description: Implementation matches specifications
+      commands:
+        - make validate-spec
+    - type: test-coverage
+      description: Test coverage meets requirements
+      commands:
+        - make coverage
+
+  dependencies:
+    - git
+    - make
+    - node (optional, for JavaScript projects)
+    - python (optional, for Python projects)
+
+  directory_structure:
+    - .agentops/
+    - .agentops/config.yml
+    - specs/
+    - tests/
+    - docs/
+
+  tags:
+    - product-development
+    - application-development
+    - spec-first
+    - user-experience
