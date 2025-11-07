@@ -1,4 +1,4 @@
-# AgentOps: Orchestrator for AI Agent Operating Systems
+# AgentOps: Universal Orchestrator for AI Agent Systems
 
 [![Validate](https://github.com/boshu2/agentops/actions/workflows/validate.yml/badge.svg)](https://github.com/boshu2/agentops/actions/workflows/validate.yml)
 
@@ -12,31 +12,117 @@
     <img src="https://img.shields.io/badge/Documentation-CC%20BY--SA%204.0-lightgrey.svg" alt="Documentation License: CC BY-SA 4.0"></a>
 <img src="https://img.shields.io/badge/Status-Proven-green.svg" alt="Status: Proven in Production">
 
-*DevOps lifecycle management • Parallel execution • Service mesh • Multi-flavor support*
+*Universal orchestration • Intelligent routing • Context management • Multi-agent coordination*
 
 </div>
 
 ---
 
 > [!IMPORTANT]
-> **Production-Proven Framework** - These patterns have been validated across product development (40x speedup) and infrastructure operations (3x speedup). This reference implementation demonstrates universal applicability across domains.
+> **This is the ORCHESTRATOR repository** — working implementation, tools, and how-to guides.
+>
+> **For philosophical foundation** → See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
+>
+> **For agent operating systems** → See [agent-os](https://github.com/agent-os)
+>
+> **Status: Proven** - 40x speedup (product-dev), 3x speedup (infrastructure), 90.9% routing accuracy
 
 > [!NOTE]
-> **Built with AI Agents** - This framework was developed using Claude Code and documents operational patterns from AI-powered workflows. We practice what we document.
+> **Built with AI Agents** - This orchestrator was developed using Claude Code and implements patterns from the 12-factor-agentops philosophy. We practice what we document.
+
+---
+
+## What Is This?
+
+**agentops is the universal orchestrator for AI agent systems.**
+
+Like Kubernetes orchestrates containers, agentops orchestrates agent workflows. It provides:
+
+✅ **Intelligent routing** (90.9% accuracy NLP classification)
+✅ **Context management** (40% rule enforcement, prevents collapse)
+✅ **Multi-agent coordination** (3x speedup via parallelization)
+✅ **Constitutional enforcement** (Five Laws always active)
+✅ **DevOps lifecycle** (CI/CD for agent work)
+
+### What We Are
+
+✅ **Universal orchestrator** (works with any agent system)
+✅ **Working implementation** (production-ready tools)
+✅ **Proven patterns** (40x speedup product-dev, 3x infrastructure)
+✅ **How-to guides** (practical tutorials and docs)
+
+### What We Are NOT
+
+❌ **Not a philosophy** → See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
+❌ **Not an operating system** → See [agent-os](https://github.com/agent-os)
+❌ **Not a package manager** → Future ecosystem layer
+❌ **Not a visual UI** → Future ecosystem layer
+
+---
+
+## The Complete Ecosystem
+
+agentops is **Layer 2** (Orchestration) of a complete 7-layer ecosystem:
+
+```
+┌──────────────────────────────────────────────┐
+│  Layer 6: Visual UI (FUTURE)                 │
+│  • No-code workflow builders                 │
+│  • Like AutoGen Studio, LangGraph Platform   │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  Layer 5: Package Managers (FUTURE)          │
+│  • One-click install/update                  │
+│  • Like CurseForge, VSCode Marketplace       │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  Layer 4: Integration (MCP - NOW)            │
+│  • Model Context Protocol                    │
+│  • 500+ tool servers (GitHub, Postgres)      │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  Layer 3: Workflow Packages (NOW)            │
+│  • Domain bundles (product-dev, devops)      │
+│  • Like Helm charts or WoW addons            │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  Layer 2: Orchestration (THIS REPO)          │
+│  • Universal orchestrator (like Kubernetes)  │
+│  • Routing, context, parallel execution      │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  Layer 1: Philosophy (12-factor-agentops)    │
+│  • Four Pillars, Five Laws                   │
+│  • Research and validation                   │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  Layer 0: Operating Systems (Multiple)       │
+│  • agent-os (Builder Methods)                │
+│  • Custom implementations                    │
+└──────────────────────────────────────────────┘
+```
+
+**See:** [12-factor-agentops ECOSYSTEM_POSITIONING.md](https://github.com/boshu2/12-factor-agentops/blob/main/ECOSYSTEM_POSITIONING.md) for complete details
 
 ---
 
 ## Philosophical Foundation
 
-Want to understand why AgentOps works? See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops) for the framework, patterns, and research.
+Want to understand WHY AgentOps works?
+
+→ **[12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** — Philosophy, patterns, and research
 
 **Start there if you want to:**
-- Understand AgentOps deeply
-- Learn the Four Pillars and Five Laws
-- Study operational patterns and theory
-- Contribute new patterns or research
-
-**See Also:** [12-Factor AgentOps README](https://github.com/boshu2/12-factor-agentops#readme) for the framework overview.
+- Understand AgentOps deeply (Four Pillars, Five Laws)
+- Learn operational patterns and theory
+- Study research validating patterns
+- Contribute to philosophical foundation
 
 ---
 
@@ -195,7 +281,7 @@ We're building materials to help adoption at every scale:
 
 ---
 
-## Anthropic Partnership
+## Anthropic First Design
 
 **This framework helps Claude Code users:**
 - Build reliable AI agent systems
