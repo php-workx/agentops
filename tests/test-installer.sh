@@ -73,29 +73,81 @@ test_profiles() {
 
     local profiles=("product-dev" "infrastructure-ops" "devops" "life")
 
+    # Check if yq is available
+    local has_yq=false
+    if command -v yq &> /dev/null; then
+        has_yq=true
+        print_result "pass" "yq available for YAML validation"
+    else
+        print_result "warn" "yq not available, using grep fallback"
+    fi
+
     for profile in "${profiles[@]}"; do
         local manifest="profiles/${profile}/profile.yaml"
 
         if [[ -f "$manifest" ]]; then
             print_result "pass" "Profile manifest exists: $profile"
 
-            # Check for required fields
-            if grep -q "apiVersion:" "$manifest"; then
-                print_result "pass" "  - Has apiVersion: $profile"
-            else
-                print_result "fail" "  - Missing apiVersion: $profile"
-            fi
+            # Validate YAML syntax with yq if available
+            if [[ "$has_yq" == "true" ]]; then
+                if yq eval '.' "$manifest" > /dev/null 2>&1; then
+                    print_result "pass" "  - Valid YAML syntax: $profile"
+                else
+                    print_result "fail" "  - Invalid YAML syntax: $profile"
+                    continue
+                fi
 
-            if grep -q "kind: Profile" "$manifest"; then
-                print_result "pass" "  - Has kind: $profile"
-            else
-                print_result "fail" "  - Missing kind: $profile"
-            fi
+                # Validate required fields with yq
+                local api_version
+                api_version=$(yq eval '.apiVersion' "$manifest" 2>/dev/null)
+                if [[ "$api_version" == "agentops.io/v1" ]]; then
+                    print_result "pass" "  - apiVersion valid: $profile"
+                else
+                    print_result "fail" "  - apiVersion invalid or missing: $profile (got: $api_version)"
+                fi
 
-            if grep -q "agent_count:" "$manifest"; then
-                print_result "pass" "  - Has agent_count: $profile"
+                local kind
+                kind=$(yq eval '.kind' "$manifest" 2>/dev/null)
+                if [[ "$kind" == "Profile" ]]; then
+                    print_result "pass" "  - kind valid: $profile"
+                else
+                    print_result "fail" "  - kind invalid or missing: $profile (got: $kind)"
+                fi
+
+                local profile_name
+                profile_name=$(yq eval '.metadata.name' "$manifest" 2>/dev/null)
+                if [[ "$profile_name" == "$profile" ]]; then
+                    print_result "pass" "  - metadata.name matches: $profile"
+                else
+                    print_result "fail" "  - metadata.name mismatch: $profile (got: $profile_name)"
+                fi
+
+                local agent_count
+                agent_count=$(yq eval '.spec.agent_count' "$manifest" 2>/dev/null)
+                if [[ "$agent_count" =~ ^[0-9]+$ ]]; then
+                    print_result "pass" "  - agent_count valid: $profile ($agent_count agents)"
+                else
+                    print_result "fail" "  - agent_count invalid: $profile (got: $agent_count)"
+                fi
             else
-                print_result "fail" "  - Missing agent_count: $profile"
+                # Fallback to grep if yq not available
+                if grep -q "apiVersion:" "$manifest"; then
+                    print_result "pass" "  - Has apiVersion: $profile"
+                else
+                    print_result "fail" "  - Missing apiVersion: $profile"
+                fi
+
+                if grep -q "kind: Profile" "$manifest"; then
+                    print_result "pass" "  - Has kind: $profile"
+                else
+                    print_result "fail" "  - Missing kind: $profile"
+                fi
+
+                if grep -q "agent_count:" "$manifest"; then
+                    print_result "pass" "  - Has agent_count: $profile"
+                else
+                    print_result "fail" "  - Missing agent_count: $profile"
+                fi
             fi
         else
             print_result "fail" "Profile manifest missing: $profile"
@@ -232,6 +284,8 @@ test_documentation() {
         "README.md"
         "CLAUDE.md"
         "CONSTITUTION.md"
+        "docs/FAQ.md"
+        "docs/TROUBLESHOOTING.md"
     )
 
     for doc in "${required_docs[@]}"; do
@@ -254,6 +308,69 @@ test_documentation() {
         print_result "pass" "CHANGELOG has v1.0.0 entry"
     else
         print_result "fail" "CHANGELOG missing v1.0.0 entry"
+    fi
+}
+
+#######################################
+# Test: GitHub Actions workflows
+#######################################
+test_github_actions() {
+    echo ""
+    echo -e "${BLUE}Testing: GitHub Actions Workflows${RESET}"
+    echo "=============================="
+
+    # Check if yq is available
+    if ! command -v yq &> /dev/null; then
+        print_result "warn" "yq not available, skipping workflow YAML validation"
+        return
+    fi
+
+    local workflow=".github/workflows/installer-validation.yml"
+
+    if [[ -f "$workflow" ]]; then
+        print_result "pass" "Workflow file exists: installer-validation.yml"
+
+        # Validate YAML syntax
+        if yq eval '.' "$workflow" > /dev/null 2>&1; then
+            print_result "pass" "  - Valid YAML syntax"
+        else
+            print_result "fail" "  - Invalid YAML syntax"
+            return
+        fi
+
+        # Check required fields
+        local workflow_name
+        workflow_name=$(yq eval '.name' "$workflow" 2>/dev/null)
+        if [[ -n "$workflow_name" ]]; then
+            print_result "pass" "  - Has name: $workflow_name"
+        else
+            print_result "fail" "  - Missing workflow name"
+        fi
+
+        # Check for on triggers
+        if yq eval '.on' "$workflow" > /dev/null 2>&1; then
+            print_result "pass" "  - Has triggers defined"
+
+            # Check for pull_request trigger
+            if yq eval '.on.pull_request' "$workflow" | grep -q "main"; then
+                print_result "pass" "    - Triggers on PR to main"
+            else
+                print_result "fail" "    - Missing PR to main trigger"
+            fi
+        else
+            print_result "fail" "  - Missing triggers"
+        fi
+
+        # Check for jobs
+        local job_count
+        job_count=$(yq eval '.jobs | length' "$workflow" 2>/dev/null)
+        if [[ "$job_count" -gt 0 ]]; then
+            print_result "pass" "  - Has jobs defined: $job_count jobs"
+        else
+            print_result "fail" "  - No jobs defined"
+        fi
+    else
+        print_result "fail" "Workflow file missing: installer-validation.yml"
     fi
 }
 
@@ -322,6 +439,7 @@ main() {
     test_libraries
     test_commands
     test_documentation
+    test_github_actions
     test_installer_help
 
     # Print summary
