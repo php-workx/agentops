@@ -19,13 +19,19 @@
 ---
 
 > [!IMPORTANT]
-> **This is the ORCHESTRATOR repository** — working implementation, tools, and how-to guides.
+> **Part of the Trinity** — Three repositories, one unified AgentOps ecosystem (v0.9.0)
 >
-> **For philosophical foundation** → See [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
+> **⚙️ agentops** (Orchestration - The Engine) — You are here
+> - HOW to implement → Universal orchestrator, profiles system, CLI tools, automation
 >
-> **For agent operating systems** → See [agent-os](https://github.com/agent-os)
+> **🧠 12-factor-agentops** (Philosophy - The Mind) → [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)
+> - WHY patterns work → Theoretical foundation, research, Four Pillars, Five Laws
+>
+> **🌐 agentops-showcase** (Presentation - The Voice) → [agentops-showcase](https://github.com/boshu2/agentops-showcase)
+> - WHAT users experience → Examples, demos, case studies, learning paths
 >
 > **Status: Proven** - 40x speedup (product-dev), 3x speedup (infrastructure), 90.9% routing accuracy
+> **See:** [TRINITY.md](./TRINITY.md) for architecture and navigation
 
 > [!NOTE]
 > **Built with AI Agents** - This orchestrator was developed using Claude Code and implements patterns from the 12-factor-agentops philosophy. We practice what we document.
