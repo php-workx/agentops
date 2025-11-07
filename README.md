@@ -1,5 +1,7 @@
 # AgentOps: Airflow for AI Agent Workflows
 
+<div align="center">
+
 <!-- Status & Build -->
 [![CI Status](https://github.com/boshu2/agentops/actions/workflows/validate.yml/badge.svg)](https://github.com/boshu2/agentops/actions/workflows/validate.yml)
 [![Version](https://img.shields.io/badge/Version-0.9.0-blue.svg)]()
@@ -10,6 +12,8 @@
 <!-- License -->
 [![Code License](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Doc License](https://img.shields.io/badge/Documentation-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+</div>
 
 <div align="center">
 
@@ -28,7 +32,7 @@
 > - 🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops) — WHY patterns work (Philosophy)
 > - ⚙️ [agentops](https://github.com/boshu2/agentops) — HOW to implement (Implementation) ← **You are here**
 > - 🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase) — WHAT users experience (Examples)
-> 
+>
 > See [TRINITY.md](./TRINITY.md) for complete architecture.
 
 ---
@@ -81,7 +85,7 @@
 Just as Airflow orchestrates data pipelines (extract → transform → load), AgentOps orchestrates knowledge workflows (research → plan → implement). Same orchestration principles, different domain.
 
 > **Proven Results:** 40x speedup (product dev), 3x speedup (infrastructure), 90.9% routing accuracy
-> 
+>
 > *"Same patterns work identically across domains. Not domain-specific tricks—universal orchestration laws."*
 
 ---
@@ -97,14 +101,14 @@ graph TB
         A4["📅 Scheduler<br/><i>Smart Routing</i>"]
         A5["⚡ Executor<br/><i>Parallel Execution</i>"]
         A6["📊 Logs<br/><i>Observability</i>"]
-        
+
         A1 --> A2
         A2 --> A3
         A3 --> A4
         A4 --> A5
         A5 --> A6
     end
-    
+
     subgraph AgentOps["<b>AgentOps</b><br/>(Knowledge Workflows)"]
         B1["📦 Workflow Package<br/><i>Bundled Workflow</i>"]
         B2["🤖 Agents<br/><i>Specialized Capabilities</i>"]
@@ -112,25 +116,25 @@ graph TB
         B4["🎯 Intelligent Routing<br/><i>90.9% Accuracy</i>"]
         B5["🚀 Multi-Agent Orchestration<br/><i>3x Speedup</i>"]
         B6["📝 Git Memory<br/><i>Native Versioning</i>"]
-        
+
         B1 --> B2
         B2 --> B3
         B3 --> B4
         B4 --> B5
         B5 --> B6
     end
-    
+
     A1 -.->|"<b>Same Pattern</b>"| B1
     A2 -.->|"<b>Same Pattern</b>"| B2
     A3 -.->|"<b>Same Pattern</b>"| B3
     A4 -.->|"<b>Same Pattern</b>"| B4
     A5 -.->|"<b>Same Pattern</b>"| B5
     A6 -.->|"<b>Same Pattern</b>"| B6
-    
+
     classDef airflowStyle fill:#1e40af,stroke:#1e3a8a,stroke-width:3px,color:#fff
     classDef agentopsStyle fill:#ea580c,stroke:#c2410c,stroke-width:3px,color:#fff
     classDef connectionStyle stroke:#6b7280,stroke-width:2px,stroke-dasharray: 5 5
-    
+
     class A1,A2,A3,A4,A5,A6 airflowStyle
     class B1,B2,B3,B4,B5,B6 agentopsStyle
 ```
@@ -153,14 +157,14 @@ with DAG('data_pipeline', schedule_interval='@daily') as dag:
         python_callable=extract_data
     )
     transform = PythonOperator(
-        task_id='transform', 
+        task_id='transform',
         python_callable=transform_data
     )
     load = PythonOperator(
         task_id='load',
         python_callable=load_data
     )
-    
+
     # Dependencies: extract → transform → load
     extract >> transform >> load
 ```
@@ -171,7 +175,7 @@ with DAG('data_pipeline', schedule_interval='@daily') as dag:
 # Phase 1: Research (parallel agents)
 /research "How does our auth system work?"
 # → Code Explorer searches codebase
-# → Doc Explorer reads architecture docs  
+# → Doc Explorer reads architecture docs
 # → History Explorer checks past decisions
 # → Results bundled (5:1 compression)
 # → Takes 10 min (was 30 min serial)
@@ -307,24 +311,24 @@ graph TB
         C2["⚡ Executor<br/>Phase-Based Workflow"]
         C3["📦 DAG Parser<br/>Profile Loader"]
         C4["📊 Observability<br/>Git-Based Tracking"]
-        
+
         C1 --> C2
         C2 --> C3
         C3 --> C4
     end
-    
+
     Core ==>|"Extends via"| Profiles
-    
+
     subgraph Profiles["<b>AgentOps Profiles</b><br/>(Like Airflow Providers)"]
         P1["🔧 devops<br/><i>K8s, CI/CD, Infra</i>"]
         P2["💻 product-dev<br/><i>APIs, UIs, DBs</i>"]
         P3["📊 data-eng<br/><i>Pipelines, Quality</i>"]
         P4["🎨 your-domain<br/><i>Custom Workflows</i>"]
     end
-    
+
     classDef coreStyle fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
     classDef profileStyle fill:#a855f7,stroke:#9333ea,stroke-width:3px,color:#fff
-    
+
     class C1,C2,C3,C4 coreStyle
     class P1,P2,P3,P4 profileStyle
 ```
@@ -355,17 +359,17 @@ graph LR
     R["🔍 Research<br/><i>Gather Context</i>"]
     P["📋 Plan<br/><i>Define Changes</i>"]
     I["⚡ Implement<br/><i>Execute Work</i>"]
-    
+
     R -->|"Human Gate"| P
     P -->|"Human Gate"| I
-    
+
     R -.->|"Fresh Context"| RC["40% Rule<br/>Enforced"]
     P -.->|"Fresh Context"| PC["40% Rule<br/>Enforced"]
     I -.->|"Fresh Context"| IC["40% Rule<br/>Enforced"]
-    
+
     classDef phaseStyle fill:#2563eb,stroke:#1e40af,stroke-width:3px,color:#fff
     classDef ruleStyle fill:#64748b,stroke:#475569,stroke-width:2px,color:#fff
-    
+
     class R,P,I phaseStyle
     class RC,PC,IC ruleStyle
 ```
@@ -396,17 +400,17 @@ graph TB
     Start["Task:<br/>Research Auth System"] --> A1["🔍 Code Explorer"]
     Start --> A2["📚 Doc Explorer"]
     Start --> A3["🕰️ History Explorer"]
-    
+
     A1 --> Sync["⚡ Synthesize<br/><i>3x Faster</i>"]
     A2 --> Sync
     A3 --> Sync
-    
+
     Sync --> Bundle["📦 Context Bundle<br/><i>5:1 Compression</i>"]
-    
+
     classDef taskStyle fill:#ea580c,stroke:#c2410c,stroke-width:3px,color:#fff
     classDef agentStyle fill:#0ea5e9,stroke:#0284c7,stroke-width:3px,color:#fff
     classDef resultStyle fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
-    
+
     class Start taskStyle
     class A1,A2,A3 agentStyle
     class Sync,Bundle resultStyle
@@ -450,8 +454,8 @@ graph TB
 - **New capability:** Multi-day projects via bundles
 
 ### Multi-Domain Validation
-✅ Same patterns work identically in product-dev and infrastructure  
-✅ Convergent evolution proves universality (not domain-specific)  
+✅ Same patterns work identically in product-dev and infrastructure
+✅ Convergent evolution proves universality (not domain-specific)
 ⏳ Pending: SRE, Data Engineering, custom domains
 
 **📘 [Case Studies & Validation](docs/case-studies/)**
@@ -559,8 +563,8 @@ Same relationship as Kubernetes (orchestration) to Docker (runtime). Both can wi
 
 AgentOps is part of a three-repository ecosystem:
 
-**⚙️ agentops** (Implementation) — **You are here**  
-**🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** (Philosophy)  
+**⚙️ agentops** (Implementation) — **You are here**
+**🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** (Philosophy)
 **🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase)** (Examples - Coming Dec 1)
 
 **See [TRINITY.md](./TRINITY.md) for complete architecture details.**
