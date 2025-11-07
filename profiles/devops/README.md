@@ -1,316 +1,299 @@
-# DevOps Profile
+# Infrastructure-Ops Flavor
 
-**Specialization:** Infrastructure, Operations, Kubernetes, GitOps
-
-**Use when:** Building, deploying, and managing infrastructure-as-code
-
-**Key domains:** Applications, sites, deployment pipelines, database operations, security policies
-
----
-
-## Overview
-
-DevOps profile specializes agentops universal patterns for infrastructure and operations work.
-
-**Universal architecture:** Phase-based workflows, context bundles, multi-agent orchestration, intelligent routing
-**Domain specialization:** 52 infrastructure-focused agents, operations workflows, Kubernetes patterns
+**Pattern:** Deep research → detailed planning → systematic implementation
+**Attribution:** Based on proven GitOps patterns from infrastructure operations
+**Best For:** Infrastructure, operations, data engineering, any domain needing rigorous research before execution
+**Workspace:** Creates `agentops/infrastructure-ops/` in your project
 
 ---
 
-## What This Profile Provides
+## Orchestrator Context
 
-### 52 Specialized Agents
+**infrastructure-ops** is one flavor in the agentops multi-flavor orchestration system. Think of agentops like Kubernetes:
+- **Kubernetes** orchestrates containers (Docker, containerd, etc.)
+- **agentops** orchestrates agent operating systems (product-dev, infrastructure-ops, devops, etc.)
+
+### Why Multiple Flavors?
+
+Different problems need different approaches:
+- **Product development** (product-dev) - Spec-driven, user-focused, fast iteration
+- **Infrastructure operations** (infrastructure-ops) - Research-driven, rigor, safety
+- **DevOps** (devops) - 52 specialized agents for GitOps/Kubernetes workflows
+
+**The power:** Use the right flavor for each job. Product team works in `agentops/product-dev/` while ops team works in `agentops/infrastructure-ops/` - same project, different approaches, orchestrated together.
+
+See [MULTI_FLAVOR_EXAMPLE.md](../MULTI_FLAVOR_EXAMPLE.md) for detailed multi-flavor orchestration scenario.
+
+---
+
+## What This Flavor Is
+
+The **infrastructure-ops** profile is a 3-phase workflow optimized for operational work where deep understanding precedes action.
+
 ```
-Applications (8 agents)
-  • applications-create-app
-  • applications-create-app-jren
-  • applications-debug-sync
-  • applications-modify-app
-  • ... and 4 more
+Phase 1: RESEARCH (40-60k tokens)
+├── Understand the problem deeply
+├── Gather context and constraints
+├── Explore multiple approaches
+├── Document findings & recommendations
+└── Output: research.md bundle
 
-Infrastructure (15+ agents)
-  • services-kyverno-policies (security)
-  • services-crossplane-dev (infrastructure-as-code)
-  • services-edb-databases (database operations)
-  • ... and more
+Phase 2: PLAN (30-50k tokens)
+├── Design specific implementation
+├── Detail exact changes file-by-file
+├── Create specification with validation
+├── Document decision rationale
+└── Output: plan.md bundle
 
-Operations (10+ agents)
-  • argocd-debug-sync (deployment troubleshooting)
-  • playbooks-* (operational workflows)
-  • incidents-response (incident management)
-  • monitoring-* (observability)
-  • ... and more
-
-Sites/Configuration (8 agents)
-  • sites-site-config (add/modify site configuration)
-  • sites-harmonize (render config)
-  • ... and more
-
-Plus: Documentation, deployment, testing, security agents
+Phase 3: IMPLEMENT (remaining budget)
+├── Execute approved plan
+├── Validate at each step
+├── Document learnings
+└── Output: working code + commits
 ```
 
-### Phase-Based Workflows
+**40% rule enforced per phase** to prevent context collapse.
+
+---
+
+## When to Use This Flavor
+
+✅ **Perfect for:**
+- Infrastructure operations (k8s upgrades, cluster changes)
+- Site reliability engineering (incident investigation, runbooks)
+- Data engineering (pipeline design and optimization)
+- Security hardening (comprehensive audit + planning + implementation)
+- Any work where research depth is critical
+
+❌ **Not ideal for:**
+- Quick feature development (use product-dev instead)
+- Rapid prototyping (too much ceremony)
+- Well-understood problems (skip to plan phase)
+
+---
+
+## Key Differences from product-dev
+
+| Aspect | infrastructure-ops | product-dev |
+|--------|------------------------|-----------------|
+| **Phases** | 3 (research → plan → implement) | 7 (granular workflow) |
+| **Research Focus** | Deep, comprehensive | Targeted for product |
+| **Planning** | Detailed implementation specs | Product specification |
+| **Use Case** | Infrastructure & operations | Product development |
+| **Best When** | Deep understanding needed | Product vision clear |
+| **Ceremony** | Streamlined | Comprehensive |
+
+---
+
+## Architecture
+
 ```
-/research "Infrastructure question"
-  ↓ (explore approaches, constraints)
+profiles/infrastructure-ops/
+├── agents/                          # Specialized agents
+│   ├── researcher.md                # Conducts deep research phase
+│   ├── planner.md                   # Creates detailed plans
+│   └── implementer.md               # Executes implementation
+│
+├── workflows/                       # Phase workflows
+│   ├── research/
+│   │   ├── explore-problem.md
+│   │   ├── gather-context.md
+│   │   └── document-findings.md
+│   ├── plan/
+│   │   ├── design-solution.md
+│   │   └── create-specification.md
+│   └── implementation/
+│       ├── execute-plan.md
+│       └── validate-results.md
+│
+├── skills/                          # Reusable skills
+│   ├── bundle-save.sh
+│   └── bundle-load.sh
+│
+└── README.md                        # This file
+```
+
+---
+
+## Using This Flavor
+
+### Basic Workflow
+
+```bash
+# 1. Start research phase
+/research "Your question or problem"
+# → Generates research.md
+
+# 2. Review and save findings
+/bundle-save my-research-topic
+# → Compressed bundle for reuse
+
+# 3. Plan based on research
 /plan research.md
-  ↓ (specify file:line changes)
+# → Generates plan.md
+
+# 4. Implement with validation
 /implement plan.md
-  ↓ (deploy manifests)
+# → Executes with safety gates
 ```
 
-### Parallel Research & Validation
-```
-/prime-complex-multi "Infrastructure topic"
-  • 3 agents research simultaneously
-  • 3x speedup (20-30 min → 7-10 min)
-
-/validate-multi
-  • YAML syntax + security + workflows in parallel
-  • 3x speedup (30s → 10s)
-```
-
-### Context Bundles
-```
-/bundle-save redis-caching-research
-  • Compress research findings (5:1-10:1 ratio)
-  • Reuse across sessions and teams
-
-/bundle-load redis-caching-research
-  • Resume work in fresh context
-```
-
-### Intelligent Routing
-```
-/prime-with-routing "Create Redis application"
-  • Auto-classifies task (infrastructure, create, medium)
-  • Recommends: applications-create-app-jren (94% fit)
-  • Achieves: 90.9% accuracy
-```
-
----
-
-## Typical Workflows
-
-### Create New Application
+### Multi-Day Projects (Context Bundles)
 
 ```bash
-/prime-with-routing "Create Redis application"
-# Auto-recommends: applications-create-app-jren
+# Day 1: Deep research
+/research "Complex infrastructure upgrade"
+/bundle-save k8s-upgrade-research
 
-# Or explicitly:
-/research "How should we structure Redis deployment?"
-/bundle-save redis-research
+# Day 2: Plan from bundle
+/bundle-load k8s-upgrade-research
+/plan research.md
+/bundle-save k8s-upgrade-plan
 
-/bundle-load redis-research
-/plan redis-research.md
-/bundle-save redis-plan
-
-/bundle-load redis-plan
-/implement redis-plan.md
-git push
-```
-
-### Debug Deployment Issue
-
-```bash
-/prime-with-routing "ArgoCD app won't sync"
-# Auto-recommends: argocd-debug-sync
-
-# Or:
-/research "Why is deployment failing?"
-/plan debugging-research.md
-/implement debugging-plan.md
-```
-
-### Configure Site
-
-```bash
-/research "What configuration does site need?"
-/plan site-config-research.md
-/implement site-config-plan.md
-
-# Or use:
-/prime-with-routing "Add new site to configuration"
-# Auto-recommends: sites-site-config
+# Day 3: Implement from bundle
+/bundle-load k8s-upgrade-plan
+/implement plan.md
 ```
 
 ---
 
-## Profile Structure
+## Example: Using Both Flavors in One Project
 
 ```
-devops/
-├── README.md (this file)
-├── agents/
-│   ├── applications/ (8 agents)
-│   ├── infrastructure/ (15+ agents)
-│   ├── operations/ (10+ agents)
-│   ├── sites/ (8 agents)
-│   └── ... (more specializations)
-├── commands/
-│   ├── research/ (phase 1 guidance)
-│   ├── plan/ (phase 2 guidance)
-│   ├── implement/ (phase 3 guidance)
-│   └── workflows/ (multi-agent patterns)
-├── workflows/
-│   ├── application-creation/
-│   ├── site-configuration/
-│   ├── deployment/
-│   └── troubleshooting/
-└── standards/
-    ├── kubernetes/ (K8s patterns)
-    ├── helm/ (Helm chart standards)
-    ├── kustomize/ (Kustomize patterns)
-    └── gitops/ (GitOps best practices)
+my-project/
+├── agentops/
+│   ├── product-dev/              # Product development
+│   │   ├── product/
+│   │   │   ├── mission.md
+│   │   │   └── roadmap.md
+│   │   └── specs/
+│   │       └── 2025-11-06-auth-system/
+│   │
+│   └── infrastructure-ops/     # Infrastructure work
+│       ├── research/
+│       │   └── k8s-upgrade-research.md
+│       └── plans/
+│           └── k8s-upgrade-plan.md
+│
+└── code/
+    ├── src/                         # Built from product-dev
+    └── infrastructure/              # Built from infrastructure-ops
 ```
+
+**Use the right flavor for the right work!**
 
 ---
 
-## Key Patterns for DevOps
+## Agents in This Flavor
 
-### Pattern: Infrastructure-as-Code
+### Researcher
+Conducts deep, comprehensive investigation of problems.
 
-Work follows file:line precision:
-```
-/plan infrastructure-research.md
-  → Specifies exact changes:
-    - apps/redis/kustomization.yaml:15
-    - infrastructure/namespaces.yaml:5
-```
+**Responsibilities:**
+- Explore problem space thoroughly
+- Gather all relevant context
+- Document findings and recommendations
+- Create research bundles for reuse
 
-### Pattern: Validation Gates
-
-Every change validated:
-```
-/implement infrastructure-plan.md
-  → Validates after each step:
-    - make quick (syntax)
-    - make ci-all (workflows)
-    - kubectl apply --dry-run (manifests)
-```
-
-### Pattern: Rollback Documentation
-
-Every plan includes undo procedure:
-```
-/plan infrastructure-research.md
-  → Includes rollback:
-    - git revert [sha]
-    - kubectl delete manifests
-    - Verify application works
-```
-
-### Pattern: Multi-Day Projects
-
-Complex infrastructure changes span multiple days:
-```
-Day 1: Research architecture
-  → /bundle-save infra-research
-
-Day 2: Plan changes
-  → /bundle-load infra-research
-  → /plan infra-plan.md
-  → /bundle-save infra-plan
-
-Day 3: Deploy
-  → /bundle-load infra-plan
-  → /implement infra-plan.md
-  → git push
-```
+**When to use:** Before any major change or unfamiliar problem
 
 ---
 
-## Real Example: Database Migration
+### Planner
+Creates detailed, file-by-file implementation plans.
 
-```bash
-# Phase 1: Research
-/research "Migrate Postgres 12 to 13 with zero downtime"
+**Responsibilities:**
+- Design specific implementation approach
+- Detail exact changes needed
+- Document assumptions and constraints
+- Create validation gates
 
-Output: research.md
-- Approaches: in-place, pg_dump, logical replication
-- Recommendation: logical replication (zero downtime)
-- Constraints: wal_level=logical, binary slots
+**When to use:** After research is complete, before implementation
 
-/bundle-save postgres-migration-research
+---
 
-# Phase 2: Plan (next day, fresh context)
-/bundle-load postgres-migration-research
-/plan postgres-migration-research.md
+### Implementer
+Executes plans with systematic validation.
 
-Output: plan.md
-- Step 1: Enable logical replication
-- Step 2: Create replication slot
-- Step 3: Start logical replication
-- Step 4: Verify data (schema + row counts)
-- Step 5: Cutover (switch to replica)
-- Validation: query timing test
-- Rollback: Stop replication, restore from backup
+**Responsibilities:**
+- Follow approved plan precisely
+- Validate at each step
+- Document learnings and decisions
+- Create implementation reports
 
-/bundle-save postgres-migration-plan
+**When to use:** Execute approved plans with confidence
 
-# Phase 3: Deploy (next day, fresh context)
-/bundle-load postgres-migration-plan
-/implement postgres-migration-plan.md
+---
 
-Output: Changes + git commit
-- Modified: helm/postgres-values.yaml
-- Modified: scripts/db-migration.sh
-- Validated: All steps pass
-- Ready to push
+## Context Bundles (Multi-Day Projects)
 
-git push
+This flavor heavily uses bundles to enable multi-day projects:
+
+```
+Bundle = Compressed intermediate artifacts (5:1 to 10:1 compression)
+
+research.md bundle
+└── Contains: findings, approaches, recommendations
+    └── Reused in: plan phase, shared with team
+
+plan.md bundle
+└── Contains: detailed specifications, validation gates
+    └── Reused in: implementation phase, shared with team
 ```
 
----
-
-## Measured Improvements
-
-From GitOps integration of DevOps profile:
-
-| Metric | Before | After | Gain |
-|--------|--------|-------|------|
-| Research time | 30 min | 10 min | **3x faster** |
-| Validation | 30 sec | 10 sec | **3x faster** |
-| Multi-day work | ❌ Limited | ✅ Enabled | **New** |
-| Team reuse | Manual | Bundles | **Automated** |
+**Benefits:**
+- Resume work next day with fresh context
+- Share research/plans across team
+- Avoid duplicate research
+- Maintain 40% rule across days
 
 ---
 
-## When to Use DevOps Profile
+## Philosophy
 
-**Use this profile when:**
-- ✅ Working with Kubernetes/infrastructure
-- ✅ Creating or modifying applications
-- ✅ Managing site configuration
-- ✅ Debugging deployment issues
-- ✅ Operating databases, networking, security
+**This flavor embodies DevOps discipline applied to knowledge work:**
 
-**Use other profiles when:**
-- Building new products (product-dev profile)
-- Responding to incidents (SRE profile)
-- Building data pipelines (data-eng profile)
+- ✅ **Research first** — Understand before acting
+- ✅ **Specification second** — Plan before implementing
+- ✅ **Validation third** — Test before deploying
+- ✅ **Documentation always** — Capture learnings for future
+
+**It's the scientific method applied to infrastructure and operations.**
 
 ---
 
-## See Also
+## Contributing to This Profile
 
-- **Architecture:** `/agentops/architecture/` (universal patterns)
-- **Documentation:** `/agentops/docs/` (how-to guides)
-- **Case Study:** GitOps integration (`agentops/docs/CASE_STUDY_GITOPS_INTEGRATION.md`)
-
----
-
-## Getting Started
-
-1. **Read:** This README (you are here)
-2. **Explore:** Agents in `agents/` directory
-3. **Try:** `/prime-with-routing "Your infrastructure task"`
-4. **Dive deep:** Read specific agent documentation
-5. **Apply:** Use phase-based workflow for complex tasks
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for:
+- How to add new agents to this flavor
+- How to propose workflow improvements
+- How to share case studies from your domain
 
 ---
 
-**Profile Status:** ✅ Complete, proven, 52 agents, validated in production
+## Related
 
-**Last Updated:** 2025-11-05
+- **[product-dev](../product-dev/README.md)** - Product development flavor (better for features)
+- **[MULTI_FLAVOR_EXAMPLE.md](../MULTI_FLAVOR_EXAMPLE.md)** - See both flavors working together
+- **[agentops orchestrator](../../architecture/orchestration/README.md)** - How these flavors work together
+- **[12-factor-agentops](../../12-factor-agentops/README.md)** - Philosophy behind this approach
+- **GitOps patterns** - Original foundation for this flavor
+
+---
+
+## Attribution
+
+This flavor is based on proven patterns from:
+- Infrastructure-as-code operations
+- GitOps automation workflows
+- Site reliability engineering (SRE) practices
+- DevOps discipline and rigor
+
+**Original context:** Used successfully across 20+ Kubernetes clusters, federal/DoD infrastructure, complex multi-tenant systems.
+
+**Now orchestrated by agentops** for broader applicability across domains.
+
+---
+
+**Use this flavor when research and planning matter more than speed.**
+
+*3-phase workflow • Context bundles • Infrastructure-focused • DevOps-inspired*

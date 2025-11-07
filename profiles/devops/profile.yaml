@@ -1,236 +1,109 @@
 apiVersion: agentops.io/v1
 kind: Profile
 metadata:
-  name: devops
+  name: infrastructure-ops
   version: v1.0.0
-  description: Complete GitOps ecosystem with 52 production agents
+  description: Operations and monitoring workflows with research-first approach
   created: 2025-11-06
   maintainer: AgentOps Community
 spec:
-  agent_count: 52
+  agent_count: 18
   workflow_packages:
-    - gitops-complete
-    - kubernetes-platform
-    - ci-cd-pipelines
+    - research-first-ops
+    - infrastructure-operations
+    - monitoring-observability
 
   agents:
-    # Application Management (7 agents)
-    - name: applications-create-app
-      description: Create new applications using golden patterns
-      specialization: Application scaffolding
-    - name: applications-modify-app
-      description: Safely modify existing applications
-      specialization: Application maintenance
-    - name: applications-debug-sync
-      description: Debug Argo CD sync failures
-      specialization: GitOps troubleshooting
-    - name: applications-create-app-context7
-      description: Create apps with Context7 integration
-      specialization: Modern app patterns
-    - name: applications-create-app-jren
-      description: Add apps to jren-cm using patterns
-      specialization: JREN platform apps
-    - name: applications-modify-app-jren
-      description: Modify jren-cm applications safely
-      specialization: JREN app maintenance
-    - name: argocd-debug-sync
-      description: Debug Argo CD application sync
-      specialization: Argo CD diagnostics
-
-    # Container & Build (2 agents)
-    - name: containers-build-modify
-      description: Build and modify container images
-      specialization: Container engineering
-
-    # Deployments (2 agents)
-    - name: deployments-progressive-delivery
-      description: Implement canary/blue-green deployments
-      specialization: Progressive delivery patterns
-    - name: deployments-rollback-automation
-      description: Implement automated rollbacks
-      specialization: Rollback strategies
-
-    # Documentation (3 agents)
-    - name: documentation-create-docs
-      description: Create clear documentation
-      specialization: Technical writing
-    - name: documentation-search-docs
-      description: Fast parallel documentation search
-      specialization: Documentation discovery
-    - name: documentation-optimize-docs
-      description: Optimize docs to Knowledge OS standards
-      specialization: Documentation quality
-
-    # Incidents (2 agents)
-    - name: incidents-response
-      description: Guide incident triage and response
-      specialization: Incident management
-    - name: incidents-postmortems
+    - name: infrastructure-researcher
+      description: Research infrastructure patterns and solutions
+      specialization: Technology research and evaluation
+    - name: monitoring-designer
+      description: Design monitoring and alerting strategies
+      specialization: Observability and SLO definition
+    - name: dashboard-creator
+      description: Create operational dashboards
+      specialization: Metrics visualization and reporting
+    - name: alert-manager
+      description: Configure alerts and runbooks
+      specialization: Alert design and incident response
+    - name: incident-responder
+      description: Guide incident triage and resolution
+      specialization: Incident management and postmortems
+    - name: postmortem-writer
       description: Create blameless postmortems
-      specialization: Root cause analysis
-
-    # Innovation (3 agents)
-    - name: innovation-automation-opportunities
-      description: Identify automation opportunities
-      specialization: Toil reduction
-    - name: innovation-architecture-review
-      description: Review architecture for improvements
-      specialization: Architecture optimization
-    - name: innovation-brainstorm-solutions
-      description: Facilitate innovation brainstorming
-      specialization: Solution design
-    - name: innovation-capability-explorer
-      description: Explore untapped platform capabilities
-      specialization: Feature discovery
-
-    # Monitoring (2 agents)
-    - name: monitoring-slo-dashboards
-      description: Create SLO dashboards
-      specialization: Observability
-    - name: monitoring-alerts-runbooks
-      description: Create actionable alerts with runbooks
-      specialization: Alert design
-
-    # Operations (3 agents)
-    - name: operations-drift-detection
-      description: Detect drift between cluster and GitOps state
-      specialization: State reconciliation
-    - name: operations-organize-repo
-      description: Systematic repository organization
-      specialization: Repository structure
-    - name: operations-jira-tickets
-      description: Create JIRA tickets from repository work
-      specialization: Issue tracking
-
-    # Pipelines (2 agents)
-    - name: pipelines-troubleshooting
-      description: Diagnose pipeline failures
-      specialization: CI/CD debugging
-    - name: pipelines-gitlab-ci
-      description: Modify GitLab CI/CD pipelines
-      specialization: GitLab CI
-
-    # Playbooks (4 agents)
-    - name: playbooks-platform-upgrades
-      description: Guide platform version upgrades
-      specialization: Upgrade orchestration
-    - name: playbooks-storagegrid-onboarding
-      description: Guide StorageGrid S3 onboarding
-      specialization: Storage provisioning
-    - name: playbooks-gitops-operations
-      description: Guide day-2 GitOps operations
-      specialization: GitOps workflows
-    - name: playbooks-harmonize-workflow
-      description: Guide harmonize workflow execution
-      specialization: Config rendering
-    - name: playbooks-keycloak-sso
-      description: Guide Keycloak SSO deployment
-      specialization: Authentication
-
-    # Security (1 agent)
-    - name: security-scanning
-      description: Integrate security scanning
-      specialization: Security automation
-
-    # Services (3 agents)
-    - name: services-kyverno-policies
-      description: Create Kyverno policies
-      specialization: Policy enforcement
-    - name: services-edb-databases
-      description: Create EDB Postgres databases
-      specialization: Database provisioning
-    - name: services-crossplane-dev
-      description: Develop Crossplane infrastructure
-      specialization: Infrastructure as code
-
-    # Sites (2 agents)
-    - name: sites-site-config
-      description: Modify site configuration safely
-      specialization: Site management
-    - name: sites-harmonize
-      description: Execute harmonize workflow
-      specialization: Config rendering
-
-    # Testing (2 agents)
-    - name: testing-onboarding-audit
-      description: Audit onboarding experience
-      specialization: Developer experience
-    - name: testing-integration-e2e
-      description: Create integration/E2E tests
-      specialization: Test automation
-
-    # Code Review (1 agent)
-    - name: code-review-improve
-      description: Systematic code review
-      specialization: Code quality
-
-    # Meta/Framework (10 agents)
-    - name: meta-research-context7
-      description: Optimize Context7 library docs
-      specialization: Library research
-    - name: meta-todo-planner
-      description: Generate todo plans with sub-agents
-      specialization: Planning coordination
-    - name: meta-implement-agent
-      description: Execute approved plans exactly
-      specialization: Plan execution
-    - name: meta-retro-analyzer
-      description: Deep retrospective analysis
-      specialization: Pattern extraction
-    - name: meta-workflow-auditor
-      description: Audit workflow outputs
-      specialization: Quality assurance
-    - name: meta-ipc-auditor
-      description: Audit IPC database integrity
-      specialization: Data validation
-    - name: personal-12factor-audit
-      description: Audit 12-factor compliance
-      specialization: Compliance checking
-    - name: gitops-specialist-generator
-      description: Generate new specialized agents
-      specialization: Agent creation
-    - name: harmonize-guide
-      description: Orchestrate harmonize workflow
-      specialization: Config orchestration
-    - name: q1-architectural-mentor
-      description: Codex-aware architectural mentoring
-      specialization: Architecture guidance
+      specialization: Root cause analysis and prevention
+    - name: runbook-author
+      description: Write operational runbooks
+      specialization: Procedure documentation
+    - name: capacity-planner
+      description: Plan capacity and scaling strategies
+      specialization: Resource optimization and forecasting
+    - name: cost-optimizer
+      description: Optimize infrastructure costs
+      specialization: Cost analysis and reduction
+    - name: slo-manager
+      description: Define and manage Service Level Objectives
+      specialization: SLO/SLI design and tracking
+    - name: backup-automation
+      description: Automate backup and restore procedures
+      specialization: Data protection and disaster recovery
+    - name: security-auditor
+      description: Audit security configurations
+      specialization: Security compliance and hardening
+    - name: compliance-validator
+      description: Validate regulatory compliance
+      specialization: Compliance frameworks and auditing
+    - name: log-analyzer
+      description: Analyze logs for patterns and issues
+      specialization: Log aggregation and analysis
+    - name: performance-tuner
+      description: Tune system performance
+      specialization: Performance optimization
+    - name: automation-builder
+      description: Build operational automation
+      specialization: Workflow automation and scripting
+    - name: documentation-maintainer
+      description: Maintain operational documentation
+      specialization: Documentation management
+    - name: knowledge-curator
+      description: Curate institutional knowledge
+      specialization: Knowledge management and organization
 
   validation:
-    - type: yaml-syntax
-      description: YAML syntax validation
+    - type: infrastructure
+      description: Infrastructure validation
       commands:
-        - make quick
-    - type: kubernetes
-      description: Kubernetes manifest validation
+        - make validate-infra
+        - terraform validate
+    - type: monitoring
+      description: Monitoring validation
       commands:
-        - make ci-all
-    - type: gitops
-      description: GitOps validation
+        - make validate-dashboards
+        - make validate-alerts
+    - type: compliance
+      description: Compliance validation
       commands:
-        - make validate
+        - make audit-compliance
 
   dependencies:
     - git
     - make
-    - kubectl
-    - kustomize
-    - helm (optional)
-    - argocd (optional)
+    - kubectl (optional, for Kubernetes)
+    - terraform (optional, for IaC)
+    - ansible (optional, for automation)
 
   directory_structure:
     - .agentops/
     - .agentops/config.yml
-    - apps/
-    - sites/
     - infrastructure/
+    - monitoring/
+    - runbooks/
+    - postmortems/
     - docs/
-    - .claude/
 
   tags:
-    - gitops
-    - kubernetes
-    - devops
-    - platform-engineering
-    - ci-cd
-    - infrastructure-as-code
+    - infrastructure-operations
+    - monitoring
+    - observability
+    - sre
+    - incident-management
