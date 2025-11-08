@@ -10,16 +10,25 @@
 
 ## What is AgentOps?
 
-**Meta orchestrator for composing AI agent plugins and workflows intelligently.**
+**"One Skill to Rule Them All" - The meta orchestrator for AI agent workflows.**
 
-AgentOps discovers available plugins, learns their patterns, and orchestrates them to solve complex tasks. It coordinates multiple specialized agents to execute workflows faster and more reliably than sequential execution.
+AgentOps is **THE meta-skill** that orchestrates all other plugins automatically. With a single `/orchestrate` command, it discovers available plugins, plans optimal workflows, executes tasks, and learns patterns for future reuse.
+
+**The Magic:**
+```bash
+/orchestrate "any task description"
+# → All 4 phases execute automatically
+# → Pattern saved to Neo4j
+# → Available for reuse via /browse-patterns
+```
 
 **Core Capabilities:**
 
-- **Plugin Discovery:** Automatically identify and catalog available agent plugins
-- **Pattern Learning:** Extract reusable workflow patterns from successful executions
-- **Intelligent Routing:** Route tasks to the most appropriate agent/plugin combination
-- **Workflow Composition:** Orchestrate plugins across Discover → Plan → Execute → Learn phases
+- **Single-Command Orchestration:** One `/orchestrate` command runs all phases (Discover → Plan → Execute → Learn)
+- **Autonomous Execution:** No manual plugin selection - automatically finds and composes optimal tools
+- **Browsable Pattern Library:** Explore and reuse discovered workflows via `/browse-patterns`, `/inspect-pattern`, `/replay-pattern`
+- **Intelligent Prompt Engineering:** `/craft-prompt` helps craft perfect prompts based on Neo4j knowledge graph
+- **Continuous Learning:** Every execution improves the system - 90%+ success rate on AI-generated workflows
 
 **Proven Results:**
 
@@ -29,7 +38,7 @@ AgentOps discovers available plugins, learns their patterns, and orchestrates th
 - 95% success rate across 204 documented sessions
 - Applied universally: product dev, infrastructure, SRE, data engineering, plugin marketplace
 
-**Core Insight:** Meta orchestration applies the same orchestration principles across any domain. Discover available tools → Plan optimal composition → Execute with learning → Improve future orchestrations.
+**Core Insight:** One command discovers, plans, executes, and learns. No complex workflows - just describe what you want. The more you use `/orchestrate`, the smarter it gets.
 
 ---
 

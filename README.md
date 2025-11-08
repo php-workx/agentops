@@ -1,4 +1,4 @@
-# AgentOps: Meta Orchestrator for AI Agent Workflows
+# AgentOps: One Skill to Rule Them All
 
 <div align="center">
 
@@ -17,11 +17,11 @@
 
 <div align="center">
 
-**Orchestrate AI agent plugins and patterns with intelligent workflow composition**
+**One Skill to Rule Them All - The Meta-Orchestrator for AI Agent Workflows**
 
-*Discover → Plan → Execute plugin workflows that deliver 3-40x speedup*
+*One command (`/orchestrate`) automatically discovers plugins, plans workflows, executes tasks, and learns patterns*
 
-*Plugin orchestration • Pattern discovery • Intelligent routing • Observable execution*
+*Single-command orchestration • Autonomous 4-phase execution • Browsable pattern library • Neo4j knowledge graph*
 
 </div>
 
@@ -96,6 +96,92 @@ AgentOps discovers available plugins, learns their patterns, and orchestrates th
 
 ---
 
+## One Skill to Rule Them All
+
+AgentOps is **THE meta-skill** - a single command that orchestrates all other plugins and skills.
+
+### The Magic: One Command Does Everything
+
+```bash
+/orchestrate "Deploy Next.js app to Kubernetes with monitoring"
+```
+
+**What happens automatically:**
+
+```mermaid
+graph LR
+    A[/orchestrate] --> B[🔍 Discovery Phase]
+    B --> C[📋 Planning Phase]
+    C --> D[⚡ Execution Phase]
+    D --> E[📚 Learning Phase]
+    E --> F[✅ Complete + Pattern Saved]
+
+    B -.->|Finds| B1[Next.js plugin]
+    B -.->|Finds| B2[Docker plugin]
+    B -.->|Finds| B3[K8s plugin]
+    B -.->|Finds| B4[Prometheus plugin]
+
+    C -.->|Plans| C1[Build → Push → Deploy → Monitor]
+
+    D -.->|Executes| D1[All steps with validation]
+
+    E -.->|Saves to| E1[Neo4j pattern library]
+```
+
+**All 4 phases execute automatically. No separate commands needed.**
+
+### Browse Discovered Patterns
+
+After `/orchestrate` runs, patterns are saved to Neo4j. Explore them:
+
+```bash
+# List all discovered patterns
+/browse-patterns
+
+# Inspect specific pattern
+/inspect-pattern nextjs-k8s-deploy-1
+
+# Reuse proven workflow
+/replay-pattern nextjs-k8s-deploy-1
+```
+
+### Intelligent Prompt Engineering
+
+Not sure how to phrase your request? Let the meta-orchestrator help:
+
+```bash
+/craft-prompt "analyze CSV data and make charts"
+
+# Generates optimized prompt:
+# "Load CSV from ./data/sales.csv, perform statistical analysis
+#  (mean, median, std dev), identify trends and outliers, create
+#  interactive Plotly visualizations (time series, distributions,
+#  correlations), export as HTML dashboard"
+#
+# Detected plugins: pandas-analyzer, statistical-toolkit,
+#                   plotly-visualizer, dashboard-generator
+# Similar patterns: #42 (95% success), #67 (92% success)
+```
+
+### Neo4j Knowledge Graph Backend
+
+Every execution builds institutional knowledge:
+
+```
+Knowledge Graph (Neo4j)
+├── 400+ Plugins cataloged
+├── Patterns discovered from executions
+├── Success rates tracked
+└── Relationships learned
+    ├── Plugin A + Plugin B → 95% success
+    ├── Task type → Best plugin combo
+    └── Failure patterns → Avoid combinations
+```
+
+**The more you use `/orchestrate`, the smarter it gets.**
+
+---
+
 ## Meta Orchestration Model (Visual)
 
 ```mermaid
@@ -146,34 +232,59 @@ graph TB
 
 ## See It In Action
 
-### AgentOps Meta Orchestration Workflow
+### One Command - Complete Workflow
 
 ```bash
-# Phase 1: Discover (/discover-patterns)
-/discover-patterns "Deploy container application to Kubernetes"
-# → Plugin Discovery scans available agents/tools
-# → Pattern Analyzer identifies common workflows
-# → Capability Matcher finds relevant plugins
-# → Output: Pattern library with 3+ plugin combinations
-# → Results: [Container Build → Registry Push → K8s Deploy]
+# Deploy containerized app to Kubernetes
+/orchestrate "Build my Next.js app, push to registry, deploy to K8s cluster with Prometheus monitoring"
 
-# Phase 2: Plan (/orchestrate)
-/orchestrate "Deploy container application to Kubernetes"
-# → Workflow Composer selects best plugin combination
-# → Routes task: [Docker plugins] → [Registry plugins] → [K8s plugins]
-# → Generates execution plan with dependencies
-# → Validates feasibility before execution
-# → Output: Structured orchestration spec
+# What happens (all automatic):
+#
+# 🔍 Discovery Phase (30 seconds):
+#   ✓ Found: dockerfile-builder plugin
+#   ✓ Found: container-registry plugin
+#   ✓ Found: kubernetes-deployer plugin
+#   ✓ Found: prometheus-monitor plugin
+#   ✓ Pattern match: "Container Web App Deployment" (92% success rate)
+#
+# 📋 Planning Phase (45 seconds):
+#   ✓ Composed workflow: Build → Push → Deploy → Monitor
+#   ✓ Dependency graph validated
+#   ✓ Resource requirements checked
+#   ✓ Execution plan approved
+#
+# ⚡ Execution Phase (3 minutes):
+#   ✓ Built Docker image
+#   ✓ Pushed to registry
+#   ✓ Applied K8s manifests
+#   ✓ Configured Prometheus scraping
+#   ✓ All validation tests passed
+#
+# 📚 Learning Phase (15 seconds):
+#   ✓ Pattern saved: "nextjs-k8s-prometheus-v1"
+#   ✓ Success rate: 100% (1/1 executions)
+#   ✓ Added to pattern library
+#   ✓ Available for reuse via /replay-pattern
 
-# Phase 3: Execute
-# → MetaOrchestrator runs execution plan
-# → Monitors plugin outputs
-# → Handles errors and retry logic
-# → Captures patterns for future use
-# → Learns from execution results
+✅ Complete! Your app is deployed and monitored.
+
+# Browse what was learned:
+/browse-patterns
+# → Shows: "nextjs-k8s-prometheus-v1" (just created)
+#          "container-web-deployment" (base pattern, 92% success)
+#          ... and 47 other related patterns
 ```
 
-**Meta orchestration composes plugins intelligently. Discover → Plan → Execute with pattern learning.**
+### Reuse Proven Patterns
+
+```bash
+# Same deployment for a different app? Just replay:
+/replay-pattern nextjs-k8s-prometheus-v1
+
+# Adjusts for current context automatically
+```
+
+**One command to rule them all. No manual plugin selection needed.**
 
 ---
 
@@ -181,6 +292,7 @@ graph TB
 
 | **Concept** | **Description** | **Benefit** |
 |-----------|-----------------|-----------|
+| **One Skill to Rule Them All** | Single `/orchestrate` command executes all phases | No complex workflows - just describe what you want |
 | Plugin Discovery | Scan available agents and tools | Find optimal plugin combinations |
 | Pattern Library | Catalog of known workflows | Reuse proven compositions |
 | Intelligent Routing | Match tasks to plugin combinations | 90.9% routing accuracy |
