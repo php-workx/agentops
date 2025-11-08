@@ -19,10 +19,10 @@
 
 **agentops** is the **Orchestration Layer** - The Engine
 
-- **Purpose:** Implement HOW to execute AgentOps patterns
-- **Contents:** Universal orchestrator, profiles system, CLI tools, validation scripts
-- **Audience:** Practitioners, operators, integrators
-- **Output:** Working implementation that runs AgentOps workflows
+- **Purpose:** Implement HOW to execute AgentOps patterns via meta orchestration
+- **Contents:** Meta orchestrator (plugin discovery, pattern learning, intelligent routing), profiles system, CLI tools, validation scripts
+- **Audience:** Practitioners, operators, integrators, platform builders
+- **Output:** Working meta-orchestrator that discovers plugins, learns patterns, and executes workflows intelligently
 
 ## The Other Two
 
@@ -33,9 +33,9 @@
 - **See:** [12-factor-agentops/TRINITY.md](../12-factor-agentops/TRINITY.md)
 
 **agentops-showcase** - The Presentation Layer (The Voice)
-- **Purpose:** Show WHAT users experience with AgentOps
+- **Purpose:** Show WHAT users experience with AgentOps meta orchestration
 - **Location:** `../agentops-showcase/`
-- **Contents:** Examples, demos, case studies, learning paths
+- **Contents:** Examples, demos, case studies, learning paths, plugin discovery workflows
 - **See:** [agentops-showcase/TRINITY.md](../agentops-showcase/TRINITY.md)
 
 ## How They Connect
@@ -69,25 +69,26 @@ The Meta-Orchestrator plugin demonstrates the Trinity architecture in action:
 - Pattern discovery and institutional memory
 - Context engineering (40% rule)
 
-**Implementation in this repository:**
+**Meta Orchestrator Implementation (this repository):**
 - **Location:** `plugins/agentops-meta-orchestrator/`
-- **Structure:** Follows Anthropic Agent Skill spec v1.0
-- **Components:**
-  - `SKILL.md` - Core skill definition (~1,500 lines)
-  - `commands/` - `/orchestrate` and `/discover-patterns` commands
-  - `references/` - Plugin analyzer templates, pattern library templates
-  - `scripts/` - Marketplace installation automation
-- **Functionality:**
-  - Analyzes 400+ Claude Code plugins across 3 marketplaces
-  - Uses sub-agents for parallel capability analysis
-  - Synthesizes meta-patterns about plugin orchestration
-  - Stores discovered patterns in reusable library
-  - Generates optimal workflows for any task
+- **Architecture:** Follows Anthropic Agent Skill spec v1.0
+- **Core Components:**
+  - `SKILL.md` - Meta orchestrator definition with Discovery → Planning → Execution phases
+  - `/discover-patterns` command - Plugin discovery, capability matching, pattern extraction
+  - `/orchestrate` command - Plugin composition, workflow execution, pattern learning
+  - `patterns/` - Pattern library for storing discovered workflows
+  - `metrics/` - Execution tracking and success rate monitoring
+- **Capabilities:**
+  - **Discovery:** Analyzes available plugins, identifies capabilities, matches to tasks
+  - **Planning:** Composes optimal plugin combinations, validates feasibility
+  - **Execution:** Orchestrates plugins with dependency management and error handling
+  - **Learning:** Extracts reusable patterns, improves future compositions (90%+ success rate)
 
 **Demonstrated in showcase:**
+- Meta orchestrator discovering and executing 3+ plugin combinations per task
 - Expected outcomes: 3-5x speedup, 90%+ success rate
-- Pattern reuse and continuous learning
-- Reduced cognitive load via automated orchestration
+- Pattern library growing with each execution (continuous learning)
+- Reduced cognitive load via automated plugin composition and routing
 
 **Why this validates Trinity:**
 1. ✅ Philosophy patterns were already defined (no changes needed)

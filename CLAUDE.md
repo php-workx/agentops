@@ -10,29 +10,32 @@
 
 ## What is AgentOps?
 
-**Universal operating system patterns for reliable, scalable AI agent operations.**
+**Meta orchestrator for composing AI agent plugins and workflows intelligently.**
 
-This framework translates proven DevOps/SRE patterns into AI agent context, solving:
+AgentOps discovers available plugins, learns their patterns, and orchestrates them to solve complex tasks. It coordinates multiple specialized agents to execute workflows faster and more reliably than sequential execution.
 
-- **Agent Reliability:** Preventing context collapse and hallucinations via 40% rule
-- **Agent Coordination:** Multi-agent orchestration 3x faster than sequential
-- **Agent Specialization:** Domain-specific agent profiles and routing (90.9% accuracy)
-- **Agent Learning:** Extraction and reuse of discovered patterns
+**Core Capabilities:**
+
+- **Plugin Discovery:** Automatically identify and catalog available agent plugins
+- **Pattern Learning:** Extract reusable workflow patterns from successful executions
+- **Intelligent Routing:** Route tasks to the most appropriate agent/plugin combination
+- **Workflow Composition:** Orchestrate plugins across Discover → Plan → Execute → Learn phases
 
 **Proven Results:**
 
 - 40x speedup in product development (AI-assisted workflows)
-- 3x speedup in infrastructure operations (multi-agent research)
+- 3x speedup in multi-plugin orchestration tasks
+- 90%+ success rate for AI-generated workflows
 - 95% success rate across 204 documented sessions
-- Applied universally: product dev, infrastructure, SRE, data engineering, custom domains
+- Applied universally: product dev, infrastructure, SRE, data engineering, plugin marketplace
 
-**Core Insight:** AI agents suffer the same cognitive load problems as humans. The 40% rule that prevents human burnout prevents agent context collapse and degradation.
+**Core Insight:** Meta orchestration applies the same orchestration principles across any domain. Discover available tools → Plan optimal composition → Execute with learning → Improve future orchestrations.
 
 ---
 
-## Understanding the AgentOps Ecosystem
+## Understanding AgentOps: Meta Orchestrator Architecture
 
-**Like Kubernetes for agent workflows:**
+**Like Kubernetes for plugin orchestration:**
 
 ```ascii
 CORE PLATFORM (Always Installed)
@@ -59,13 +62,13 @@ VALIDATION LAYER: OPERATORS (watch-reconcile loops)
          └── Memory Operator (maintains knowledge navigability)
 ```
 
-**This repository (agentops) is the CORE PLATFORM:**
+**This repository (agentops) is the META ORCHESTRATOR:**
 
-- Provides universal orchestration (commands, agents, workflows, skills)
-- Always installed (like Kubernetes control plane)
-- Enables extensibility via profiles (like K8s CRDs)
-- Developers create profiles for their domains
-- Community shares profiles (ecosystem)
+- Provides intelligent plugin orchestration (discovery, planning, execution, learning)
+- Meta-level reasoning about available tools and how to compose them
+- Enables orchestration across any plugin marketplace or tool ecosystem
+- Learns patterns from executions to improve future orchestrations
+- Community contributes discovered patterns to shared library
 
 **Kubernetes metaphor:**
 
