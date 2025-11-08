@@ -68,14 +68,19 @@ The command spawns 3 sub-agents to analyze plugins in parallel:
 ```
 ⚙️ Phase 1: Researching plugins...
 
-[Agent 1] Analyzing plugin capabilities for keywords: [api, auth, caching]
-[Agent 2] Mapping integration patterns...
-[Agent 3] Checking success rates and known issues...
+[Agent 1] Querying Neo4j for plugins matching: [api, auth, caching]
+  → Found 23 candidates via graph query
+  → Loaded known issues for top 10 plugins
+[Agent 2] Mapping integration patterns via SIMILAR_TO relationships...
+  → Identified 7 compatible plugin pairs
+[Agent 3] Analyzing success rates from execution history...
+  → Retrieved success metrics for 15 plugins
 
 ✓ Research complete (5 minutes)
-  - Found 23 relevant plugins
-  - Identified 3 proven patterns
-  - Analyzed 15 plugin integrations
+  - Found 23 relevant plugins (Neo4j query)
+  - Identified 3 proven patterns (graph pattern matching)
+  - Loaded 12 known issues (pre-flight checks)
+  - Discovered 7 plugin alternatives (similarity relationships)
 ```
 
 ### Phase 2: Plan (Automatic)
@@ -143,26 +148,32 @@ The command records the successful execution for future use:
 ⚙️ Phase 4: Recording learnings (AUTOMATIC)...
 
 Pattern updated: "REST API with JWT + Redis"
-  - Execution count: 48 → 49
-  - Success rate: 0.92 (maintained)
+  - Execution count: 48 → 49 (Neo4j auto-incremented)
+  - Success rate: 0.92 (recalculated from execution history)
   - Known issue added: "Requires python-jose dependency"
 
-Writing/updating pattern files:
-  ✓ patterns/discovered/rest-api-jwt-redis-v1.yaml (updated)
+Writing/updating storage (dual-write):
+  ✓ patterns/discovered/rest-api-jwt-redis-v1.yaml (file saved)
+  ✓ Neo4j Pattern node updated (graph database)
+  ✓ Neo4j Execution node created (execution tracking)
+  ✓ Plugin→Execution relationships created (usage tracking)
 
 Updating metrics:
-  ✓ global_metrics.yaml (total_workflows: +1, success: +1)
-  ✓ executions.log (1 entry added)
-  ✓ success_rates.log (pattern rate updated)
+  ✓ metrics/executions.log (1 entry appended)
+  ✓ metrics/success_rates.log (pattern rate updated)
+  ✓ metrics/plugin_usage.log (5 plugin executions logged)
+  ✓ Neo4j pattern metrics recalculated (graph query)
 
 Checking pattern promotion:
-  → Pattern has 49 uses (discovered → validated promotion at 5 uses)
-  ✓ Pattern promoted to validated/ (80%+ success, 5+ uses)
+  → Pattern has 49 uses (discovered → validated threshold is 5)
+  ✓ Pattern status updated to 'validated' in Neo4j
+  ✓ Pattern moved to patterns/validated/ directory
 
 ✓ Learning complete
-  ✓ Pattern recorded/updated in library
-  ✓ Metrics updated
-  ✓ Pattern available for future similar tasks
+  ✓ Pattern saved to file AND Neo4j
+  ✓ Execution tracked in graph database
+  ✓ Metrics updated in both stores
+  ✓ Pattern promoted automatically (file + graph)
 ```
 
 **What gets created/updated:**

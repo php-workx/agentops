@@ -96,6 +96,46 @@ When activated by a user request, the skill spawns **multiple sub-agents** to si
 
 **Output:** Comprehensive capability map of all relevant plugins
 
+### Neo4j Integration: Intelligent Plugin Discovery
+
+**The Research phase uses Neo4j to enhance plugin discovery:**
+
+**Step 1: Query plugin capabilities**
+```cypher
+// Find plugins matching task category
+MATCH (p:Plugin)
+WHERE p.category IN $categories
+  AND p.success_rate >= $min_success_threshold
+RETURN p.name, p.description, p.success_rate, p.total_uses
+ORDER BY p.success_rate DESC, p.total_uses DESC
+LIMIT 50
+```
+
+**Step 2: Load known issues**
+```cypher
+// Check for known failure modes
+MATCH (p:Plugin {name: $plugin_name})-[:HAS_ISSUE]->(issue:Issue)
+RETURN issue.error_pattern, issue.solution, issue.frequency
+ORDER BY issue.frequency DESC
+```
+
+**Step 3: Identify alternatives**
+```cypher
+// Find similar plugins (fallback options)
+MATCH (p:Plugin {name: $plugin_name})-[s:SIMILAR_TO]->(similar:Plugin)
+WHERE s.similarity_score >= 0.7
+RETURN similar.name, s.similarity_score, similar.success_rate
+ORDER BY s.similarity_score DESC, similar.success_rate DESC
+LIMIT 5
+```
+
+**Benefits:**
+- **Intelligent selection:** Choose plugins with proven track records
+- **Failure prevention:** Pre-check known issues before execution
+- **Automatic fallbacks:** Alternative plugins ready if primary fails
+
+**Graceful degradation:** If Neo4j unavailable, falls back to file-based marketplace search.
+
 ### Phase 2: Plan (Pattern Synthesis & Workflow Generation)
 
 The skill synthesizes research findings to generate an optimal workflow:
@@ -1174,59 +1214,95 @@ pattern:
   created: 2025-09-12T10:00:00Z
 ```
 
-### Pattern Storage (CRITICAL - ALWAYS Execute)
+### Pattern Storage: Dual-Write Strategy (File + Neo4j)
 
-**After extracting a pattern, ALWAYS save it to the file system:**
+**🔒 CRITICAL:** After extracting a pattern, ALWAYS save to BOTH file system AND Neo4j
 
-**Step 1: Create directory structure (if not exists)**
+**Step 1: Save to file system (reliable primary)**
 ```bash
-mkdir -p ~/.claude/skills/agentops-orchestrator/patterns/discovered
-mkdir -p ~/.claude/skills/agentops-orchestrator/patterns/validated
-mkdir -p ~/.claude/skills/agentops-orchestrator/patterns/learned
-mkdir -p ~/.claude/skills/agentops-orchestrator/metrics
-```
-
-**Step 2: Save pattern file**
-```bash
-# Generate filename from pattern ID
+# Create pattern file
 PATTERN_FILE=~/.claude/skills/agentops-orchestrator/patterns/discovered/${PATTERN_ID}.yaml
-
-# Write pattern to file (use Write tool)
-# Write the YAML content from pattern extraction above
+# Write YAML content
 ```
 
-**Step 3: Update metrics**
-```bash
-# Log execution
-TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-echo "${TIMESTAMP},${PATTERN_ID},${SUCCESS},${DURATION}" >> ~/.claude/skills/agentops-orchestrator/metrics/executions.log
+**Step 2: Save to Neo4j (intelligent secondary)**
+```cypher
+// Create or update pattern node
+MERGE (p:Pattern {pattern_id: $pattern_id})
+SET p.name = $name,
+    p.description = $description,
+    p.category = $category,
+    p.success_rate = $success_rate,
+    p.executions = $executions,
+    p.status = $status,
+    p.workflow_steps = $workflow_steps,
+    p.last_used = datetime()
 
-# Update success rates
-echo "${TIMESTAMP},${PATTERN_ID},${SUCCESS_RATE}" >> ~/.claude/skills/agentops-orchestrator/metrics/success_rates.log
+// Link to plugins used
+UNWIND $plugins AS plugin_data
+MATCH (plugin:Plugin {name: plugin_data.name})
+MERGE (p)-[:USES {
+  step_number: plugin_data.step,
+  required: plugin_data.required
+}]->(plugin)
 ```
 
-**Step 4: Update pattern index**
-```bash
-# Add entry to patterns/README.md if new pattern
-# Or update existing entry if pattern already exists
+**Step 3: Record execution**
+```cypher
+// Track this execution
+CREATE (e:Execution {
+  execution_id: $exec_id,
+  task_description: $task,
+  status: $status,
+  duration_ms: $duration,
+  started_at: datetime($started),
+  completed_at: datetime($completed)
+})
+
+// Link execution to pattern and plugins
+MATCH (pat:Pattern {pattern_id: $pattern_id})
+CREATE (e)-[:IMPLEMENTS]->(pat)
+
+UNWIND $plugins_used AS plugin_name
+MATCH (p:Plugin {name: plugin_name})
+CREATE (p)-[:EXECUTED_IN {
+  step: plugin_name.step,
+  duration_ms: plugin_name.duration,
+  status: 'success'
+}]->(e)
 ```
 
-**Example complete storage workflow:**
-
+**Step 4: Update metrics**
+```cypher
+// Recalculate pattern success rate
+MATCH (pat:Pattern {pattern_id: $pattern_id})<-[:IMPLEMENTS]-(exec:Execution)
+WITH pat,
+     COUNT(exec) AS total,
+     SUM(CASE WHEN exec.status = 'success' THEN 1 ELSE 0 END) AS successes
+SET pat.executions = total,
+    pat.success_rate = toFloat(successes) / total
 ```
-After workflow completes successfully:
 
-1. Extract pattern (see above YAML structure)
-2. Write pattern file:
-   File: ~/.claude/skills/agentops-orchestrator/patterns/discovered/rest-api-jwt-redis-v1.yaml
-   Content: [Full YAML pattern structure]
+**Step 5: Check pattern promotion**
+```cypher
+// Auto-promote based on metrics
+MATCH (p:Pattern)
+WHERE p.executions >= 20 AND p.success_rate >= 0.90
+SET p.status = 'learned'
 
-3. Log execution:
-   File: ~/.claude/skills/agentops-orchestrator/metrics/executions.log
-   Line: 2025-11-07T18:30:00Z,rest-api-jwt-redis-v1,success,11_minutes
+MATCH (p:Pattern)
+WHERE p.executions >= 5 AND p.success_rate >= 0.80 AND p.status = 'discovered'
+SET p.status = 'validated'
+```
 
-4. Update success rate:
-   File: ~/.claude/skills/agentops-orchestrator/metrics/success_rates.log
+**Fallback behavior:** If Neo4j save fails, pattern still saved to file (primary storage). Next execution will retry Neo4j sync.
+
+**What gets created:**
+- ✅ Pattern YAML file in `patterns/discovered/` (or validated/learned)
+- ✅ Pattern node in Neo4j with relationships
+- ✅ Execution node tracking this run
+- ✅ Updated metrics in both file logs and graph database
+- ✅ Automatic pattern promotion (discovered → validated → learned)
    Line: 2025-11-07T18:30:00Z,rest-api-jwt-redis-v1,0.9167
 
 5. Update pattern README:
