@@ -12,21 +12,23 @@ description: Research and discover plugin workflow patterns without executing th
 - Build knowledge before starting work
 - Understand available patterns
 
-**Token budget:** 15-25k tokens (Research + Analysis only, no implementation)
+**Token budget:** 15-25k tokens (Research + Analysis + Learn phases)
 
 **Output:** Pattern catalog for the specified domain/task
+
+**🔒 LEARN PHASE ENFORCEMENT:** This command ALWAYS records discovered patterns to the library. Pattern recording is AUTOMATIC and MANDATORY, not optional. If patterns are discovered but not recorded, the command FAILED.
 
 ---
 
 ## What This Command Does
 
-The `/discover-patterns` command runs **only** the Research and Planning phases of orchestration:
+The `/discover-patterns` command runs the Research, Analysis, and Learn phases:
 
 1. **Researches** plugins related to your domain/keywords
 2. **Analyzes** how plugins integrate and compose
 3. **Discovers** patterns (common plugin sequences)
-4. **Records** patterns in the pattern library
-5. **Does NOT execute** any workflows
+4. **Learns** by AUTOMATICALLY recording patterns to library (MANDATORY)
+5. **Does NOT execute** workflows (no implementation phase)
 
 **Think of it as:** Learning what tool combinations exist before you need to use them.
 
@@ -56,7 +58,7 @@ The `/discover-patterns` command runs **only** the Research and Planning phases 
 
 ---
 
-## How It Works (Research + Analysis Only)
+## How It Works (Research + Analysis + Learn)
 
 ### Phase 1: Plugin Research
 
@@ -111,8 +113,41 @@ Pattern 3: "Helm-Based Deployment"
 
 ✓ Discovery complete (3 minutes)
   - 3 patterns discovered
-  - All patterns saved to library
 ```
+
+### Phase 3: Learn (AUTOMATIC - MANDATORY)
+
+**🔒 ENFORCEMENT:** This phase ALWAYS executes. Pattern recording is NOT optional.
+
+```
+⚙️ Phase 3: Recording patterns to library (AUTOMATIC)...
+
+Writing pattern YAML files:
+  ✓ patterns/discovered/container-progressive-deployment-v1.yaml
+  ✓ patterns/discovered/secure-container-workflow-v1.yaml
+  ✓ patterns/discovered/helm-kubernetes-deployment-v1.yaml
+
+Updating metrics:
+  ✓ global_metrics.yaml (total_patterns: +3, devops: +3)
+  ✓ executions.log (1 entry added)
+  ✓ success_rates.log (3 patterns tracked)
+
+Updating library index:
+  ✓ patterns/README.md (3 patterns added to DevOps category)
+
+✓ Learning complete (30 seconds)
+  ✓ 3 patterns recorded to library
+  ✓ Metrics updated
+  ✓ Pattern library now has N total patterns
+```
+
+**What gets created:**
+- ✅ Pattern YAML files in `patterns/discovered/`
+- ✅ Updated `patterns/README.md`
+- ✅ Updated `metrics/global_metrics.yaml`
+- ✅ Updated execution logs
+
+**If you don't see this confirmation, the Learn phase FAILED and must be re-executed.**
 
 ### Output: Pattern Catalog
 

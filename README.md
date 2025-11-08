@@ -4,7 +4,7 @@
 
 <!-- Status & Build -->
 [![CI Status](https://github.com/boshu2/agentops/actions/workflows/validate.yml/badge.svg)](https://github.com/boshu2/agentops/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/Version-0.9.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.9.0-blue.svg)]()
 [![Status](https://img.shields.io/badge/Status-Alpha-yellow.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-macOS%20|%20Linux-lightgrey.svg)]()
 [![Trinity](https://img.shields.io/badge/Trinity-Aligned-purple.svg)](./docs/project/TRINITY.md)
@@ -17,9 +17,9 @@
 
 <div align="center">
 
-**Like Airflow orchestrates data pipelines, AgentOps orchestrates AI agent workflows**
+**Orchestrate AI agent workflows with the reliability of Apache Airflow**
 
-**Orchestrate AI agent workflows with the reliability of Apache Airflow. Research → Plan → Implement workflows that deliver 3-40x speedup.**
+*Research → Plan → Implement workflows that deliver 3-40x speedup*
 
 *DAG-like workflows • Task scheduling • Dependency management • Observable execution*
 
@@ -28,10 +28,10 @@
 ---
 
 > [!NOTE]
-> **Part of the Trinity** — This repo (implementation) is part of the AgentOps ecosystem:
+> **Part of the Trinity** — This repo (Orchestration) is part of the AgentOps ecosystem:
 > - 🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops) — WHY patterns work (Philosophy)
-> - ⚙️ [agentops](https://github.com/boshu2/agentops) — HOW to implement (Implementation) ← **You are here**
-> - 🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase) — WHAT users experience (Examples)
+> - ⚙️ [agentops](https://github.com/boshu2/agentops) — HOW to implement patterns (Orchestration) ← **You are here**
+> - 🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase) — WHAT users experience (Presentation)
 >
 > See [TRINITY.md](./docs/project/TRINITY.md) for complete architecture.
 
@@ -252,7 +252,7 @@ with DAG('data_pipeline', schedule_interval='@daily') as dag:
 
 **Transparency:** This is alpha software forged in production use. Patterns are proven (40x speedup product-dev, 3x speedup infrastructure), but the framework is still generalizing. Your feedback shapes the evolution.
 
-**📘 [Full Roadmap & Vision](docs/ROADMAP.md)** (Note: ROADMAP.md remains in docs/ root)
+**📘 [Full Roadmap & Vision](docs/ROADMAP.md)**
 
 ---
 
@@ -634,9 +634,9 @@ Same relationship as Kubernetes (orchestration) to Docker (runtime). Both can wi
 
 AgentOps is part of a three-repository ecosystem:
 
-**⚙️ agentops** (Implementation) — **You are here**
+**⚙️ agentops** (Orchestration) — **You are here**
 **🧠 [12-factor-agentops](https://github.com/boshu2/12-factor-agentops)** (Philosophy)
-**🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase)** (Examples - Coming Dec 1)
+**🌐 [agentops-showcase](https://github.com/boshu2/agentops-showcase)** (Presentation)
 
 **See [TRINITY.md](./docs/project/TRINITY.md) for complete architecture details.**
 

@@ -103,10 +103,15 @@ check
 for repo in "$PHILOSOPHY_REPO" "$ENGINE_REPO"; do
     repo_name="$(basename "$repo")"
 
-    if [[ ! -f "$repo/TRINITY.md" ]]; then
-        error "$repo_name: TRINITY.md missing"
-    else
+    # TRINITY.md can be in root or docs/project/ or docs/architecture/
+    if [[ -f "$repo/TRINITY.md" ]]; then
         success "$repo_name: TRINITY.md exists"
+    elif [[ -f "$repo/docs/project/TRINITY.md" ]]; then
+        success "$repo_name: docs/project/TRINITY.md exists"
+    elif [[ -f "$repo/docs/architecture/TRINITY.md" ]]; then
+        success "$repo_name: docs/architecture/TRINITY.md exists"
+    else
+        error "$repo_name: TRINITY.md missing"
     fi
 
     if [[ ! -f "$repo/VERSION" ]]; then
@@ -115,10 +120,15 @@ for repo in "$PHILOSOPHY_REPO" "$ENGINE_REPO"; do
         success "$repo_name: VERSION exists"
     fi
 
-    if [[ ! -f "$repo/MISSION.md" ]]; then
-        error "$repo_name: MISSION.md missing"
-    else
+    # MISSION.md can be in root or docs/project/ or docs/architecture/
+    if [[ -f "$repo/MISSION.md" ]]; then
         success "$repo_name: MISSION.md exists"
+    elif [[ -f "$repo/docs/project/MISSION.md" ]]; then
+        success "$repo_name: docs/project/MISSION.md exists"
+    elif [[ -f "$repo/docs/architecture/MISSION.md" ]]; then
+        success "$repo_name: docs/architecture/MISSION.md exists"
+    else
+        error "$repo_name: MISSION.md missing"
     fi
 done
 
@@ -162,14 +172,34 @@ echo ""
 info "Checking MISSION.md consistency..."
 check
 
-if [[ -f "$PHILOSOPHY_REPO/MISSION.md" ]] && [[ -f "$ENGINE_REPO/MISSION.md" ]]; then
+# Find MISSION.md in either root or docs directories
+PHILOSOPHY_MISSION=""
+ENGINE_MISSION=""
+
+if [[ -f "$PHILOSOPHY_REPO/MISSION.md" ]]; then
+    PHILOSOPHY_MISSION="$PHILOSOPHY_REPO/MISSION.md"
+elif [[ -f "$PHILOSOPHY_REPO/docs/project/MISSION.md" ]]; then
+    PHILOSOPHY_MISSION="$PHILOSOPHY_REPO/docs/project/MISSION.md"
+elif [[ -f "$PHILOSOPHY_REPO/docs/architecture/MISSION.md" ]]; then
+    PHILOSOPHY_MISSION="$PHILOSOPHY_REPO/docs/architecture/MISSION.md"
+fi
+
+if [[ -f "$ENGINE_REPO/MISSION.md" ]]; then
+    ENGINE_MISSION="$ENGINE_REPO/MISSION.md"
+elif [[ -f "$ENGINE_REPO/docs/project/MISSION.md" ]]; then
+    ENGINE_MISSION="$ENGINE_REPO/docs/project/MISSION.md"
+elif [[ -f "$ENGINE_REPO/docs/architecture/MISSION.md" ]]; then
+    ENGINE_MISSION="$ENGINE_REPO/docs/architecture/MISSION.md"
+fi
+
+if [[ -n "$PHILOSOPHY_MISSION" ]] && [[ -n "$ENGINE_MISSION" ]]; then
     # Use md5 on macOS, md5sum on Linux
     if command -v md5 &> /dev/null; then
-        PHILOSOPHY_MISSION_HASH="$(md5 -q "$PHILOSOPHY_REPO/MISSION.md")"
-        ENGINE_MISSION_HASH="$(md5 -q "$ENGINE_REPO/MISSION.md")"
+        PHILOSOPHY_MISSION_HASH="$(md5 -q "$PHILOSOPHY_MISSION")"
+        ENGINE_MISSION_HASH="$(md5 -q "$ENGINE_MISSION")"
     elif command -v md5sum &> /dev/null; then
-        PHILOSOPHY_MISSION_HASH="$(md5sum "$PHILOSOPHY_REPO/MISSION.md" | awk '{print $1}')"
-        ENGINE_MISSION_HASH="$(md5sum "$ENGINE_REPO/MISSION.md" | awk '{print $1}')"
+        PHILOSOPHY_MISSION_HASH="$(md5sum "$PHILOSOPHY_MISSION" | awk '{print $1}')"
+        ENGINE_MISSION_HASH="$(md5sum "$ENGINE_MISSION" | awk '{print $1}')"
     else
         warn "md5/md5sum not available, skipping MISSION.md hash check"
         PHILOSOPHY_MISSION_HASH=""
@@ -227,7 +257,7 @@ for repo in "$PHILOSOPHY_REPO" "$ENGINE_REPO"; do
     else
         # Check for uncommitted trinity files
         cd "$repo"
-        if git status --porcelain 2>/dev/null | grep -E "(TRINITY.md|VERSION|MISSION.md|docs/trinity)" > /dev/null 2>&1; then
+        if git status --porcelain 2>/dev/null | grep -E "(TRINITY.md|VERSION|MISSION.md|docs/trinity|docs/project|docs/architecture|docs/operations)" > /dev/null 2>&1; then
             warn "$repo_name: Uncommitted Trinity files detected"
         else
             success "$repo_name: All Trinity files committed"

@@ -16,6 +16,8 @@ description: Request intelligent plugin orchestration for complex tasks
 
 **Output:** Task completed using optimal plugin orchestration
 
+**🔒 LEARN PHASE ENFORCEMENT:** This command ALWAYS records the workflow execution to the pattern library. Pattern recording is AUTOMATIC and MANDATORY, not optional. If the workflow completes but patterns aren't updated, the command FAILED.
+
 ---
 
 ## What This Command Does
@@ -131,21 +133,46 @@ The command executes the workflow with continuous validation:
 ✓ Workflow complete (12 min total)
 ```
 
-### Phase 4: Learn (Automatic)
+### Phase 4: Learn (AUTOMATIC - MANDATORY)
+
+**🔒 ENFORCEMENT:** This phase ALWAYS executes. Pattern recording is NOT optional.
 
 The command records the successful execution for future use:
 
 ```
-⚙️ Phase 4: Recording learnings...
+⚙️ Phase 4: Recording learnings (AUTOMATIC)...
 
 Pattern updated: "REST API with JWT + Redis"
   - Execution count: 48 → 49
   - Success rate: 0.92 (maintained)
   - Known issue added: "Requires python-jose dependency"
 
+Writing/updating pattern files:
+  ✓ patterns/discovered/rest-api-jwt-redis-v1.yaml (updated)
+
+Updating metrics:
+  ✓ global_metrics.yaml (total_workflows: +1, success: +1)
+  ✓ executions.log (1 entry added)
+  ✓ success_rates.log (pattern rate updated)
+
+Checking pattern promotion:
+  → Pattern has 49 uses (discovered → validated promotion at 5 uses)
+  ✓ Pattern promoted to validated/ (80%+ success, 5+ uses)
+
 ✓ Learning complete
-  Pattern available for future similar tasks
+  ✓ Pattern recorded/updated in library
+  ✓ Metrics updated
+  ✓ Pattern available for future similar tasks
 ```
+
+**What gets created/updated:**
+- ✅ Pattern YAML file (created or updated)
+- ✅ Updated `patterns/README.md`
+- ✅ Updated `metrics/global_metrics.yaml`
+- ✅ Updated execution logs
+- ✅ Pattern promotion check (discovered → validated → learned)
+
+**If you don't see this confirmation, the Learn phase FAILED and must be re-executed.**
 
 ---
 
@@ -187,9 +214,18 @@ Pattern "REST API with JWT + Redis" performed well.
 Confidence for future use: High (92% success rate)
 ```
 
-### 3. Updated Pattern Library
+### 3. Updated Pattern Library (AUTOMATIC)
 
-Your execution gets added to the pattern library, improving recommendations for everyone.
+Your execution is AUTOMATICALLY added to the pattern library:
+
+**Files Updated:**
+- `patterns/discovered/{pattern-id}.yaml` (or validated/learned)
+- `patterns/README.md` (pattern counts updated)
+- `metrics/global_metrics.yaml` (execution counts, success rates)
+- `metrics/executions.log` (workflow logged)
+- `metrics/success_rates.log` (pattern success tracked)
+
+**This happens automatically. If these files aren't updated, the Learn phase failed.**
 
 ---
 
@@ -301,7 +337,7 @@ Orchestration succeeds when:
 - Green checkmarks (✓) for each step
 - "All tests passed" in validation
 - Final "✅ Workflow complete"
-- Updated pattern library
+- **"✅ Learning complete" with pattern files updated** (MANDATORY)
 
 ---
 

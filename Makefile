@@ -1,16 +1,25 @@
 # Makefile for agentops (Orchestration Layer)
 # Part of the Trinity: Mind (Philosophy) → Engine (Orchestration) → Voice (Presentation)
 
-.PHONY: help trinity-validate trinity-status clean
+.PHONY: help trinity-validate trinity-status validate-structure validate-trinity-strict validate-docs validate-all clean
 
 # Default target
 help:
 	@echo "agentops - Orchestration Layer (The Engine)"
 	@echo ""
+	@echo "Validation Targets:"
+	@echo "  make validate-trinity-strict - Validate Trinity repo structure (STRICT)"
+	@echo "  make validate-structure      - Validate repository structure"
+	@echo "  make validate-docs           - Validate documentation links"
+	@echo "  make validate-all            - Run all validations"
+	@echo ""
 	@echo "Trinity Targets:"
-	@echo "  make trinity-validate  - Validate Trinity alignment across all repos"
-	@echo "  make trinity-status    - Show Trinity integration status"
-	@echo "  make help              - Show this help message"
+	@echo "  make trinity-validate   - Validate Trinity alignment across all repos"
+	@echo "  make trinity-status     - Show Trinity integration status"
+	@echo ""
+	@echo "Utility Targets:"
+	@echo "  make clean              - Clean build artifacts"
+	@echo "  make help               - Show this help message"
 	@echo ""
 	@echo "Part of the Trinity architecture (v0.9.0)"
 
@@ -48,6 +57,26 @@ trinity-status:
 	@if [ -d ../agentops-showcase ]; then echo "  ✓ agentops-showcase (Voice)"; else echo "  ✗ agentops-showcase (Voice) - NOT FOUND"; fi
 	@echo ""
 	@echo "For full validation: make trinity-validate"
+
+# Validate Trinity repository structure (STRICT - only 8 root files allowed)
+validate-trinity-strict:
+	@echo "Validating Trinity repository structure (STRICT)..."
+	@./scripts/validate-structure-trinity.sh
+
+# Validate repository structure (legacy)
+validate-structure:
+	@echo "Validating repository structure..."
+	@./scripts/validate-structure.sh
+
+# Validate documentation links
+validate-docs:
+	@echo "Validating documentation links..."
+	@./scripts/validate-doc-links.sh
+
+# Run all validations (including STRICT Trinity validation)
+validate-all: validate-trinity-strict validate-docs trinity-validate
+	@echo ""
+	@echo "✅ All validations complete!"
 
 # Clean build artifacts
 clean:
