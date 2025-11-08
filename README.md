@@ -1,4 +1,4 @@
-# AgentOps: Airflow for AI Agent Workflows
+# AgentOps: Meta Orchestrator for AI Agent Workflows
 
 <div align="center">
 
@@ -17,11 +17,11 @@
 
 <div align="center">
 
-**Orchestrate AI agent workflows with the reliability of Apache Airflow**
+**Orchestrate AI agent plugins and patterns with intelligent workflow composition**
 
-*Research → Plan → Implement workflows that deliver 3-40x speedup*
+*Discover → Plan → Execute plugin workflows that deliver 3-40x speedup*
 
-*DAG-like workflows • Task scheduling • Dependency management • Observable execution*
+*Plugin orchestration • Pattern discovery • Intelligent routing • Observable execution*
 
 </div>
 
@@ -41,15 +41,15 @@
 
 - [Is This For You?](#is-this-for-you)
 - [What Is This?](#what-is-this)
-- [The Airflow Analogy](#the-airflow-analogy-visual)
+- [Meta Orchestration Model](#meta-orchestration-model-visual)
 - [See It In Action](#see-it-in-action)
 - [The Comparison Table](#the-comparison-table)
 - [Implementation Status](#implementation-status)
 - [Quick Start](#quick-start)
 - [Architecture: Core + Profiles](#architecture-core--profiles)
-- [Core Patterns](#core-patterns-airflow-equivalents)
+- [Core Patterns](#core-patterns)
 - [Proven Results](#proven-results)
-- [Key Features](#key-features-airflow-equivalents)
+- [Key Features](#key-features)
 - [Documentation](#documentation)
 - [Philosophy](#philosophy-brief)
 - [License](#license)
@@ -63,8 +63,8 @@
 ## Is This For You?
 
 ### ✅ You should try AgentOps if you:
-- Use AI agents/LLMs in production workflows
-- Know Airflow, Luigi, Prefect, or workflow orchestration
+- Build complex AI agent workflows with multiple specialized agents
+- Need intelligent plugin/pattern composition and discovery
 - Want 3-40x speedup on agent workflows with proven patterns
 - Need multi-day projects with context management
 - Build workflows that other teams should reuse
@@ -80,139 +80,116 @@
 
 ## What Is This?
 
-**AgentOps is Airflow for AI agent workflows.**
+**AgentOps is a meta orchestrator that composes AI agent plugins and workflows intelligently.**
 
-Just as Airflow orchestrates data pipelines (extract → transform → load), AgentOps orchestrates knowledge workflows (research → plan → implement). Same orchestration principles, different domain.
+AgentOps discovers available plugins, learns their patterns, and orchestrates them to solve complex tasks. It coordinates multiple specialized agents to execute workflows faster and more reliably than sequential execution.
+
+**Key Capabilities:**
+- **Plugin Discovery:** Automatically identify and catalog available agent plugins
+- **Pattern Learning:** Extract reusable workflow patterns from successful executions
+- **Intelligent Routing:** Route tasks to the most appropriate agent/plugin combination
+- **Workflow Composition:** Orchestrate plugins across Research → Plan → Implement phases
 
 > **Proven Results:** 40x speedup (product dev), 3x speedup (infrastructure), 90.9% routing accuracy
 >
-> *"Same patterns work identically across domains. Not domain-specific tricks—universal orchestration laws."*
+> *"Meta orchestration enables universal patterns across domains. Not plugin-specific tricks—intelligent composition laws."*
 
 ---
 
-## The Airflow Analogy (Visual)
+## Meta Orchestration Model (Visual)
 
 ```mermaid
 graph TB
-    subgraph Airflow["<b>Apache Airflow</b><br/>(Data Pipelines)"]
-        A1["🗂️ DAG<br/><i>Pipeline Definition</i>"]
-        A2["⚙️ Tasks<br/><i>Single Responsibility</i>"]
-        A3["🔗 Dependencies<br/><i>Execution Order</i>"]
-        A4["📅 Scheduler<br/><i>Smart Routing</i>"]
-        A5["⚡ Executor<br/><i>Parallel Execution</i>"]
-        A6["📊 Logs<br/><i>Observability</i>"]
+    subgraph Discovery["🔍 <b>Discovery Phase</b><br/>(Plugin Research)"]
+        D1["📦 Plugin Catalog<br/><i>Available Agents</i>"]
+        D2["🎯 Capability Matching<br/><i>Task Analysis</i>"]
+        D3["📚 Pattern Library<br/><i>Known Workflows</i>"]
 
-        A1 --> A2
-        A2 --> A3
-        A3 --> A4
-        A4 --> A5
-        A5 --> A6
+        D1 --> D2
+        D2 --> D3
     end
 
-    subgraph AgentOps["<b>AgentOps</b><br/>(Knowledge Workflows)"]
-        B1["📦 Workflow Package<br/><i>Bundled Workflow</i>"]
-        B2["🤖 Agents<br/><i>Specialized Capabilities</i>"]
-        B3["🚦 Phase Gates<br/><i>Research → Plan → Implement</i>"]
-        B4["🎯 Intelligent Routing<br/><i>90.9% Accuracy</i>"]
-        B5["🚀 Multi-Agent Orchestration<br/><i>3x Speedup</i>"]
-        B6["📝 Git Memory<br/><i>Native Versioning</i>"]
+    subgraph Planning["📋 <b>Planning Phase</b><br/>(Workflow Composition)"]
+        P1["🔗 Plugin Composition<br/><i>Select Best Plugins</i>"]
+        P2["🗺️ Execution Plan<br/><i>Dependencies & Order</i>"]
+        P3["✅ Validation<br/><i>Feasibility Check</i>"]
 
-        B1 --> B2
-        B2 --> B3
-        B3 --> B4
-        B4 --> B5
-        B5 --> B6
+        P1 --> P2
+        P2 --> P3
     end
 
-    A1 -.->|"<b>Same Pattern</b>"| B1
-    A2 -.->|"<b>Same Pattern</b>"| B2
-    A3 -.->|"<b>Same Pattern</b>"| B3
-    A4 -.->|"<b>Same Pattern</b>"| B4
-    A5 -.->|"<b>Same Pattern</b>"| B5
-    A6 -.->|"<b>Same Pattern</b>"| B6
+    subgraph Execution["⚡ <b>Execution Phase</b><br/>(Workflow Run)"]
+        E1["🚀 Orchestrate Plugins<br/><i>Execute Plan</i>"]
+        E2["🔄 Multi-Plugin Coordination<br/><i>Manage Dependencies</i>"]
+        E3["📝 Result Capture<br/><i>Learn Patterns</i>"]
 
-    classDef airflowStyle fill:#1e40af,stroke:#1e3a8a,stroke-width:3px,color:#fff
-    classDef agentopsStyle fill:#ea580c,stroke:#c2410c,stroke-width:3px,color:#fff
-    classDef connectionStyle stroke:#6b7280,stroke-width:2px,stroke-dasharray: 5 5
+        E1 --> E2
+        E2 --> E3
+    end
 
-    class A1,A2,A3,A4,A5,A6 airflowStyle
-    class B1,B2,B3,B4,B5,B6 agentopsStyle
+    Discovery --> Planning
+    Planning --> Execution
+    Execution -->|"Feedback Loop"| Discovery
+
+    classDef discoveryStyle fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    classDef planningStyle fill:#10b981,stroke:#047857,stroke-width:2px,color:#fff
+    classDef executionStyle fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff
+
+    class D1,D2,D3 discoveryStyle
+    class P1,P2,P3 planningStyle
+    class E1,E2,E3 executionStyle
 ```
 
-**If you know Airflow, you already understand AgentOps.** Same mental model, different domain.
+**Meta Orchestration = Intelligent plugin composition across phases.** Discover → Plan → Execute with continuous learning.
 
 ---
 
 ## See It In Action
 
-### Airflow DAG (Data Pipeline)
-
-```python
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-
-with DAG('data_pipeline', schedule_interval='@daily') as dag:
-    extract = PythonOperator(
-        task_id='extract',
-        python_callable=extract_data
-    )
-    transform = PythonOperator(
-        task_id='transform',
-        python_callable=transform_data
-    )
-    load = PythonOperator(
-        task_id='load',
-        python_callable=load_data
-    )
-
-    # Dependencies: extract → transform → load
-    extract >> transform >> load
-```
-
-### AgentOps Workflow (Knowledge Pipeline)
+### AgentOps Meta Orchestration Workflow
 
 ```bash
-# Phase 1: Research (parallel agents)
-/research "How does our auth system work?"
-# → Code Explorer searches codebase
-# → Doc Explorer reads architecture docs
-# → History Explorer checks past decisions
-# → Results bundled (5:1 compression)
-# → Takes 10 min (was 30 min serial)
+# Phase 1: Discover (/discover-patterns)
+/discover-patterns "Deploy container application to Kubernetes"
+# → Plugin Discovery scans available agents/tools
+# → Pattern Analyzer identifies common workflows
+# → Capability Matcher finds relevant plugins
+# → Output: Pattern library with 3+ plugin combinations
+# → Results: [Container Build → Registry Push → K8s Deploy]
 
-# Phase 2: Plan (uses research bundle)
-/plan "Add OAuth2 support"
-# → Spec Architect generates detailed plan
-# → Uses research bundle context
-# → Risk Assessor validates approach
-# → Output: Implementation spec
+# Phase 2: Plan (/orchestrate)
+/orchestrate "Deploy container application to Kubernetes"
+# → Workflow Composer selects best plugin combination
+# → Routes task: [Docker plugins] → [Registry plugins] → [K8s plugins]
+# → Generates execution plan with dependencies
+# → Validates feasibility before execution
+# → Output: Structured orchestration spec
 
-# Phase 3: Implement (with validation)
-/implement
-# → Change Executor applies changes
-# → Validation Planner creates tests
-# → Constitutional enforcement (Five Laws)
-# → 40% context rule enforced
-# → Git hooks validate quality
+# Phase 3: Execute
+# → MetaOrchestrator runs execution plan
+# → Monitors plugin outputs
+# → Handles errors and retry logic
+# → Captures patterns for future use
+# → Learns from execution results
 ```
 
-**Same orchestration principles. Different domain. 3-40x faster.**
+**Meta orchestration composes plugins intelligently. Discover → Plan → Execute with pattern learning.**
 
 ---
 
-## The Comparison Table
+## Meta Orchestration Concepts
 
-| **Airflow Concept** | **AgentOps Equivalent** | **Why It Works** |
-|---------------------|------------------------|------------------|
-| DAG (pipeline) | Workflow Package | Declare dependencies, execute in order |
-| Task | Agent (specialized capability) | Single responsibility, composable |
-| Task dependencies | Phase gates (Research → Plan → Implement) | Enforce ordering, pass context |
-| Scheduling | Intelligent routing | Right task to right executor |
-| Retry logic | Constitutional enforcement | Prevent errors, ensure quality |
-| XCom | Context bundles | Pass data between phases (5:1-38:1 compression) |
-| Observability | Institutional memory (git) | Track everything, learn from history |
-| Airflow UI | Git + IDE | Native tools, no new interfaces |
-| Task parallelization | Multi-agent orchestration | 3x speedup via parallel execution |
+| **Concept** | **Description** | **Benefit** |
+|-----------|-----------------|-----------|
+| Plugin Discovery | Scan available agents and tools | Find optimal plugin combinations |
+| Pattern Library | Catalog of known workflows | Reuse proven compositions |
+| Intelligent Routing | Match tasks to plugin combinations | 90.9% routing accuracy |
+| Phase Gates | Discover → Plan → Execute | Enforce quality, manage context (40% rule) |
+| Pattern Learning | Extract patterns from executions | Improve future orchestrations |
+| Dependency Management | Manage plugin execution order | Parallel execution where possible |
+| Context Bundles | Compress intermediate results | Multi-day projects without context collapse |
+| Observability | Git history + execution logs | Complete audit trail and learning |
+| Multi-Plugin Orchestration | Coordinate multiple agents/tools | 3x speedup via parallel execution |
 
 ---
 
