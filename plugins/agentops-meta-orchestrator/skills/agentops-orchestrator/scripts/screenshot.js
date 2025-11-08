@@ -42,7 +42,8 @@ function parseArgs() {
     viewport: { width: 1280, height: 720 },
     waitTime: 500,
     fullPage: false,
-    timeout: 30000
+    timeout: 30000,
+    waitUntil: 'networkidle' // Options: load, domcontentloaded, networkidle
   };
 
   // Parse options
@@ -62,6 +63,9 @@ function parseArgs() {
       config.fullPage = true;
     } else if (arg === '--timeout' && i + 1 < args.length) {
       config.timeout = parseInt(args[i + 1], 10);
+      i++;
+    } else if (arg === '--wait-until' && i + 1 < args.length) {
+      config.waitUntil = args[i + 1];
       i++;
     }
   }
@@ -103,7 +107,7 @@ async function captureScreenshot(config) {
     console.log(`[screenshot] Navigating to ${config.url}...`);
     await page.goto(config.url, {
       timeout: config.timeout,
-      waitUntil: 'networkidle' // Wait for network to be idle
+      waitUntil: config.waitUntil
     });
 
     // Additional wait time for JS/CSS rendering
