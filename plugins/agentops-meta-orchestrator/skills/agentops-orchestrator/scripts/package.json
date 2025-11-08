@@ -1,0 +1,18 @@
+{
+  "name": "agentops-orchestrator-scripts",
+  "version": "0.3.0",
+  "description": "Screenshot tooling for multimodal AgentOps workflows",
+  "private": true,
+  "scripts": {
+    "screenshot": "node screenshot.js",
+    "test": "node test-screenshot.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "playwright": "^1.40.0",
+    "@playwright/test": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
