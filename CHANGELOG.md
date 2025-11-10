@@ -1,0 +1,149 @@
+# Changelog
+
+All notable changes to the AgentOps marketplace will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- SECURITY.md with vulnerability reporting process
+- CONTRIBUTING.md with comprehensive plugin submission guidelines
+- CHANGELOG.md for version tracking
+- CODE_OF_CONDUCT.md for community standards
+- GitHub Actions CI/CD pipeline for automated validation
+- GitHub issue templates for plugin submissions and bug reports
+- GitHub PR template for structured contributions
+- Test suite infrastructure with validation scripts
+- Makefile for common development tasks
+- ARCHITECTURE_REVIEW.md with comprehensive compliance analysis
+
+### Changed
+- Updated repository structure to follow GitHub best practices
+- Enhanced documentation for better discoverability
+
+### Security
+- Established security policy and vulnerability reporting process
+- Added automated security scanning (Dependabot, CodeQL)
+
+## [1.0.0] - 2025-11-10
+
+### Added
+- Initial marketplace structure with `.claude-plugin/marketplace.json`
+- Three core plugins:
+  - **core-workflow**: Universal Research → Plan → Implement → Learn workflow
+  - **devops-operations**: DevOps and platform engineering tools
+  - **software-development**: Software development for Python, JavaScript, Go
+- External marketplace references:
+  - aitmpl.com/agents (63+ plugins)
+  - wshobson/agents (open source collection)
+- Comprehensive README with quick start guide
+- Apache 2.0 license
+- Plugin structure following Anthropic 2025 standards
+- 12-Factor AgentOps integration in all agents
+- Token budget estimation for plugins
+
+### Agents (11 total)
+- **core-workflow** (4 agents):
+  - research-agent: Research phase with JIT context loading
+  - plan-agent: Planning phase with detailed specifications
+  - implement-agent: Implementation phase with validation
+  - learn-agent: Learning extraction for continuous improvement
+- **devops-operations** (3 agents):
+  - devops-engineer: DevOps automation specialist
+  - deployment-engineer: Deployment and release management
+  - cicd-specialist: CI/CD pipeline expert
+- **software-development** (3 agents):
+  - software-engineer: General software development
+  - code-reviewer: Code quality and review
+  - test-engineer: Testing and quality assurance
+
+### Commands (14 total)
+- **core-workflow** (5 commands):
+  - /research: Start research phase
+  - /plan: Create implementation plan
+  - /implement: Execute approved plan
+  - /learn: Extract learnings
+  - /workflow: Full workflow orchestration
+- **devops-operations** (3 commands):
+  - /deploy-app: Deploy applications
+  - /setup-pipeline: Configure CI/CD pipelines
+  - /rollback: Rollback deployments
+- **software-development** (3 commands):
+  - /create-feature: Create new features
+  - /refactor-code: Refactor existing code
+  - /add-tests: Add test coverage
+
+### Skills (9 total)
+- **core-workflow**: Universal workflow patterns
+- **devops-operations** (3 skills):
+  - gitops-patterns: GitOps workflow patterns
+  - kubernetes-manifests: Kubernetes resource templates
+  - helm-charts: Helm chart best practices
+- **software-development** (3 skills):
+  - python-testing: Python testing patterns
+  - javascript-patterns: JavaScript/TypeScript patterns
+  - go-best-practices: Go language best practices
+
+### Documentation
+- Comprehensive README.md with installation instructions
+- Plugin-level README files for each plugin
+- Agent documentation with examples and anti-patterns
+- AgentOps principles integration
+- External marketplace references
+
+## Version History
+
+### Version Numbering
+
+We follow [Semantic Versioning](https://semver.org/):
+
+- **MAJOR** version: Incompatible API changes
+- **MINOR** version: New functionality (backwards-compatible)
+- **PATCH** version: Bug fixes (backwards-compatible)
+
+### Release Process
+
+1. Update CHANGELOG.md with changes
+2. Update version in `.claude-plugin/marketplace.json`
+3. Update version in all plugin `plugin.json` files
+4. Create git tag: `git tag -a v1.0.0 -m "Release v1.0.0"`
+5. Push tag: `git push origin v1.0.0`
+6. Create GitHub release with changelog excerpt
+
+## Links
+
+- [Repository](https://github.com/boshu2/agentops)
+- [Issues](https://github.com/boshu2/agentops/issues)
+- [Pull Requests](https://github.com/boshu2/agentops/pulls)
+- [Security Policy](SECURITY.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [12-Factor AgentOps Framework](https://github.com/boshu2/12-factor-agentops)
+
+## Community
+
+### How to Stay Updated
+
+- Watch this repository on GitHub
+- Check this CHANGELOG regularly
+- Follow [@boshu2](https://github.com/boshu2) on GitHub
+
+### Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details on:
+- How to add plugins
+- Testing requirements
+- Submission process
+- Code of conduct
+
+### Support
+
+- **Documentation**: Check README.md and plugin docs
+- **Issues**: [GitHub Issues](https://github.com/boshu2/agentops/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/boshu2/agentops/discussions)
+- **Email**: [your-email]@example.com
+
+---
+
+**Note:** This changelog is automatically updated with each release. See [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) for format guidelines.
