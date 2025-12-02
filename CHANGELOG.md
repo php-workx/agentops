@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **vibe-check Integration** in session-management plugin
+  - `/session-start` now captures baseline metrics via `vibe-check session start`
+  - `/session-end` now captures session metrics and failure patterns via `vibe-check session end`
+  - Automatic failure pattern detection (Debug Spiral, Context Amnesia, Velocity Crash, Trust Erosion, Flow Disruption)
+  - Session entries in `claude-progress.json` now include metrics and retro blocks
+  - `@boshu2/vibe-check` npm package added as plugin dependency
+- **vibe-coding Plugin** added with commands:
+  - `/vibe-check` - Run vibe-check analysis
+  - `/vibe-level` - Declare vibe level for session
+  - `/vibe-retro` - Run vibe-coding retrospective
+- **constitution Plugin** added with:
+  - laws-of-an-agent skill
+  - context-engineering skill
+  - git-discipline skill
+  - guardian agent
 - SECURITY.md with vulnerability reporting process
 - CONTRIBUTING.md with comprehensive plugin submission guidelines
 - CHANGELOG.md for version tracking
