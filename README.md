@@ -8,7 +8,7 @@
 
 | Plugin | Description | Highlights |
 |--------|-------------|------------|
-| **constitution** | Foundational laws and guardrails | Six Laws, 40% Rule, Git Discipline |
+| **constitution** | Foundational laws and guardrails | Nine Laws, 40% Rule, Git Discipline |
 | **core-workflow** | Research → Plan → Implement → Learn | 4 agents, 5 commands |
 | **session-management** | Long-lived sessions that survive context resets | Bundles, progress.json, session protocol |
 | **vibe-coding** | 5 metrics, 6 levels, 12 failure patterns | Tracer tests, vibe-check CLI |
@@ -38,7 +38,7 @@
 
 **The rules that govern all agent operations.**
 
-- **Six Laws of an Agent** - Extract learnings, improve systems, document context
+- **Nine Laws of an Agent** - Extract learnings, improve systems, document context
 - **40% Rule** - Never exceed 40% token budget
 - **Git Discipline** - Semantic commits, Knowledge OS patterns
 
