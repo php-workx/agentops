@@ -24,7 +24,7 @@ AgentOps is built on four foundational pillars:
 
 | Skill | Purpose |
 |-------|---------|
-| `laws-of-an-agent` | The Six Laws every agent must follow |
+| `laws-of-an-agent` | The Nine Laws every agent must follow |
 | `context-engineering` | The 40% Rule and JIT loading |
 | `git-discipline` | Semantic commits and Knowledge OS |
 
@@ -36,50 +36,21 @@ AgentOps is built on four foundational pillars:
 
 ---
 
-## The Six Laws of an Agent
+## The Nine Laws of an Agent
 
-### Law 1: ALWAYS Extract Learnings
+| Law | Principle | Summary |
+|-----|-----------|---------|
+| **1** | Learn and Improve | Extract patterns, identify improvements |
+| **2** | Document for Future | Context commits, progress files, bundles |
+| **3** | Git Discipline | Commit often, clean workspace, no hook loops |
+| **4** | TDD with Tracers | Tests first for L1-L2 (high-risk) tasks |
+| **5** | Guide with Workflows | Suggest options, let user choose |
+| **6** | Classify Vibe Level | Ask "what level?" (0-5) before work |
+| **7** | Measure and Calibrate | vibe-check before/after, break spirals |
+| **8** | Session Protocol | One feature, review before end, update progress |
+| **9** | Protect Feature Definitions | Never modify, only mark \`passes\` |
 
-Document patterns discovered during work:
-- Capture decision rationale (why, not just what)
-- Analyze failures to prevent recurrence
-- Share insights for future sessions
-
-### Law 2: ALWAYS Improve Self or System
-
-Identify at least 1 improvement opportunity:
-- Specify impact (time saved, quality improved)
-- Propose implementation (effort, priority)
-- Don't just identify - suggest solutions
-
-### Law 3: ALWAYS Document Context for Future
-
-Every commit must include:
-- **Context:** Why this work was needed
-- **Solution:** What was done and how
-- **Learning:** Reusable insights
-- **Impact:** Quantified value
-
-### Law 4: ALWAYS Prevent Hook Loops
-
-After git push, check for hook-modified files:
-- DO NOT commit files modified by hooks
-- Session logs are auto-generated (normal)
-- Only commit hook files if explicitly requested
-
-### Law 5: ALWAYS Guide with Workflow Suggestions
-
-After context loads, suggest relevant workflows:
-- Let user pick, never prescribe
-- Point to documentation
-- Respect user autonomy
-
-### Law 6: ALWAYS Check Knowledge Graph First
-
-Before modifying Memory MCP:
-- Search for existing entities
-- Update existing (don't duplicate)
-- Only create if genuinely new
+See [laws-of-an-agent.md](./skills/laws-of-an-agent.md) for full details.
 
 ---
 
@@ -101,6 +72,19 @@ Token Usage Zones:
 
 ---
 
+## Vibe Levels
+
+| Level | Trust | Verify | Use For |
+|-------|-------|--------|---------|
+| 5 | 95% | Final only | Format, lint |
+| 4 | 80% | Spot check | Boilerplate |
+| 3 | 60% | Key outputs | CRUD, tests |
+| 2 | 40% | Every change | Features |
+| 1 | 20% | Every line | Architecture |
+| 0 | 0% | N/A | Novel research |
+
+---
+
 ## Git as Knowledge OS
 
 ### Commits = Memory Writes
@@ -111,31 +95,9 @@ Every commit captures:
 - When it changed (timestamp)
 - Who changed it (author)
 
-### Branches = Process Isolation
-
-Parallel work streams without interference.
-
-### Hooks = Kernel Interrupts
-
-Enforce rules automatically:
-- Pre-commit: Validate changes
-- Commit-msg: Ensure format
-- Post-commit: Update state
-
-### Logs = Audit Trail
-
-Every change traceable:
-- `git log` for history
-- `git blame` for responsibility
-- `git bisect` for debugging
-
----
-
-## Semantic Commits
+### Semantic Commits
 
 Format: `<type>(<scope>): <subject>`
-
-### Types
 
 | Type | Use For |
 |------|---------|
@@ -146,43 +108,6 @@ Format: `<type>(<scope>): <subject>`
 | `test` | Add/update tests |
 | `chore` | Maintenance |
 
-### Example
-
-```
-feat(auth): add refresh token rotation
-
-Context: Users were getting logged out every 24h due to JWT expiry.
-Solution: Implemented refresh token rotation with Redis storage.
-Learning: Redis TTL can handle token lifecycle automatically.
-Impact: Users stay logged in indefinitely with secure rotation.
-
-🤖 Generated with Claude Code
-Co-Authored-By: Claude <noreply@anthropic.com>
-```
-
----
-
-## Validation Gates
-
-### Gate 1: Pre-Commit (Local)
-- Syntax validation
-- Linting
-- Basic tests
-
-### Gate 2: Human Review (Plan Stage)
-- Review approach before execution
-- Catch architectural mistakes early
-
-### Gate 3: CI/CD (Automated)
-- Full test suite
-- Security scanning
-- Build verification
-
-### Gate 4: Deployment
-- Progressive rollout
-- Health checks
-- Rollback capability
-
 ---
 
 ## Dependencies
@@ -192,5 +117,4 @@ None - this is the foundational plugin.
 ## Links
 
 - [12-Factor AgentOps Framework](https://github.com/boshu2/12-factor-agentops)
-- [Laws of an Agent](https://github.com/boshu2/12-factor-agentops#laws-of-an-agent)
-- [Constitutional Guardrails (Factor XI)](https://github.com/boshu2/12-factor-agentops#xi-constitutional-guardrails)
+- [Vibe Coding Book](https://itrevolution.com/product/vibe-coding-book/) - Gene Kim & Steve Yegge
