@@ -1,4 +1,4 @@
-# Demo: /autopilot Session
+# Demo: /crank Session
 
 A session showing autonomous epic execution with validation gates.
 
@@ -28,7 +28,7 @@ Issues:
 ## Session
 
 ```
-You: /autopilot agentops-epic-xyz
+You: /crank agentops-epic-xyz
 
 Claude: Loading epic...
 
@@ -138,7 +138,7 @@ Severity: HIGH
 Options:
   [continue] - Proceed anyway (not recommended)
   [fix]      - Fix the issue, then continue
-  [abort]    - Stop autopilot, manual intervention
+  [abort]    - Stop crank, manual intervention
 
 Your choice: fix
 
@@ -149,7 +149,7 @@ Claude: Fixing XSS issue...
 $ npm run security-scan
 No issues
 
-Resuming autopilot...
+Resuming crank...
 ```
 
 ---

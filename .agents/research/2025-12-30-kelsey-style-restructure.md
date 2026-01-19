@@ -97,7 +97,7 @@ Current `implement.md` structure:
 - L2: Add persistent output (.agents/)
 - L3: Add issue tracking concepts
 - L4: Add parallelization (waves)
-- L5: Full orchestration (autopilot)
+- L5: Full orchestration (crank)
 
 ### Finding 3: Framework Content Should Be Reference, Not Inline
 
@@ -190,7 +190,7 @@ agentops/
 │   ├── L2-persistence/          # Add .agents/ output
 │   ├── L3-state-management/     # Issue tracking patterns
 │   ├── L4-parallelization/      # Wave execution
-│   └── L5-orchestration/        # Full autopilot
+│   └── L5-orchestration/        # Full crank
 ├── reference/                   # NEW: Framework content
 │   ├── pdc-framework.md
 │   ├── faafo-alignment.md

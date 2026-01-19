@@ -169,7 +169,7 @@ fi
 
 # Source 3: Autopilot state (for polecat sessions)
 if [ -z "$SESSION_ID" ]; then
-    SESSION_ID=$(cat .agents/blackboard/autopilot-state.json 2>/dev/null | jq -r '.session_id // empty')
+    SESSION_ID=$(cat .agents/blackboard/crank-state.json 2>/dev/null | jq -r '.session_id // empty')
 fi
 ```
 

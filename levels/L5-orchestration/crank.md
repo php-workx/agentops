@@ -2,16 +2,16 @@
 description: Execute an epic to completion with automated reconciliation
 ---
 
-# /autopilot
+# /crank
 
 Runs an entire epic through waves automatically. Validates between waves. Pauses for human review when needed.
 
 ## Usage
 
 ```
-/autopilot <epic-id>
-/autopilot agentops-xyz
-/autopilot agentops-xyz --dry-run
+/crank <epic-id>
+/crank agentops-xyz
+/crank agentops-xyz --dry-run
 ```
 
 ## What's Different from L4
@@ -43,7 +43,7 @@ At L5, full autonomy:
 ## Output
 
 ```
-/autopilot agentops-epic-123
+/crank agentops-epic-123
 
 Epic: "Add user dashboard"
 Total: 8 issues across 4 waves

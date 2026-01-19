@@ -1,10 +1,10 @@
 # L5 — Orchestration
 
-Full autonomous operation with autopilot.
+Full autonomous operation with crank.
 
 ## What You'll Learn
 
-- Using `/autopilot` for epic-to-completion
+- Using `/crank` for epic-to-completion
 - Reconciliation loops
 - Validation gates
 - Human checkpoint patterns
@@ -19,7 +19,7 @@ Full autonomous operation with autopilot.
 
 | Command | Purpose |
 |---------|---------|
-| `/autopilot` | Epic-to-completion with validation gates |
+| `/crank` | Epic-to-completion with validation gates |
 | `/implement-wave` | Same as L4 |
 | `/plan <goal>` | Same as L3 |
 | `/research <topic>` | Same as L2 |
@@ -36,7 +36,7 @@ Full autonomous operation with autopilot.
 ## Autopilot Flow
 
 ```
-/autopilot <epic>
+/crank <epic>
     ↓
 Plan decomposition
     ↓

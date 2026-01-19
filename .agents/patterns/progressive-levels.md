@@ -144,7 +144,7 @@ levels/
 │   ├── implement-wave.md  # 92 lines - parallel execution
 │   └── demo/              # 1 transcript
 └── L5-orchestration/
-    ├── autopilot.md       # 94 lines - full automation
+    ├── crank.md       # 94 lines - full automation
     └── demo/              # 1 transcript
 ```
 

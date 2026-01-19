@@ -39,7 +39,7 @@ Kelsey Hightower's approach: each level adds exactly ONE new concept. Don't bund
 - L2: +persistence (.agents/)
 - L3: +issue tracking (beads)
 - L4: +parallelization (waves)
-- L5: +automation (autopilot)
+- L5: +automation (crank)
 
 **Application:** When teaching complex systems:
 1. Identify the 3-5 core concepts
