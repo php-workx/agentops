@@ -43,9 +43,9 @@ escape_for_json() {
     local i char
     for (( i=0; i<${#input}; i++ )); do
         char="${input:$i:1}"
+        # shellcheck disable=SC1003
         case "$char" in
-            # shellcheck disable=SC1003
-            $'\\') output+='\\\\' ;;
+            '\'*) output+='\\\\' ;;
             '"') output+='\\"' ;;
             $'\n') output+='\\n' ;;
             $'\r') output+='\\r' ;;
