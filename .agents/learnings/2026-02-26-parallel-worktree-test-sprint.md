@@ -1,3 +1,9 @@
+---
+utility: 0.5900
+last_reward: 0.80
+reward_count: 1
+last_reward_at: 2026-02-26T19:55:40-05:00
+---
 # Parallel Worktree Test Sprint Pattern
 
 **Discovered:** 2026-02-26 (CLI Test Coverage Sprint)
