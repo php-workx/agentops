@@ -1,0 +1,7 @@
+{"cycle":1,"target":"cmd-ao-coverage","result":"improved","sha":"a47743f","timestamp":"2026-02-25T09:30:00-05:00","goals_passing":14,"goals_total":14}
+{"cycle":2,"target":"cmd-ao-coverage","result":"improved","sha":"7ba9fd4","timestamp":"2026-02-25T10:30:00-05:00","goals_passing":14,"goals_total":14}
+{"cycle":3,"target":"cmd-ao-coverage","result":"improved","sha":"7ece2a5","timestamp":"2026-02-25T11:30:00-05:00","goals_passing":14,"goals_total":14}
+{"cycle":4,"target":"cmd-ao-coverage","result":"improved","sha":"3841abf","timestamp":"2026-02-25T12:30:00-05:00","goals_passing":14,"goals_total":14}
+{"cycle":5,"target":"directive-1-harden-parser-edge-cases","result":"improved","sha":"2c3a0e4b","timestamp":"2026-02-27T23:32:34-05:00","goals_passing":13,"goals_total":14}
+{"cycle":6,"target":"cmd/ao-coverage-85pct","result":"improved","sha":"a6fd2969","timestamp":"2026-02-28T01:58:57-05:00","goals_passing":null,"goals_total":null}
+{"cycle":7,"target":"cmd/ao-coverage-85pct","result":"improved","sha":"a6fd2969","timestamp":"2026-02-28T01:59:23-05:00","goals_passing":"13","goals_total":"14"}
