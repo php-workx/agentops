@@ -5,3 +5,6 @@
 {"cycle":5,"target":"directive-1-harden-parser-edge-cases","result":"improved","sha":"2c3a0e4b","timestamp":"2026-02-27T23:32:34-05:00","goals_passing":13,"goals_total":14}
 {"cycle":6,"target":"cmd/ao-coverage-85pct","result":"improved","sha":"a6fd2969","timestamp":"2026-02-28T01:58:57-05:00","goals_passing":null,"goals_total":null}
 {"cycle":7,"target":"cmd/ao-coverage-85pct","result":"improved","sha":"a6fd2969","timestamp":"2026-02-28T01:59:23-05:00","goals_passing":"13","goals_total":"14"}
+{"cycle":8,"target":"athena-mine-json-output","result":"improved","sha":"6dd89d0b","timestamp":"2026-03-01T12:30:48-05:00","goals_passing":15,"goals_total":18}
+{"cycle":9,"target":"athena-mine-top-co-change-files","result":"improved","sha":"6dd89d0b","timestamp":"2026-03-01T12:34:04-05:00","goals_passing":15,"goals_total":18}
+{"cycle":10,"target":"athena-defrag-report-permissions","result":"improved","sha":"6dd89d0b","timestamp":"2026-03-01T12:37:17-05:00","goals_passing":15,"goals_total":18}
