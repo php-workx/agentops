@@ -1,11 +1,11 @@
 ---
-utility: 0.7904
+utility: 0.7929
 last_reward: 0.80
-reward_count: 24
-last_reward_at: 2026-02-27T23:29:23-05:00
-confidence: 0.8276
-last_decay_at: 2026-02-27T23:29:23-05:00
-helpful_count: 23
+reward_count: 43
+last_reward_at: 2026-02-28T19:55:32-05:00
+confidence: 0.8958
+last_decay_at: 2026-02-28T19:55:32-05:00
+helpful_count: 42
 maturity: established
 maturity_changed_at: 2026-02-26T22:35:47-05:00
 maturity_reason: utility 0.73 >= 0.55, reward_count 5 >= 5, helpful > harmful (4 > 0)
