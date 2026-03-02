@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-03-02T23:45:25.261142Z",
+  "dry_run": false,
+  "prune": {
+    "total_learnings": 74,
+    "stale_count": 0
+  },
+  "dedup": {
+    "checked": 74
+  },
+  "oscillation": {}
+}
