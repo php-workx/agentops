@@ -20,3 +20,4 @@
 {"cycle":21,"target":"idle","result":"unchanged","timestamp":"2026-03-02T23:04:33-05:00"}
 {"cycle":22,"target":"idle","result":"unchanged","timestamp":"2026-03-02T23:04:39-05:00"}
 {"cycle":23,"target":"idle","result":"unchanged","timestamp":"2026-03-02T23:04:43-05:00"}
+{"cycle":24,"target":"flywheel-proof","result":"improved","sha":"44839a04","timestamp":"2026-03-06T21:36:01-05:00","goals_passing":16,"goals_total":18}
