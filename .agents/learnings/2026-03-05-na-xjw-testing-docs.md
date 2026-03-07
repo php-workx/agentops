@@ -2,9 +2,15 @@
 type: retro
 source: na-xjw
 date: 2026-03-05
-confidence: high
+confidence: 0.2857
 maturity: provisional
 tags: [docs, testing, ci, crank, swarm]
+last_decay_at: 2026-03-06T10:08:57-05:00
+harmful_count: 2
+utility: 0.2550
+last_reward: 0.00
+reward_count: 2
+last_reward_at: 2026-03-06T10:08:57-05:00
 ---
 
 # Retro: Testing & Documentation Improvements (na-xjw)
