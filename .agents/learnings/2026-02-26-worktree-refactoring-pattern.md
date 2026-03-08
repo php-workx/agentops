@@ -3,8 +3,8 @@ utility: 0.5030
 last_reward: 0.80
 reward_count: 1
 last_reward_at: 2026-03-04T18:24:26-05:00
-confidence: 0.4749
-last_decay_at: 2026-03-08T10:31:20-04:00
+confidence: 0.4747
+last_decay_at: 2026-03-08T11:06:31-04:00
 ---
 
 # Worktree Refactoring Pattern
