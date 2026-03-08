@@ -1,0 +1,21 @@
+---
+id: 2026-03-08-codex-gates-need-local-ci-failure-path-parity
+type: learning
+date: 2026-03-08
+utility: 0.86
+maturity: provisional
+tags: [codex, validation, ci, tests, post-mortem]
+---
+
+# Codex Gate Adoption Needs Local, CI, and Failure-Path Parity
+
+`na-bnr` improved the Codex contract and prompt-validation model, but the post-mortem found that the enforcement stack still landed unevenly. Local validation and pre-push now run generated-artifact parity, install-bundle parity, headless runtime validation, backbone prompt checks, and override coverage, while CI only runs a subset and BATS only proves happy-path wiring.
+
+For Codex-first validation work, the durable unit is not just “new script plus one CI step.” It is:
+
+1. the validator itself
+2. local blocking gate wiring
+3. CI enforcement of the same blocking surface
+4. negative-path tests proving the gate fails when the validator fails
+
+If one of those layers lags, the repo reports a stronger Codex contract than it actually enforces.
