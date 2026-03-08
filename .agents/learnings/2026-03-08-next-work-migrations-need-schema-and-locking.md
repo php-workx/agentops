@@ -2,9 +2,15 @@
 id: 2026-03-08-next-work-migrations-need-schema-and-locking
 type: learning
 date: 2026-03-08
-utility: 0.9
+utility: 0.8700
 maturity: provisional
 tags: [rpi, next-work, schema, concurrency, contracts]
+last_reward: 0.80
+reward_count: 1
+last_reward_at: 2026-03-08T19:13:21-04:00
+confidence: 0.1667
+last_decay_at: 2026-03-08T19:13:21-04:00
+helpful_count: 1
 ---
 
 # Next-Work Migrations Need Schema and Locking in the Same Wave
