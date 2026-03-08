@@ -2,10 +2,10 @@
 type: retro
 source: na-xjw
 date: 2026-03-05
-confidence: 0.2857
+confidence: 0.2778
 maturity: provisional
 tags: [docs, testing, ci, crank, swarm]
-last_decay_at: 2026-03-06T10:08:57-05:00
+last_decay_at: 2026-03-08T10:31:20-04:00
 harmful_count: 2
 utility: 0.2550
 last_reward: 0.00
