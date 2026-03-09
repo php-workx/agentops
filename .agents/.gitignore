@@ -9,3 +9,5 @@
 !releases/
 releases/*
 !releases/*.md
+!releases/evidence-only-closures/
+!releases/evidence-only-closures/*.json
