@@ -2,15 +2,16 @@
 id: 2026-03-08-codex-gates-need-local-ci-failure-path-parity
 type: learning
 date: 2026-03-08
-utility: 0.8420
+utility: 0.6270
 maturity: provisional
 tags: [codex, validation, ci, tests, post-mortem]
-last_reward: 0.80
-reward_count: 1
-last_reward_at: 2026-03-08T19:13:21-04:00
-confidence: 0.1653
-last_decay_at: 2026-03-09T09:29:10-04:00
+last_reward: 0.05
+reward_count: 2
+last_reward_at: 2026-03-09T12:53:10-04:00
+confidence: 0.2857
+last_decay_at: 2026-03-09T12:53:10-04:00
 helpful_count: 1
+harmful_count: 1
 ---
 
 # Codex Gate Adoption Needs Local, CI, and Failure-Path Parity
