@@ -10,6 +10,7 @@ Use this directory as a navigation surface, not a place to guess. Prefer the CLI
 
 - `learnings/` holds extracted lessons. Use `YYYY-MM-DD-*.md` filenames.
 - `patterns/` holds reusable patterns. Use `kebab-case.md` filenames.
+- `findings/` holds reusable structured findings. The canonical registry is `findings/registry.jsonl`; use the contract in `docs/contracts/finding-registry.md`.
 - `research/` holds deeper investigations and writeups. Use `YYYY-MM-DD-*.md` filenames.
 - `retros/` holds retrospectives and summary reflections. Prefer date-prefixed Markdown names such as `YYYY-MM-DD-*.md`.
 - `knowledge/` holds pending knowledge-processing inputs. Keep filenames descriptive and preserve incoming names until processed.
