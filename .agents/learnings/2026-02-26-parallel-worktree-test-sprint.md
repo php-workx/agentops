@@ -1,14 +1,15 @@
 ---
-utility: 0.7976
-last_reward: 0.80
-reward_count: 184
-last_reward_at: 2026-03-09T09:30:26-04:00
-confidence: 0.9735
-last_decay_at: 2026-03-09T09:30:26-04:00
+utility: 0.7901
+last_reward: 0.05
+reward_count: 185
+last_reward_at: 2026-03-09T12:53:10-04:00
+confidence: 0.9737
+last_decay_at: 2026-03-09T12:53:10-04:00
 helpful_count: 183
 maturity: established
 maturity_changed_at: 2026-02-26T22:35:47-05:00
 maturity_reason: utility 0.73 >= 0.55, reward_count 5 >= 5, helpful > harmful (4 > 0)
+harmful_count: 1
 ---
 # Parallel Worktree Test Sprint Pattern
 
