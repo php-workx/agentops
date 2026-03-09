@@ -5,11 +5,11 @@ date: 2026-03-08
 utility: 0.6474
 maturity: provisional
 tags: [rpi, next-work, schema, concurrency, contracts]
-last_reward: 0.05
-reward_count: 2
-last_reward_at: 2026-03-09T12:53:10-04:00
-confidence: 0.2857
-last_decay_at: 2026-03-09T12:53:10-04:00
+last_reward: 0.80
+reward_count: 1
+last_reward_at: 2026-03-08T19:13:21-04:00
+confidence: 0.1646
+last_decay_at: 2026-03-09T16:50:32-04:00
 helpful_count: 1
 harmful_count: 1
 ---

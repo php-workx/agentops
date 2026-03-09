@@ -2,18 +2,18 @@
 id: 2026-03-08-next-work-parity-must-cover-producers
 type: learning
 date: 2026-03-08
-utility: 0.6573
-maturity: candidate
+utility: 0.8192
+maturity: established
 tags: [post-mortem, next-work, contracts, codex, validation]
-last_decay_at: 2026-03-09T12:53:10-04:00
-helpful_count: 3
-last_reward: 0.05
-reward_count: 4
-last_reward_at: 2026-03-09T12:53:10-04:00
-confidence: 0.4444
-maturity_changed_at: 2026-03-09T09:30:26-04:00
-maturity_reason: utility 0.83 >= 0.55 and reward_count 3 >= 3
-harmful_count: 1
+last_decay_at: 2026-03-09T16:50:58-04:00
+helpful_count: 5
+last_reward: 0.80
+reward_count: 5
+last_reward_at: 2026-03-09T16:50:58-04:00
+confidence: 0.5000
+maturity_changed_at: 2026-03-09T16:50:58-04:00
+maturity_reason: utility 0.82 >= 0.55, reward_count 5 >= 5, helpful > harmful (5 > 0)
+harmful_count: 0
 ---
 
 # Next-Work Parity Must Validate Producer Examples and Generated Artifacts

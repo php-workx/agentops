@@ -3,8 +3,8 @@ utility: 0.6470
 last_reward: 0.80
 reward_count: 2
 last_reward_at: 2026-02-26T21:45:02-05:00
-confidence: 0.2462
-last_decay_at: 2026-03-09T09:29:10-04:00
+confidence: 0.2452
+last_decay_at: 2026-03-09T16:50:32-04:00
 helpful_count: 1
 ---
 # Swarm Remediation Patterns
