@@ -9,6 +9,7 @@ Use this directory as a navigation surface, not a place to guess. Prefer the CLI
 ## Knowledge
 
 - `learnings/` holds extracted lessons. Use `YYYY-MM-DD-*.md` filenames.
+- `findings/` holds normalized reusable failure/prevention artifacts. Use `YYYY-MM-DD-*.md` filenames.
 - `patterns/` holds reusable patterns. Use `kebab-case.md` filenames.
 - `findings/` holds reusable structured findings. The canonical registry is `findings/registry.jsonl`; use the contract in `docs/contracts/finding-registry.md`.
 - `research/` holds deeper investigations and writeups. Use `YYYY-MM-DD-*.md` filenames.
@@ -18,13 +19,16 @@ Use this directory as a navigation surface, not a place to guess. Prefer the CLI
 ## Workflow
 
 - `plans/` holds implementation plans. Use `YYYY-MM-DD-*.md` filenames.
+- `planning-rules/` holds compiled advisory rules that `/plan` should consume before decomposition.
 - `handoff/` holds session handoffs. Use `handoff-*.json` for machine-readable handoff state and `*.md` for human-readable notes.
+- `pre-mortem-checks/` holds compiled advisory checks that `/pre-mortem` should load before judgment.
 - `rpi/` holds pipeline state and scheduler outputs. Expect operational state files such as `next-work.jsonl` plus timestamped artifacts.
 - `ao/` holds internal AgentOps session state. Do not read or edit this directly unless you are working on runtime internals.
 
 ## Validation
 
 - `council/` holds council validation reports. Use `YYYY-MM-DD-*.md` filenames.
+- `constraints/` holds compiled mechanical rules plus `index.json` lifecycle state for executable prevention.
 
 ## Usage Notes
 
