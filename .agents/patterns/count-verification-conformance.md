@@ -2,14 +2,14 @@
 type: pattern
 source: na-xjw post-mortem
 date: 2026-03-05
-confidence: 0.2777
+confidence: 0.2740
 maturity: provisional
 tags: [planning, conformance, docs]
 utility: 0.2550
 last_reward: 0.00
 reward_count: 2
 last_reward_at: 2026-03-06T10:08:57-05:00
-last_decay_at: 2026-03-08T11:06:31-04:00
+last_decay_at: 2026-03-09T09:29:10-04:00
 harmful_count: 2
 ---
 
