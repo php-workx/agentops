@@ -6,3 +6,6 @@
 !*/
 !*/AGENTS.md
 !rpi/next-work.schema.md
+!releases/
+releases/*
+!releases/*.md
