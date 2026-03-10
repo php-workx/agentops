@@ -17,6 +17,7 @@ Use this directory as a navigation surface, not a place to guess. Prefer the CLI
 
 ## Workflow
 
+- `brainstorm/` holds structured brainstorm outputs from `/brainstorm`. Use `YYYY-MM-DD-*.md` filenames.
 - `plans/` holds implementation plans. Use `YYYY-MM-DD-*.md` filenames.
 - `planning-rules/` holds compiled advisory rules that `/plan` should consume before decomposition.
 - `handoff/` holds session handoffs. Use `handoff-*.json` for machine-readable handoff state and `*.md` for human-readable notes.
