@@ -2,15 +2,17 @@
 type: pattern
 source: athena 2026-03-06
 date: 2026-03-06
-confidence: 0.1667
-maturity: provisional
+confidence: 0.4444
+maturity: anti-pattern
 tags: [rpi, observability, worktree, supervisor, events]
-last_reward: 0.05
-reward_count: 1
-last_reward_at: 2026-03-09T12:53:10-04:00
-last_decay_at: 2026-03-09T12:53:10-04:00
-harmful_count: 1
-utility: 0.3650
+last_reward: 0.00
+reward_count: 4
+last_reward_at: 2026-03-09T21:52:08-04:00
+last_decay_at: 2026-03-09T21:52:08-04:00
+harmful_count: 4
+utility: 0.1560
+maturity_reason: utility 0.16 <= 0.20 and harmful_count 4 >= 3
+maturity_changed_at: 2026-03-09T21:52:08-04:00
 ---
 
 # RPI Multi-Root Observability Pattern

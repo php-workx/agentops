@@ -2,15 +2,17 @@
 type: pattern
 source: athena 2026-03-06
 date: 2026-03-06
-confidence: 0.1667
-maturity: provisional
+confidence: 0.5000
+maturity: anti-pattern
 tags: [athena, cli, mine, defrag, contracts]
-last_reward: 0.05
-reward_count: 1
-last_reward_at: 2026-03-09T12:53:10-04:00
-last_decay_at: 2026-03-09T12:53:10-04:00
-harmful_count: 1
-utility: 0.3650
+last_reward: 0.00
+reward_count: 5
+last_reward_at: 2026-03-09T22:06:57-04:00
+last_decay_at: 2026-03-09T22:06:57-04:00
+harmful_count: 5
+utility: 0.1246
+maturity_changed_at: 2026-03-09T22:06:42-04:00
+maturity_reason: utility 0.16 <= 0.20 and harmful_count 4 >= 3
 ---
 
 # Knowledge Command Contract Hardening Pattern

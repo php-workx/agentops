@@ -2,18 +2,18 @@
 type: pattern
 source: athena 2026-03-06
 date: 2026-03-06
-confidence: 0.8214
+confidence: 0.8485
 maturity: established
 tags: [testing, go, complexity, cmd-ao]
-utility: 0.7868
-last_reward: 0.80
-reward_count: 23
-last_reward_at: 2026-03-09T17:16:20-04:00
-last_decay_at: 2026-03-09T17:16:20-04:00
+utility: 0.6936
+last_reward: 0.00
+reward_count: 28
+last_reward_at: 2026-03-09T22:06:57-04:00
+last_decay_at: 2026-03-09T22:06:57-04:00
 helpful_count: 23
 maturity_reason: utility 0.74 >= 0.55, reward_count 6 >= 5, helpful > harmful (6 > 0)
 maturity_changed_at: 2026-03-07T15:56:23-05:00
-harmful_count: 0
+harmful_count: 5
 ---
 
 # cmd/ao Test Hotspot Refactor Pattern
