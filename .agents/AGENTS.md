@@ -9,9 +9,8 @@ Use this directory as a navigation surface, not a place to guess. Prefer the CLI
 ## Knowledge
 
 - `learnings/` holds extracted lessons. Use `YYYY-MM-DD-*.md` filenames.
-- `findings/` holds normalized reusable failure/prevention artifacts. Use `YYYY-MM-DD-*.md` filenames.
+- `findings/` holds the canonical finding surfaces: `registry.jsonl` is the intake ledger, and promoted `.md` artifacts are the durable cross-repo/search surface.
 - `patterns/` holds reusable patterns. Use `kebab-case.md` filenames.
-- `findings/` holds reusable structured findings. The canonical registry is `findings/registry.jsonl`; use the contract in `docs/contracts/finding-registry.md`.
 - `research/` holds deeper investigations and writeups. Use `YYYY-MM-DD-*.md` filenames.
 - `retros/` holds retrospectives and summary reflections. Prefer date-prefixed Markdown names such as `YYYY-MM-DD-*.md`.
 - `knowledge/` holds pending knowledge-processing inputs. Keep filenames descriptive and preserve incoming names until processed.
@@ -28,7 +27,7 @@ Use this directory as a navigation surface, not a place to guess. Prefer the CLI
 ## Validation
 
 - `council/` holds council validation reports. Use `YYYY-MM-DD-*.md` filenames.
-- `constraints/` holds compiled mechanical rules plus `index.json` lifecycle state for executable prevention.
+- `constraints/` holds compiled mechanical rules. `constraints/index.json` is the canonical executable surface, and `constraints/*.sh` are human-reviewable companions only.
 
 ## Usage Notes
 
