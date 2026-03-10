@@ -2,15 +2,15 @@
 id: 2026-03-08-next-work-parity-must-cover-producers
 type: learning
 date: 2026-03-08
-utility: 0.4210
+utility: 0.4552
 maturity: candidate
 tags: [post-mortem, next-work, contracts, codex, validation]
-last_decay_at: 2026-03-09T22:06:57-04:00
-helpful_count: 7
-last_reward: 0.00
-reward_count: 12
-last_reward_at: 2026-03-09T22:06:57-04:00
-confidence: 0.7059
+last_decay_at: 2026-03-10T07:43:15-04:00
+helpful_count: 8
+last_reward: 0.80
+reward_count: 13
+last_reward_at: 2026-03-10T07:43:15-04:00
+confidence: 0.7222
 maturity_changed_at: 2026-03-09T22:06:42-04:00
 maturity_reason: utility 0.47 < 0.5 (demotion from established)
 harmful_count: 5
