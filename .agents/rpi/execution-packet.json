@@ -1,62 +1,20 @@
 {
-  "objective": "Enhance AgentOps skills with validated gstack patterns across 4 waves",
-  "epic_id": "gstack-enhancements",
-  "contract_surfaces": [
-    "skills/pre-mortem/SKILL.md",
-    "skills/vibe/SKILL.md",
-    "skills/post-mortem/SKILL.md",
-    "skills/pr-prep/SKILL.md",
-    "skills/council/SKILL.md",
-    "skills/standards/references/"
+  "epic_id": "ag-wug",
+  "goal": "Update claude-code-latest-features contract to 2.1.75 and integrate into skills",
+  "complexity": "standard",
+  "waves": [
+    {"id": 1, "issues": ["ag-wug.1"], "type": "contract-update"},
+    {"id": 2, "issues": ["ag-wug.2", "ag-wug.3", "ag-wug.4", "ag-wug.5", "ag-wug.6"], "type": "sync-and-integrate"},
+    {"id": 3, "issues": ["ag-wug.7"], "type": "validate"}
   ],
-  "validation_commands": [
-    "bash skills/heal-skill/scripts/heal.sh --strict",
-    "./tests/docs/validate-doc-release.sh"
-  ],
-  "tracker_mode": "tasklist",
-  "done_criteria": [
-    "Wave 1: pre-mortem has error/rescue map template (Step 2.5) + scope mode selection (Step 1.6)",
-    "Wave 2: vibe has finding classification + suppressions, post-mortem has streak tracking, pr-prep has commit split advisor, council has auto-extraction, pre-mortem has prediction tracking",
-    "Wave 3: post-mortem has persistent retro history, pre-mortem has temporal interrogation",
-    "Wave 4: standards has domain-specific checklists, vibe loads them"
-  ],
-  "complexity": "full",
-  "pre_mortem_verdict": "WARN",
-  "pre_mortem_report": ".agents/council/2026-03-12-pre-mortem-gstack-enhancements.md",
-  "file_ownership_matrix": {
-    "W1": {
-      "#1": {"exclusive": ["skills/pre-mortem/references/error-rescue-map-template.md"], "shared": ["skills/pre-mortem/SKILL.md (Step 2.5 only)"]},
-      "#2": {"exclusive": [], "shared": ["skills/pre-mortem/SKILL.md (Step 1.6 only)"]}
-    },
-    "W2": {
-      "#3": {"exclusive": ["skills/vibe/references/vibe-suppressions.md"], "shared": ["skills/vibe/SKILL.md"]},
-      "#4": {"exclusive": ["skills/post-mortem/references/streak-tracking.md"], "shared": ["skills/post-mortem/SKILL.md"]},
-      "#5": {"exclusive": ["skills/pr-prep/references/commit-split-advisor.md"], "shared": ["skills/pr-prep/SKILL.md"]},
-      "#6": {"exclusive": ["skills/council/references/finding-extraction.md"], "shared": ["skills/council/SKILL.md"]},
-      "#7_SERIAL": {"exclusive": ["skills/pre-mortem/references/prediction-tracking.md"], "shared": ["skills/pre-mortem/SKILL.md", "skills/vibe/SKILL.md", "skills/post-mortem/SKILL.md"]}
-    },
-    "W3": {
-      "#8": {"exclusive": ["skills/post-mortem/references/retro-history.md"], "shared": ["skills/post-mortem/SKILL.md"]},
-      "#9": {"exclusive": [], "shared": ["skills/pre-mortem/SKILL.md"]}
-    },
-    "W4": {
-      "#10": {"exclusive": ["skills/standards/references/sql-safety-checklist.md", "skills/standards/references/llm-trust-boundary-checklist.md", "skills/standards/references/race-condition-checklist.md"], "shared": ["skills/standards/SKILL.md", "skills/vibe/SKILL.md"]}
-    }
-  },
-  "wave_execution_notes": {
-    "W1": "Tasks #1 and #2 touch different sections of same file. Run SERIAL (not parallel). #2 first (Step 1.6), then #1 (Step 2.5).",
-    "W2": "Tasks #3, #4, #5, #6 can run PARALLEL (different files). Task #7 runs SERIAL AFTER #3+#4 complete (touches 3 shared files).",
-    "W3": "Tasks #8 then #9 SERIAL (#9 depends on #8).",
-    "W4": "Task #10 SERIAL."
-  },
-  "template_specs": [
-    ".agents/research/gstack/wave1-error-rescue-template.md",
-    ".agents/research/gstack/wave1-scope-modes-template.md"
-  ],
-  "research_artifacts": [
-    ".agents/research/gstack/feature-inventory.md",
-    ".tmp/gstack-research-findings.md",
-    ".tmp/gstack/.agents/council/2026-03-12-validate-gstack-enhancement-plan.md"
-  ],
-  "discovery_timestamp": "2026-03-12T18:30:00Z"
+  "contract_surfaces": {
+    "source": "skills/shared/references/claude-code-latest-features.md",
+    "copies": [
+      "skills/council/references/claude-code-latest-features.md",
+      "skills/swarm/references/claude-code-latest-features.md",
+      "skills/research/references/claude-code-latest-features.md",
+      "skills/crank/references/claude-code-latest-features.md",
+      "skills/codex-team/references/claude-code-latest-features.md"
+    ]
+  }
 }
