@@ -1,20 +1,61 @@
 {
-  "epic_id": "ag-wug",
-  "goal": "Update claude-code-latest-features contract to 2.1.75 and integrate into skills",
-  "complexity": "standard",
+  "epic_id": "ag-swr",
+  "goal": "Align skills-codex with actual Codex skill API contract",
+  "complexity": "full",
+  "pre_mortem_verdict": "WARN",
+  "pre_mortem_report": ".agents/council/2026-03-14-pre-mortem-ag-swr.md",
   "waves": [
-    {"id": 1, "issues": ["ag-wug.1"], "type": "contract-update"},
-    {"id": 2, "issues": ["ag-wug.2", "ag-wug.3", "ag-wug.4", "ag-wug.5", "ag-wug.6"], "type": "sync-and-integrate"},
-    {"id": 3, "issues": ["ag-wug.7"], "type": "validate"}
+    {
+      "id": 0,
+      "issues": ["ag-swr.8", "ag-swr.5"],
+      "type": "parallel",
+      "rationale": "Contract doc (ag-swr.8) + conformance validator (ag-swr.5) are independent new files."
+    },
+    {
+      "id": 1,
+      "issues": ["ag-swr.7"],
+      "type": "serial",
+      "rationale": "Converter rewrite — single file, depends on contract doc from Wave 0."
+    },
+    {
+      "id": 2,
+      "issues": ["ag-swr.2"],
+      "type": "serial",
+      "rationale": "Hardest issue — primitive replacement + SKILL.md overrides for crank/swarm. Depends on converter from Wave 1."
+    },
+    {
+      "id": 3,
+      "issues": ["ag-swr.6"],
+      "type": "serial",
+      "rationale": "Final regen + full validation. Blocked by all."
+    }
   ],
-  "contract_surfaces": {
-    "source": "skills/shared/references/claude-code-latest-features.md",
-    "copies": [
-      "skills/council/references/claude-code-latest-features.md",
-      "skills/swarm/references/claude-code-latest-features.md",
-      "skills/research/references/claude-code-latest-features.md",
-      "skills/crank/references/claude-code-latest-features.md",
-      "skills/codex-team/references/claude-code-latest-features.md"
-    ]
+  "file_ownership_matrix": {
+    "W0": {
+      "ag-swr.8": {"exclusive": ["docs/contracts/codex-skill-api.md", "docs/INDEX.md"]},
+      "ag-swr.5": {"exclusive": ["scripts/validate-codex-api-conformance.sh"]}
+    },
+    "W1": {
+      "ag-swr.7": {"exclusive": ["skills/converter/scripts/convert.sh"]}
+    },
+    "W2": {
+      "ag-swr.2": {"exclusive": ["skills-codex-overrides/crank/SKILL.md", "skills-codex-overrides/swarm/SKILL.md"]}
+    },
+    "W3": {
+      "ag-swr.6": {"exclusive": ["skills-codex/*"]}
+    }
+  },
+  "done_criteria": [
+    "All 54 codex skills have frontmatter with only name + description",
+    "Zero Claude-only primitives in generated codex skills",
+    "Codex API conformance validator passes on all skills",
+    "All existing CI gates still pass"
+  ],
+  "codex_api_reference": {
+    "skills": "https://developers.openai.com/codex/skills/",
+    "multi_agent": "https://developers.openai.com/codex/multi-agent/",
+    "frontmatter": "name + description only",
+    "discovery_paths": [".agents/skills/", "~/.agents/skills/", "/etc/codex/skills/"],
+    "sub_agents": "Agent roles (worker, explorer, monitor) + spawn_agents_on_csv"
   }
 }
