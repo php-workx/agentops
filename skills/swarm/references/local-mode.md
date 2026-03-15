@@ -322,7 +322,21 @@ Check `.agents/swarm/results/<task-id>.json` for each worker. These are ~200 byt
    TaskList() -> find task -> check metadata.validation
    ```
 
-2. **Execute validation checks (in order):**
+2. **Check self-review evidence:**
+
+   Read `.agents/swarm/results/<task-id>.json` and check the `self_review` field:
+
+   | Condition | Action |
+   |-----------|--------|
+   | `self_review` missing | Send back: "Self-review evidence missing. Run the 4-step self-review gate (SCAN, RE-READ, RUN, CONFIRM) and resubmit with `self_review` field in your result JSON." |
+   | `self_review.scan_clean` is `false` | Send back: "Self-review scan found incomplete markers. Fix them and resubmit." |
+   | `self_review.verification_exit_code` is non-zero | Send back: "Self-review verification failed (exit code N). Fix the failures and resubmit." |
+   | `self_review` present and clean | Proceed to step 3 |
+
+   This uses the existing retry mechanism (step 5). The worker gets up to MAX_RETRIES
+   chances to comply before being marked as blocked.
+
+3. **Execute validation checks (in order):**
 
    | Check Type | Command | Pass Condition |
    |------------|---------|----------------|
@@ -332,12 +346,12 @@ Check `.agents/swarm/results/<task-id>.json` for each worker. These are ~200 byt
    | `tests` | `<test_command>` | Tests pass |
    | `lint` | `<lint_command>` | No errors |
 
-3. **On validation PASS:**
+4. **On validation PASS:**
    ```
    TaskUpdate(taskId="<id>", status="completed")
    ```
 
-4. **On validation FAIL:**
+5. **On validation FAIL:**
    - Increment retry count for task
    - If retries < MAX_RETRIES (default: 3): send a follow-up message to the worker via your runtime's messaging mechanism: "Validation failed: <specific failure>. Fix and retry."
    - If retries >= MAX_RETRIES: mark task as blocked and escalate to user
