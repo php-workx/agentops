@@ -2,15 +2,15 @@
 type: pattern
 source: athena 2026-03-06
 date: 2026-03-06
-confidence: 0.4444
+confidence: 0.5455
 maturity: anti-pattern
 tags: [rpi, observability, worktree, supervisor, events]
-last_reward: 0.00
-reward_count: 4
-last_reward_at: 2026-03-09T21:52:08-04:00
-last_decay_at: 2026-03-09T21:52:08-04:00
+last_reward: 0.25
+reward_count: 6
+last_reward_at: 2026-03-15T09:40:18+01:00
+last_decay_at: 2026-03-15T09:40:18+01:00
 harmful_count: 4
-utility: 0.1560
+utility: 0.1886
 maturity_reason: utility 0.16 <= 0.20 and harmful_count 4 >= 3
 maturity_changed_at: 2026-03-09T21:52:08-04:00
 ---

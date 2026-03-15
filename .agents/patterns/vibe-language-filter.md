@@ -2,10 +2,10 @@
 type: pattern
 source: na-xjw post-mortem
 date: 2026-03-05
-confidence: 0.5000
+confidence: 0.4637
 maturity: anti-pattern
 tags: [vibe, complexity, performance]
-last_decay_at: 2026-03-09T22:06:57-04:00
+last_decay_at: 2026-03-15T09:36:20+01:00
 harmful_count: 5
 utility: 0.1195
 last_reward: 0.00

@@ -8,8 +8,8 @@ tags: [codex, validation, ci, tests, post-mortem]
 last_reward: 0.00
 reward_count: 4
 last_reward_at: 2026-03-09T21:52:08-04:00
-confidence: 0.4444
-last_decay_at: 2026-03-09T21:52:08-04:00
+confidence: 0.4121
+last_decay_at: 2026-03-15T09:36:20+01:00
 helpful_count: 1
 harmful_count: 4
 ---
