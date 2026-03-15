@@ -200,11 +200,8 @@ You MUST complete ALL of the following before writing your result JSON. Do NOT s
 
 Only after ALL 4 checks pass may you write .agents/swarm/results/<task-id>.json.
 
-OPTIONAL but recommended: include self-review evidence in your result JSON.
-This helps the lead verify compliance but is NOT required — results without it are still accepted.
+Include self-review evidence in your result JSON:
 {"type":"completion","issue_id":"<task-id>","status":"done","detail":"...","artifacts":[...],"worktreePath":"...","self_review":{"scan_clean":true,"files_reviewed":["path/a","path/b"],"verification_command":"go test ./...","verification_exit_code":0}}
-Note: even if you skip self-review, the lead runs a completeness scan on the wave diff that catches
-the same markers. Self-review shifts detection earlier — cheaper to fix at worker time than wave time.
 
 Rules:
 - Work only on YOUR pre-assigned task
