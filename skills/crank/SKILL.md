@@ -536,15 +536,17 @@ fi
 
 ### Step 5: Verify and Sync to Beads (MANDATORY)
 
-> Swarm executes per-task validation (see `skills/shared/validation-contract.md`). Crank trusts swarm validation and focuses on beads sync.
+> Swarm executes per-task validation including the mandatory self-review gate (see `skills/shared/validation-contract.md` and worker prompt in `skills/swarm/references/local-mode.md`). Workers must pass the self-review gate (TODO/FIXME scan, full re-read, verification command) before reporting completion.
 
 **For verification details, retry logic, and failure escalation, read `skills/crank/references/team-coordination.md` and `skills/crank/references/failure-recovery.md`.**
 
 ### Step 5.5: Wave Acceptance Check (MANDATORY)
 
-> **Principle:** Verify each wave meets acceptance criteria using lightweight inline judges. No skill invocations — prevents context explosion in the orchestrator loop.
+> **Principle:** Verify each wave meets acceptance criteria using a completeness scan, lightweight inline judges, and a per-wave vibe gate. The completeness scan catches TODO/FIXME/PLACEHOLDER markers left by workers. The inline judges check spec compliance and error paths. The vibe gate catches quality issues before they become the foundation for subsequent waves.
 
-**For acceptance check details (diff computation, inline judges, verdict gating), read `skills/crank/references/wave-patterns.md`.**
+**Execution order:** completeness scan (step 4) → inline judges (step 5) → aggregate verdicts (step 6) → per-wave vibe gate (step 7) → verdict gate (step 8). Each gate short-circuits on FAIL — no subsequent gates run.
+
+**For acceptance check details (completeness scan, diff computation, inline judges, per-wave vibe gate, verdict gating), read `skills/crank/references/wave-patterns.md`.**
 
 ### Step 5.7: Wave Checkpoint
 
@@ -655,7 +657,7 @@ After completing a wave, check for newly unblocked issues (beads: `bd ready`, Ta
 
 ### Step 7: Final Batched Validation
 
-When all issues complete, run ONE comprehensive vibe on recent changes. Fix CRITICAL issues before completion.
+When all issues complete, run ONE comprehensive full-repo vibe on all changes since the epic started. This complements the per-wave vibe gates (Step 5.5) by checking cross-wave interactions and overall coherence. Fix CRITICAL issues before completion.
 
 If hooks or `lib/hook-helpers.sh` were modified, verify embedded copies are in sync: `cd cli && make sync-hooks`.
 

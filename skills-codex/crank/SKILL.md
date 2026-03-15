@@ -192,12 +192,19 @@ For each completed worker:
    bd update "$issue_id" --status blocked --append-notes "Wave $wave FAIL: $reason" 2>/dev/null  # On FAIL
    ```
 
-### Step 5.5: Wave Acceptance Check
+### Step 5.5: Wave Acceptance Check (MANDATORY)
 
 After all workers complete:
-1. Compute `git diff` for the wave
-2. Run project-level tests (`go test ./...` or equivalent)
-3. If tests fail, identify which worker's changes broke things
+1. **Completeness scan** — scan newly added lines for `TODO|FIXME|HACK|XXX|PLACEHOLDER|UNIMPLEMENTED|STUB|WIP|NOCOMMIT` (case-insensitive). Auto-FAIL if any found. Fail-closed on infrastructure errors.
+2. Compute `git diff` for the wave
+3. **Inline judges** — spawn 2 lightweight judges (spec-compliance + error-paths) to review the wave diff
+4. Run project-level tests (`go test ./...` or equivalent)
+5. If tests fail, identify which worker's changes broke things
+6. **Per-wave vibe gate** — run targeted `/vibe` on wave's changed files. Fix CRITICAL findings before advancing.
+
+**Execution order:** completeness scan → inline judges → aggregate verdicts → per-wave vibe gate → verdict gate. Each gate short-circuits on FAIL.
+
+**For full details (completeness scan, inline judges, per-wave vibe gate, verdict gating), read `skills/crank/references/wave-patterns.md`.**
 
 ### Step 5.7: Wave Checkpoint
 
