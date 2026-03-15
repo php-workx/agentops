@@ -5,7 +5,7 @@
 Crank follows FIRE for each wave:
 
 |-------|-----------|--------------|
-| **CHECK** | Wave acceptance check (2 inline judges) → PASS/WARN/FAIL | Same |
+| **CHECK** | Wave acceptance check (completeness scan + 2 inline judges + per-wave vibe gate) → PASS/WARN/FAIL | Same |
 | **ESCALATE** | `bd comments add` + retry | Update task description + retry |
 
 **With `--test-first` flag, FIRE extends with two pre-implementation phases:**
@@ -135,7 +135,7 @@ But do NOT read implementation details of the specific feature being specified.
 
 ## Wave Acceptance Check (MANDATORY)
 
-> **Principle:** Verify each wave meets acceptance criteria before advancing. Uses lightweight inline judges — no skill invocations, no context explosion.
+> **Principle:** Verify each wave meets acceptance criteria before advancing. Uses a completeness scan, lightweight inline judges, and a targeted `/vibe` gate. The completeness scan and judges are inline (no skill invocations). The `/vibe` gate is the one skill invocation — scoped to wave files only to limit context growth.
 
 **After closing all beads in a wave, before advancing to the next wave:**
 
@@ -169,7 +169,59 @@ But do NOT read implementation details of the specific feature being specified.
    - missing required evidence
    - required evidence check with `FAIL` verdict
 
-4. **Spawn 2 inline judges** (Task agents, NOT skill invocations):
+4. **Completeness scan (MANDATORY — runs before judges):**
+
+   Before spawning inline judges, scan the wave diff for newly introduced incomplete work markers.
+   This gate is **fail-closed**: if the scan infrastructure fails, the wave FAILs.
+
+   ```bash
+   # Validate WAVE_START_SHA is reachable
+   if ! git cat-file -t "$WAVE_START_SHA" &>/dev/null; then
+       echo "ERROR: WAVE_START_SHA ($WAVE_START_SHA) is invalid."
+       VERDICT="FAIL"
+       FAIL_REASON="Wave start SHA no longer exists in git history. Cannot run quality gates."
+       # STOP — skip judges and vibe gate, jump to step 8 (Gate on verdict)
+   fi
+
+   # Compute wave files once — reused by judges and vibe gate
+   WAVE_FILES=$(git diff --name-only "${WAVE_START_SHA}..HEAD")
+
+   if [[ -z "$WAVE_FILES" ]]; then
+       echo "WARNING: Wave $wave produced no file changes. Investigate worker output."
+       VERDICT="FAIL"
+       FAIL_REASON="No files changed in wave — workers may not have produced output."
+       # STOP — skip judges and vibe gate, jump to step 8 (Gate on verdict)
+   fi
+
+   # Scan only NEWLY ADDED lines (not pre-existing markers) for incomplete work.
+   # Uses case-insensitive matching. Also catches Rust todo!() and unimplemented!() macros.
+   INCOMPLETE_MARKERS=$(git diff "${WAVE_START_SHA}..HEAD" \
+       | grep '^+' | grep -v '^+++' \
+       | grep -inE 'TODO|FIXME|HACK|XXX|PLACEHOLDER|UNIMPLEMENTED|STUB|NOCOMMIT|WIP|NotImplementedError|todo!|unimplemented!' \
+       || true)
+   GREP_EXIT=$?
+
+   if [[ $GREP_EXIT -ge 2 ]]; then
+       echo "ERROR: Completeness scan failed (grep exit $GREP_EXIT). Treating as FAIL."
+       VERDICT="FAIL"
+       FAIL_REASON="Completeness scan infrastructure failure — cannot verify wave cleanliness."
+       # STOP — skip judges and vibe gate, jump to step 8 (Gate on verdict)
+   elif [[ -n "$INCOMPLETE_MARKERS" ]]; then
+       echo "INCOMPLETE WORK DETECTED in wave $wave:"
+       echo "$INCOMPLETE_MARKERS"
+       VERDICT="FAIL"
+       FAIL_REASON="Incomplete markers found in newly added lines. Workers must resolve all TODO/FIXME/PLACEHOLDER markers before completion."
+       # STOP — skip judges and vibe gate, jump to step 8 (Gate on verdict)
+   fi
+   ```
+
+   If the verdict is **FAIL** after this step, **stop here** — skip steps 5-7, jump directly to step 8 (Gate on verdict). The lead must either:
+   - Spawn a fix-up worker scoped to the files with markers, OR
+   - Re-run the failing tasks with explicit instructions to resolve markers
+
+   Only proceed to inline judges if the completeness scan is clean.
+
+5. **Spawn 2 inline judges** (Task agents, NOT skill invocations):
 
    ```
    # Judge 1: Spec compliance
@@ -196,7 +248,7 @@ But do NOT read implementation details of the specific feature being specified.
      prompt: |
        Review this git diff for error handling and edge cases.
        Are error paths handled? Any unhandled exceptions or missing validations?
-       Return: PASS, WARN (minor gaps), or FAIL (critical gaps) with brief justification.
+       Return: PASS, WARN (minor gaps), or FAIL (criteria not met) with brief justification.
 
        ## Git Diff
        <wave diff>
@@ -204,13 +256,46 @@ But do NOT read implementation details of the specific feature being specified.
 
    **Dispatch both judges in parallel** (single message, 2 Task tool calls).
 
-5. **Aggregate verdicts:**
+6. **Aggregate verdicts:**
    - If Step 3 fails evidence validation → **FAIL**
    - Else, both judges PASS → **PASS**
    - Else, any judge FAIL → **FAIL**
    - Otherwise → **WARN**
 
-6. **Gate on verdict:**
+   If verdict is **FAIL**, **stop here** — skip the vibe gate, jump directly to step 8 (Gate on verdict).
+
+7. **Per-wave vibe gate (MANDATORY — runs after judges PASS):**
+
+   After inline judges return PASS (or WARN with fixes applied), run a targeted `/vibe` on the wave's changed files before advancing:
+
+   ```bash
+   # PSEUDO-CODE: /vibe is a skill invocation, not a shell command.
+   # The lead invokes /vibe with the wave diff as scope.
+   #
+   # Input: WAVE_FILES (computed once in step 4), WAVE_DIFF
+   # Expected: /vibe returns findings with severity levels (CRITICAL, HIGH, MEDIUM, LOW)
+   #
+   # Parse /vibe output for CRITICAL findings:
+   VIBE_CRITICAL_COUNT=<count of CRITICAL findings from /vibe output>
+
+   if [[ $VIBE_CRITICAL_COUNT -gt 0 ]]; then
+       VERDICT="FAIL"
+       FAIL_REASON="Per-wave vibe found $VIBE_CRITICAL_COUNT CRITICAL issues. Fix before advancing."
+       # Spawn fix-up worker scoped to CRITICAL findings, or fix inline
+   fi
+   # If no CRITICAL findings, verdict remains PASS/WARN from step 6.
+   ```
+
+   This is a lightweight per-wave validation (not the full-repo final vibe from crank Step 7). The final full-repo vibe (Step 7) still runs to catch cross-wave interactions that per-wave checks cannot detect.
+
+   | Vibe Result | Action |
+   |-------------|--------|
+   | No CRITICAL findings | Advance to next wave |
+   | CRITICAL findings | Fix before advancing (spawn fix-up worker or inline fix) |
+
+   **Why per-wave vibe:** Without it, bad code from wave 1 becomes the foundation for waves 2-3. By the time the final vibe runs (crank Step 7), the damage has compounded. Per-wave vibe catches issues at the earliest point where they can be fixed cheaply.
+
+8. **Gate on verdict:**
 
    | Verdict | Action |
    |---------|--------|
