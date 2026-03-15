@@ -180,12 +180,14 @@ You MUST complete ALL of the following before writing your result JSON. Do NOT s
    git diff HEAD | grep '^+' | grep -v '^+++' | grep -inE 'TODO|FIXME|HACK|XXX|PLACEHOLDER|UNIMPLEMENTED|STUB|WIP|NOCOMMIT|NotImplementedError|todo!|unimplemented!'
    If ANY match is found: you are NOT done. Fix them or remove them before proceeding.
 
-2. RE-READ every file you modified — in full, not skimming. Check for:
-   - Placeholder values or stub implementations (e.g., "pass", empty function bodies, hardcoded dummy data)
-   - Copy-paste errors (wrong variable names, stale references)
-   - Silent error swallowing (empty catch blocks, ignored Results/errors)
-   - Missing imports or unused imports
-   - Functions declared but never called, or called but never defined
+2. REVIEW your changes — do a thorough, brutally honest review of every file you modified.
+   For each file, write down:
+   - What you changed and why
+   - Any gaps or incomplete implementations you see
+   - Any missing error handling or edge cases
+   - Any missing tests for new behavior
+   - Any code that feels hacky or that you'd flag in someone else's PR
+   If your review identifies ANY issues: fix them before proceeding. Do not rationalize them away.
 
 3. RUN verification — execute the test/lint/build command from your task description.
    Look for a "validation" section in your assignment above (the lead includes it as
@@ -195,13 +197,10 @@ You MUST complete ALL of the following before writing your result JSON. Do NOT s
    - If neither is specified: at minimum run the project's default test command for files you touched
      (e.g., `go test ./...` for Go, `pytest` for Python, `npm test` for JS/TS)
 
-4. CONFIRM your work is complete — ask yourself: "If someone reads this code, will they find anything
-   obviously unfinished?" If yes, fix it. If no, proceed to write your result file.
-
-Only after ALL 4 checks pass may you write .agents/swarm/results/<task-id>.json.
+Only after ALL 3 checks pass may you write .agents/swarm/results/<task-id>.json.
 
 Include self-review evidence in your result JSON:
-{"type":"completion","issue_id":"<task-id>","status":"done","detail":"...","artifacts":[...],"worktreePath":"...","self_review":{"scan_clean":true,"files_reviewed":["path/a","path/b"],"verification_command":"go test ./...","verification_exit_code":0}}
+{"type":"completion","issue_id":"<task-id>","status":"done","detail":"...","artifacts":[...],"worktreePath":"...","self_review":{"scan_clean":true,"review":"<your written review>","files_reviewed":["path/a","path/b"],"verification_command":"go test ./...","verification_exit_code":0}}
 
 Rules:
 - Work only on YOUR pre-assigned task
@@ -328,8 +327,9 @@ Check `.agents/swarm/results/<task-id>.json` for each worker. These are ~200 byt
 
    | Condition | Action |
    |-----------|--------|
-   | `self_review` missing | Send back: "Self-review evidence missing. Run the 4-step self-review gate (SCAN, RE-READ, RUN, CONFIRM) and resubmit with `self_review` field in your result JSON." |
+   | `self_review` missing | Send back: "Self-review evidence missing. Run the 3-step self-review gate (SCAN, REVIEW, RUN) and resubmit with `self_review` field in your result JSON." |
    | `self_review.scan_clean` is `false` | Send back: "Self-review scan found incomplete markers. Fix them and resubmit." |
+   | `self_review.review` is missing or empty | Send back: "Written review missing. Do a thorough, brutally honest review of every file you changed — list gaps, missing tests, incomplete implementations — then include it in `self_review.review`." |
    | `self_review.verification_exit_code` is non-zero | Send back: "Self-review verification failed (exit code N). Fix the failures and resubmit." |
    | `self_review` present and clean | Proceed to step 3 |
 
