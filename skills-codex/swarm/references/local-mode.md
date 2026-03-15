@@ -169,6 +169,38 @@ Your message to the lead must be under 100 tokens.
 Do NOT include file contents, diffs, or detailed explanations in messages.
 The result JSON file IS your full report. The lead reads the file, not your message.
 
+MANDATORY SELF-REVIEW GATE (before writing result file):
+You MUST complete ALL of the following before writing your result JSON. Do NOT skip any step.
+
+1. SCAN for incomplete markers in every file you modified.
+   List your modified files using `git diff --name-only` (or track them as you work).
+   Then scan only NEWLY ADDED lines for markers (case-insensitive):
+   git diff HEAD | grep '^+' | grep -v '^+++' | grep -inE 'TODO|FIXME|HACK|XXX|PLACEHOLDER|UNIMPLEMENTED|STUB|WIP|NOCOMMIT|NotImplementedError|todo!|unimplemented!'
+   If ANY match is found: you are NOT done. Fix them or remove them before proceeding.
+
+2. RE-READ every file you modified — in full, not skimming. Check for:
+   - Placeholder values or stub implementations (e.g., "pass", empty function bodies, hardcoded dummy data)
+   - Copy-paste errors (wrong variable names, stale references)
+   - Silent error swallowing (empty catch blocks, ignored Results/errors)
+   - Missing imports or unused imports
+   - Functions declared but never called, or called but never defined
+
+3. RUN verification — execute the test/lint/build command from your task description.
+   Look for a "validation" section in your assignment above (the lead includes it as
+   metadata.validation.tests or metadata.validation.command in your task description):
+   - If a test command is specified: run it, confirm exit code 0
+   - If a lint/build command is specified: run it, confirm exit code 0
+   - If neither is specified: at minimum run the project's default test command for files you touched
+     (e.g., `go test ./...` for Go, `pytest` for Python, `npm test` for JS/TS)
+
+4. CONFIRM your work is complete — ask yourself: "If someone reads this code, will they find anything
+   obviously unfinished?" If yes, fix it. If no, proceed to write your result file.
+
+Only after ALL 4 checks pass may you write .agents/swarm/results/<task-id>.json.
+
+Include self-review evidence in your result JSON:
+{"type":"completion","issue_id":"<task-id>","status":"done","detail":"...","artifacts":[...],"worktreePath":"...","self_review":{"scan_clean":true,"files_reviewed":["path/a","path/b"],"verification_command":"go test ./...","verification_exit_code":0}}
+
 Rules:
 - Work only on YOUR pre-assigned task
 - Do NOT claim other tasks
