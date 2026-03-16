@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-06T15:07:36.43232Z",
+  "timestamp": "2026-03-15T22:41:08.933204Z",
   "dry_run": false,
   "prune": {
-    "total_learnings": 6,
+    "total_learnings": 144,
     "stale_count": 0
   },
   "dedup": {
-    "checked": 6
+    "checked": 144
   },
   "oscillation": {}
 }
