@@ -1,74 +1,48 @@
 {
-  "goal": "Execute the Codex skill hardening follow-on plan",
-  "epic_id": null,
-  "plan_path": ".agents/plans/2026-03-18-codex-skill-hardening-follow-on-plan.md",
-  "phase": "validation",
-  "complexity": "full",
-  "test_first": true,
-  "cycle": 1,
-  "max_cycles": 1,
-  "flags": [
-    "--from=discovery"
-  ],
-  "contract_surfaces": {
-    "plan": [
-      ".agents/plans/2026-03-18-codex-skill-hardening-follow-on-plan.md"
-    ],
-    "research": [
-      ".agents/research/2026-03-18-skills-codex-runtime-syntax-audit.md",
-      ".agents/research/2026-03-18-repo-architecture-codex-maintenance-current-state.md"
-    ],
-    "docs": [
-      "docs/newcomer-guide.md",
-      "AGENTS.md",
-      "docs/release-e2e-checklist.md"
-    ],
-    "scripts": [
-      "scripts/audit-codex-parity.py",
-      "scripts/validate-codex-generated-artifacts.sh",
-      "scripts/validate-codex-override-coverage.sh"
-    ],
-    "codex_overrides": [
-      "skills-codex-overrides/swarm/SKILL.md",
-      "skills-codex-overrides/council/SKILL.md",
-      "skills-codex-overrides/crank/SKILL.md"
-    ],
-    "codex_artifacts": [
-      "skills-codex/council/references/agent-prompts.md",
-      "skills-codex/shared/validation-contract.md",
-      "skills-codex/trace/references/discovery-patterns.md",
-      "skills-codex/heal-skill/SKILL.md",
-      "skills-codex/heal-skill/references/codex-parity.md",
-      "skills-codex/.agentops-manifest.json"
-    ],
-    "tests": [
-      "tests/scripts/test-codex-parity-audit.sh"
-    ],
-    "validation_stack": [
-      "bash scripts/regen-codex-hashes.sh",
-      "bash scripts/audit-codex-parity.sh",
-      "bash scripts/validate-codex-generated-artifacts.sh --scope worktree",
-      "bash scripts/validate-codex-override-coverage.sh",
-      "bash tests/scripts/test-codex-parity-audit.sh"
-    ]
+  "epic_id": "ag-hb2",
+  "goal": "Flywheel golden signals — determine if knowledge is compounding or collecting noise",
+  "complexity": "standard",
+  "plan_path": ".agents/plans/2026-03-20-flywheel-golden-signals.md",
+  "pre_mortem_path": ".agents/council/2026-03-20-pre-mortem-flywheel-golden-signals.md",
+  "pre_mortem_verdict": "WARN",
+  "pre_mortem_fixes_applied": ["pm-001-omitempty-float64", "pm-002-opt-in-computation", "pm-004-orphan-matching"],
+  "test_levels": {
+    "required": ["L0", "L1"],
+    "recommended": ["L2"],
+    "rationale": "L0 for pure math (gini, regression), L1 for fixture-based signal computation, L2 for CLI integration"
   },
-  "done_criteria": [
-    "Codex parity audit scans checked-in Codex skill bodies, references, and overrides",
-    "Newcomer and heal-skill docs match the manually maintained Codex artifact model",
-    "Stale multi-agent syntax is removed from active Codex override bodies",
-    "Touched Codex artifacts have refreshed generated hashes and pass local validation"
-  ],
-  "verdicts": {
-    "discovery": "complete",
-    "plan": "complete",
-    "pre_mortem": "warn",
-    "crank": "partial",
-    "vibe": "pass",
-    "post_mortem": "warn"
+  "waves": {
+    "1": ["ag-hb2.1"],
+    "2": ["ag-hb2.2"],
+    "3": ["ag-hb2.3", "ag-hb2.4"]
   },
-  "next_work": [
-    "Extend the same source-of-truth cleanup to remaining Codex-facing docs such as README and contract docs",
-    "Decide whether skills-codex-overrides remains a durable tailoring layer or should be reduced further",
-    "Decompose the remaining hardening workstreams into beads once the bd backend is healthy"
-  ]
+  "issues": {
+    "ag-hb2.1": {
+      "title": "Add GoldenSignals type to FlywheelMetrics",
+      "files": ["cli/internal/types/types.go"],
+      "wave": 1
+    },
+    "ag-hb2.2": {
+      "title": "Implement golden signal computation and tests",
+      "files": ["cli/cmd/ao/metrics_golden.go", "cli/cmd/ao/metrics_golden_test.go"],
+      "wave": 2
+    },
+    "ag-hb2.3": {
+      "title": "Wire golden signals into CLI (--golden flag)",
+      "files": ["cli/cmd/ao/metrics_flywheel.go", "cli/cmd/ao/metrics_flywheel_test.go"],
+      "wave": 3
+    },
+    "ag-hb2.4": {
+      "title": "Update flywheel skill docs with golden signals",
+      "files": ["skills/flywheel/SKILL.md"],
+      "wave": 3
+    }
+  },
+  "cross_cutting_constraints": [
+    "Backward-compatible: existing FlywheelMetrics JSON must not break",
+    "No omitempty on float64/int fields (pm-001)",
+    "Golden signals opt-in via --golden flag only (pm-002)",
+    "Tests must assert behavioral correctness, not just presence"
+  ],
+  "created_at": "2026-03-20"
 }
