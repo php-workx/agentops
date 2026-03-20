@@ -3,8 +3,22 @@
 !.gitignore
 !README.md
 !AGENTS.md
-!*/
+
+# Allow AGENTS.md in tracked subdirectories (explicit list, not !*/)
+!council/
+!defrag/
+!evolve/
+!handoff/
+!learnings/
+!patterns/
+!plans/
+!plugins/
+!research/
+!retro/
+!retros/
+!rpi/
 !*/AGENTS.md
+
 !rpi/next-work.schema.md
 !releases/
 releases/*
