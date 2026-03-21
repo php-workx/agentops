@@ -1,14 +1,15 @@
 ---
-utility: 0.1019
-last_reward: 0.00
-reward_count: 6
-last_reward_at: 2026-03-09T22:06:57-04:00
-confidence: 0.5455
-last_decay_at: 2026-03-09T22:06:57-04:00
+utility: 0.3037
+last_reward: 0.80
+reward_count: 8
+last_reward_at: 2026-03-21T10:35:06-04:00
+confidence: 0.6154
+last_decay_at: 2026-03-21T10:35:06-04:00
 harmful_count: 5
 maturity: anti-pattern
 maturity_changed_at: 2026-03-09T21:52:08-04:00
 maturity_reason: utility 0.16 <= 0.20 and harmful_count 3 >= 3
+helpful_count: 2
 ---
 # Learnings
 

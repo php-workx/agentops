@@ -2,15 +2,16 @@
 type: pattern
 source: athena 2026-03-06
 date: 2026-03-06
-confidence: 0.3750
+confidence: 0.5000
 maturity: provisional
 tags: [athena, nightly, regression, ci, supervisor]
-last_decay_at: 2026-03-09T21:48:09-04:00
+last_decay_at: 2026-03-21T10:35:06-04:00
 harmful_count: 3
-utility: 0.2006
-last_reward: 0.00
-reward_count: 3
-last_reward_at: 2026-03-09T21:48:09-04:00
+utility: 0.4276
+last_reward: 0.80
+reward_count: 5
+last_reward_at: 2026-03-21T10:35:06-04:00
+helpful_count: 2
 ---
 
 # Athena Nightly Regression Guard Pattern

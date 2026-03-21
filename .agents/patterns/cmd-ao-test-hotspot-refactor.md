@@ -2,15 +2,15 @@
 type: pattern
 source: athena 2026-03-06
 date: 2026-03-06
-confidence: 0.8958
+confidence: 0.9000
 maturity: established
 tags: [testing, go, complexity, cmd-ao]
-utility: 0.7108
+utility: 0.7126
 last_reward: 0.80
-reward_count: 43
-last_reward_at: 2026-03-16T14:16:46-04:00
-last_decay_at: 2026-03-16T14:16:46-04:00
-helpful_count: 38
+reward_count: 45
+last_reward_at: 2026-03-21T10:35:06-04:00
+last_decay_at: 2026-03-21T10:35:06-04:00
+helpful_count: 40
 maturity_reason: utility 0.74 >= 0.55, reward_count 6 >= 5, helpful > harmful (6 > 0)
 maturity_changed_at: 2026-03-07T15:56:23-05:00
 harmful_count: 5
