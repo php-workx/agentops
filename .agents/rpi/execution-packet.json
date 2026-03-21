@@ -1,48 +1,49 @@
 {
-  "epic_id": "ag-hb2",
-  "goal": "Flywheel golden signals — determine if knowledge is compounding or collecting noise",
+  "epic_id": "ag-w5c.6",
+  "goal": "Add model cost tiers (quality/balanced/budget/inherit) with per-agent model assignments for council/crank/vibe cost management",
   "complexity": "standard",
-  "plan_path": ".agents/plans/2026-03-20-flywheel-golden-signals.md",
-  "pre_mortem_path": ".agents/council/2026-03-20-pre-mortem-flywheel-golden-signals.md",
-  "pre_mortem_verdict": "WARN",
-  "pre_mortem_fixes_applied": ["pm-001-omitempty-float64", "pm-002-opt-in-computation", "pm-004-orphan-matching"],
+  "plan_path": ".agents/plans/2026-03-21-model-cost-tiers.md",
   "test_levels": {
     "required": ["L0", "L1"],
-    "recommended": ["L2"],
-    "rationale": "L0 for pure math (gini, regression), L1 for fixture-based signal computation, L2 for CLI integration"
+    "recommended": [],
+    "rationale": "L0 for ModelsConfig struct/merge/env resolution, L1 for ao config models command output"
   },
   "waves": {
-    "1": ["ag-hb2.1"],
-    "2": ["ag-hb2.2"],
-    "3": ["ag-hb2.3", "ag-hb2.4"]
+    "1": ["ag-w5c.6.1", "ag-w5c.6.3", "ag-w5c.6.4", "ag-w5c.6.5"],
+    "2": ["ag-w5c.6.2"]
   },
   "issues": {
-    "ag-hb2.1": {
-      "title": "Add GoldenSignals type to FlywheelMetrics",
-      "files": ["cli/internal/types/types.go"],
+    "ag-w5c.6.1": {
+      "title": "Add ModelsConfig to Go config system",
+      "files": ["cli/internal/config/config.go", "cli/internal/config/config_test.go"],
       "wave": 1
     },
-    "ag-hb2.2": {
-      "title": "Implement golden signal computation and tests",
-      "files": ["cli/cmd/ao/metrics_golden.go", "cli/cmd/ao/metrics_golden_test.go"],
+    "ag-w5c.6.2": {
+      "title": "Add ao config models subcommand",
+      "files": ["cli/cmd/ao/config.go"],
       "wave": 2
     },
-    "ag-hb2.3": {
-      "title": "Wire golden signals into CLI (--golden flag)",
-      "files": ["cli/cmd/ao/metrics_flywheel.go", "cli/cmd/ao/metrics_flywheel_test.go"],
-      "wave": 3
+    "ag-w5c.6.3": {
+      "title": "Update council skill to consume model tiers",
+      "files": ["skills/council/SKILL.md", "skills/council/references/model-profiles.md"],
+      "wave": 1
     },
-    "ag-hb2.4": {
-      "title": "Update flywheel skill docs with golden signals",
-      "files": ["skills/flywheel/SKILL.md"],
-      "wave": 3
+    "ag-w5c.6.4": {
+      "title": "Update crank skill with effort-to-tier mapping",
+      "files": ["skills/crank/SKILL.md"],
+      "wave": 1
+    },
+    "ag-w5c.6.5": {
+      "title": "Update vibe and shared skill docs for tier support",
+      "files": ["skills/vibe/SKILL.md", "skills/shared/SKILL.md"],
+      "wave": 1
     }
   },
   "cross_cutting_constraints": [
-    "Backward-compatible: existing FlywheelMetrics JSON must not break",
-    "No omitempty on float64/int fields (pm-001)",
-    "Golden signals opt-in via --golden flag only (pm-002)",
+    "Backward-compatible: existing COUNCIL_CLAUDE_MODEL env var keeps highest priority",
+    "Council --profile flag remains valid, --tier is an alias with new naming",
+    "No omitempty on string fields that need zero-value distinction",
     "Tests must assert behavioral correctness, not just presence"
   ],
-  "created_at": "2026-03-20"
+  "created_at": "2026-03-21"
 }
