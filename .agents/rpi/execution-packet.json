@@ -1,49 +1,139 @@
 {
-  "epic_id": "ag-w5c.6",
-  "goal": "Add model cost tiers (quality/balanced/budget/inherit) with per-agent model assignments for council/crank/vibe cost management",
-  "complexity": "standard",
-  "plan_path": ".agents/plans/2026-03-21-model-cost-tiers.md",
-  "test_levels": {
-    "required": ["L0", "L1"],
-    "recommended": [],
-    "rationale": "L0 for ModelsConfig struct/merge/env resolution, L1 for ao config models command output"
-  },
-  "waves": {
-    "1": ["ag-w5c.6.1", "ag-w5c.6.3", "ag-w5c.6.4", "ag-w5c.6.5"],
-    "2": ["ag-w5c.6.2"]
-  },
-  "issues": {
-    "ag-w5c.6.1": {
-      "title": "Add ModelsConfig to Go config system",
-      "files": ["cli/internal/config/config.go", "cli/internal/config/config_test.go"],
-      "wave": 1
-    },
-    "ag-w5c.6.2": {
-      "title": "Add ao config models subcommand",
-      "files": ["cli/cmd/ao/config.go"],
-      "wave": 2
-    },
-    "ag-w5c.6.3": {
-      "title": "Update council skill to consume model tiers",
-      "files": ["skills/council/SKILL.md", "skills/council/references/model-profiles.md"],
-      "wave": 1
-    },
-    "ag-w5c.6.4": {
-      "title": "Update crank skill with effort-to-tier mapping",
-      "files": ["skills/crank/SKILL.md"],
-      "wave": 1
-    },
-    "ag-w5c.6.5": {
-      "title": "Update vibe and shared skill docs for tier support",
-      "files": ["skills/vibe/SKILL.md", "skills/shared/SKILL.md"],
-      "wave": 1
-    }
-  },
-  "cross_cutting_constraints": [
-    "Backward-compatible: existing COUNCIL_CLAUDE_MODEL env var keeps highest priority",
-    "Council --profile flag remains valid, --tier is an alias with new naming",
-    "No omitempty on string fields that need zero-value distinction",
-    "Tests must assert behavioral correctness, not just presence"
+  "schema_version": 1,
+  "objective": "Plan and execute the remaining follow-up work after the Codex hookless lifecycle and RPI validation fixes.",
+  "epic_id": null,
+  "plan_path": ".agents/rpi/codex-followup-plan-2026-03-24.md",
+  "contract_surfaces": [
+    "cli/cmd/ao/codex.go",
+    "cli/cmd/ao/codex_test.go",
+    "skills-codex/rpi/SKILL.md",
+    "skills-codex/crank/SKILL.md",
+    "scripts/validate-codex-rpi-contract.sh",
+    "scripts/test-codex-hookless-lifecycle.sh",
+    ".agents/research/2026-03-24-codex-followup-discovery.md",
+    ".agents/rpi/next-work.jsonl"
   ],
-  "created_at": "2026-03-21"
+  "validation_commands": [
+    "go test ./cmd/ao -run 'TestCodex'",
+    "bash scripts/validate-codex-rpi-contract.sh",
+    "bash scripts/test-codex-hookless-lifecycle.sh",
+    "bash scripts/validate-headless-runtime-skills.sh",
+    "scripts/pre-push-gate.sh --fast --scope worktree"
+  ],
+  "tracker_mode": "tasklist",
+  "tracker_health": {
+    "status": "degraded",
+    "command": "bd ready --json",
+    "error": "column \"crystallizes\" could not be found in any table in scope"
+  },
+  "done_criteria": [
+    "Tracker health is repaired or degraded-mode fallback is explicit and tested.",
+    "There is an executable Codex no-beads proof for discovery -> execution-packet -> implementation -> validation.",
+    "Skill-owned closeout is exercised end to end for validation, post-mortem, and handoff.",
+    "Codex artifact/prompt maintenance drift is easier to repair and harder to reintroduce.",
+    "Headless Codex validation runs against isolated state and durable learnings exist for future lookup."
+  ],
+  "complexity": "full",
+  "pre_mortem_verdict": "WARN",
+  "discovery_timestamp": "2026-03-24T08:34:22-04:00",
+  "test_levels": [
+    "L0",
+    "L1",
+    "L2",
+    "L3"
+  ],
+  "ranked_packet": [
+    {
+      "id": "tracker-health-blocker",
+      "rank": 1,
+      "source": "live-command-failure",
+      "summary": "Repair beads health so normal planning and closeout can query issue state again."
+    },
+    {
+      "id": "generic-codex-no-beads-proof",
+      "rank": 2,
+      "source": "recent-validation-findings",
+      "summary": "Add a real executable proof for the Codex no-beads RPI path."
+    },
+    {
+      "id": "closeout-boundary-e2e",
+      "rank": 3,
+      "source": "recent-closeout-regressions",
+      "summary": "Exercise validation, post-mortem, and handoff closeout ownership with repeated stop coverage."
+    },
+    {
+      "id": "lifecycle-guard-dedup",
+      "rank": 4,
+      "source": "skill-maintenance-drift",
+      "summary": "Refactor repeated Codex lifecycle guard snippets into one reusable primitive."
+    },
+    {
+      "id": "codex-artifact-maintenance-hardening",
+      "rank": 5,
+      "source": "prompt-and-hash-refresh-work",
+      "summary": "Make override prompt sync and generated-hash refresh part of one obvious maintenance flow."
+    },
+    {
+      "id": "headless-codex-isolation",
+      "rank": 6,
+      "source": "validation-warning-noise",
+      "summary": "Stop headless validation from depending on the user's real ~/.codex state."
+    },
+    {
+      "id": "durable-knowledge-indexing",
+      "rank": 7,
+      "source": "empty-lookup-results",
+      "summary": "Capture the new Codex lifecycle learnings so future discovery is not operating cold."
+    }
+  ],
+  "tasklist": [
+    {
+      "id": "F1",
+      "title": "Repair beads health for this repo",
+      "type": "blocker",
+      "priority": "high"
+    },
+    {
+      "id": "F2",
+      "title": "Add tracker degraded-mode detection to Codex planning/orchestration",
+      "type": "improvement",
+      "priority": "high"
+    },
+    {
+      "id": "F3",
+      "title": "Add generic Codex no-beads RPI end-to-end proof",
+      "type": "improvement",
+      "priority": "high"
+    },
+    {
+      "id": "F4",
+      "title": "Add closeout-boundary skill end-to-end coverage",
+      "type": "improvement",
+      "priority": "medium"
+    },
+    {
+      "id": "F5",
+      "title": "Refactor Codex lifecycle guards into a reusable primitive",
+      "type": "refactor",
+      "priority": "medium"
+    },
+    {
+      "id": "F6",
+      "title": "Harden Codex artifact maintenance flow",
+      "type": "refactor",
+      "priority": "medium"
+    },
+    {
+      "id": "F7",
+      "title": "Isolate headless Codex validation from real user state",
+      "type": "improvement",
+      "priority": "medium"
+    },
+    {
+      "id": "F8",
+      "title": "Capture durable Codex lifecycle learnings for lookup/search",
+      "type": "improvement",
+      "priority": "low"
+    }
+  ]
 }
