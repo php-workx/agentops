@@ -1,139 +1,78 @@
 {
-  "schema_version": 1,
-  "objective": "Plan and execute the remaining follow-up work after the Codex hookless lifecycle and RPI validation fixes.",
-  "epic_id": null,
-  "plan_path": ".agents/rpi/codex-followup-plan-2026-03-24.md",
+  "objective": "Enhance AgentOps with Anthropic-style long-running application harness behavior by adding clean-room replay proof reuse, artifact-visible mission control, evaluator-grade feedback loops, and stricter generated-state hygiene.",
+  "epic_id": "ag-54n",
+  "related_issue_ids": [
+    "ag-7t6",
+    "ag-54n.1",
+    "ag-54n.2",
+    "ag-54n.3"
+  ],
   "contract_surfaces": [
-    "cli/cmd/ao/codex.go",
-    "cli/cmd/ao/codex_test.go",
-    "skills-codex/rpi/SKILL.md",
-    "skills-codex/crank/SKILL.md",
-    "scripts/validate-codex-rpi-contract.sh",
-    "scripts/test-codex-hookless-lifecycle.sh",
-    ".agents/research/2026-03-24-codex-followup-discovery.md",
-    ".agents/rpi/next-work.jsonl"
+    "docs/contracts/repo-execution-profile.md",
+    "docs/contracts/rpi-run-registry.md",
+    "docs/contracts/context-assembly-interface.md"
   ],
   "validation_commands": [
-    "go test ./cmd/ao -run 'TestCodex'",
-    "bash scripts/validate-codex-rpi-contract.sh",
-    "bash scripts/test-codex-hookless-lifecycle.sh",
-    "bash scripts/validate-headless-runtime-skills.sh",
-    "scripts/pre-push-gate.sh --fast --scope worktree"
+    "python3 skills/reverse-engineer-rpi/scripts/reverse_engineer_rpi.py agentops --mode=repo --output-dir=.tmp/re-rpi-check",
+    "cd cli && go test ./cmd/ao -run 'Test.*RPIServe|Test.*RPI.*State|Test.*RPI.*Events'",
+    "cd cli && go test ./cmd/ao -run 'Test.*SessionOutcome|Test.*RPI.*Phase|Test.*RPI.*Retry'",
+    "bash scripts/pre-push-gate.sh --fast"
   ],
-  "tracker_mode": "tasklist",
-  "tracker_health": {
-    "status": "degraded",
-    "command": "bd ready --json",
-    "error": "column \"crystallizes\" could not be found in any table in scope"
-  },
+  "tracker_mode": "beads",
   "done_criteria": [
-    "Tracker health is repaired or degraded-mode fallback is explicit and tested.",
-    "There is an executable Codex no-beads proof for discovery -> execution-packet -> implementation -> validation.",
-    "Skill-owned closeout is exercised end to end for validation, post-mortem, and handoff.",
-    "Codex artifact/prompt maintenance drift is easier to repair and harder to reintroduce.",
-    "Headless Codex validation runs against isolated state and durable learnings exist for future lookup."
+    "Use ag-7t6 as the execution-packet proof-path dependency after correcting the mistaken ag-6oh.3 tracker reference.",
+    "Mission control exposes a bounded artifact timeline for the active run.",
+    "RPI emits structured evaluator output that distinguishes pass, warn, and fail and can drive retries mechanically.",
+    "Repo-mode reverse-engineer and adjacent eval surfaces ignore generated/temp trees such as .tmp and .agents where appropriate."
   ],
-  "complexity": "full",
+  "complexity": "standard",
   "pre_mortem_verdict": "WARN",
-  "discovery_timestamp": "2026-03-24T08:34:22-04:00",
-  "test_levels": [
-    "L0",
-    "L1",
-    "L2",
-    "L3"
-  ],
+  "pre_mortem_attempt": 1,
+  "discovery_timestamp": "2026-03-24T17:13:53Z",
+  "research_path": ".agents/research/2026-03-24-anthropic-long-running-harness-agentops.md",
+  "plan_path": ".agents/plans/2026-03-24-anthropic-long-running-harness-agentops.md",
+  "pre_mortem_path": ".agents/council/2026-03-24-anthropic-long-running-harness-premortem.md",
+  "test_levels": {
+    "required": [
+      "L0",
+      "L1",
+      "L2"
+    ],
+    "recommended": [
+      "L3"
+    ],
+    "rationale": "The work spans CLI API surface, evaluator state transitions, phased-run integration, and isolated replay/proof behavior."
+  },
   "ranked_packet": [
     {
-      "id": "tracker-health-blocker",
-      "rank": 1,
-      "source": "live-command-failure",
-      "summary": "Repair beads health so normal planning and closeout can query issue state again."
+      "kind": "new_issue",
+      "id": "ag-7t6",
+      "severity": "high",
+      "why": "Created after live tracker verification showed ag-6oh.3 was unrelated; this is now the real execution-packet proof-path dependency."
     },
     {
-      "id": "generic-codex-no-beads-proof",
-      "rank": 2,
-      "source": "recent-validation-findings",
-      "summary": "Add a real executable proof for the Codex no-beads RPI path."
+      "kind": "new_finding",
+      "id": "reverse-engineer-cli-surface-contamination",
+      "severity": "high",
+      "why": "Current repo-mode reverse-engineer selected .tmp/compound-engineer as the AgentOps CLI surface."
     },
     {
-      "id": "closeout-boundary-e2e",
-      "rank": 3,
-      "source": "recent-closeout-regressions",
-      "summary": "Exercise validation, post-mortem, and handoff closeout ownership with repeated stop coverage."
+      "kind": "existing_capability",
+      "id": "hidden-session-outcome",
+      "severity": "medium",
+      "why": "A transcript-outcome scoring primitive already exists and should be promoted rather than replaced."
     },
     {
-      "id": "lifecycle-guard-dedup",
-      "rank": 4,
-      "source": "skill-maintenance-drift",
-      "summary": "Refactor repeated Codex lifecycle guard snippets into one reusable primitive."
+      "kind": "existing_capability",
+      "id": "rpi-serve-dashboard",
+      "severity": "medium",
+      "why": "Mission control already exposes events, runs, and state, making artifact-timeline extension the right scope."
     },
     {
-      "id": "codex-artifact-maintenance-hardening",
-      "rank": 5,
-      "source": "prompt-and-hash-refresh-work",
-      "summary": "Make override prompt sync and generated-hash refresh part of one obvious maintenance flow."
-    },
-    {
-      "id": "headless-codex-isolation",
-      "rank": 6,
-      "source": "validation-warning-noise",
-      "summary": "Stop headless validation from depending on the user's real ~/.codex state."
-    },
-    {
-      "id": "durable-knowledge-indexing",
-      "rank": 7,
-      "source": "empty-lookup-results",
-      "summary": "Capture the new Codex lifecycle learnings so future discovery is not operating cold."
-    }
-  ],
-  "tasklist": [
-    {
-      "id": "F1",
-      "title": "Repair beads health for this repo",
-      "type": "blocker",
-      "priority": "high"
-    },
-    {
-      "id": "F2",
-      "title": "Add tracker degraded-mode detection to Codex planning/orchestration",
-      "type": "improvement",
-      "priority": "high"
-    },
-    {
-      "id": "F3",
-      "title": "Add generic Codex no-beads RPI end-to-end proof",
-      "type": "improvement",
-      "priority": "high"
-    },
-    {
-      "id": "F4",
-      "title": "Add closeout-boundary skill end-to-end coverage",
-      "type": "improvement",
-      "priority": "medium"
-    },
-    {
-      "id": "F5",
-      "title": "Refactor Codex lifecycle guards into a reusable primitive",
-      "type": "refactor",
-      "priority": "medium"
-    },
-    {
-      "id": "F6",
-      "title": "Harden Codex artifact maintenance flow",
-      "type": "refactor",
-      "priority": "medium"
-    },
-    {
-      "id": "F7",
-      "title": "Isolate headless Codex validation from real user state",
-      "type": "improvement",
-      "priority": "medium"
-    },
-    {
-      "id": "F8",
-      "title": "Capture durable Codex lifecycle learnings for lookup/search",
-      "type": "improvement",
-      "priority": "low"
+      "kind": "operational_risk",
+      "id": "ag-m7x",
+      "severity": "high",
+      "why": "Fork exhaustion on subprocess-heavy summarization is a warning for new evaluator/replay tooling."
     }
   ]
 }
